@@ -30,11 +30,23 @@ const base = import.meta.env.BASE_URL.endsWith('/')
 function assetPath(path: string) {
     if (!path) return path;
 
-    if (path.startsWith('http://') || path.startsWith('https://')) {
+    // External URL
+    if (
+        path.startsWith('http://') ||
+        path.startsWith('https://') ||
+        path.startsWith('//')
+    ) {
         return path;
     }
 
-    return `${base}${path.replace(/^\/+/, '')}`;
+    // Remove /public/ if it exists
+    path = path.replace(/^\/public\//, '/');
+
+    // Remove leading slashes
+    path = path.replace(/^\/+/, '');
+
+    // Add Astro base
+    return `${base}${path}`;
 }
 ---
 
@@ -43,12 +55,14 @@ function assetPath(path: string) {
         <div class="stack gap-15">
             <header>
                 <div class="wrapper stack gap-2">
+
                     <a class="back-link" href={`${base}work/`}>
                         <Icon icon="arrow-left" /> Work
                     </a>
 
                     <Hero title={entry.data.title} align="start">
                         <div class="details">
+
                             <div class="tags">
                                 {entry.data.tags.map((t) => (
                                     <Pill>{t}</Pill>
@@ -58,8 +72,10 @@ function assetPath(path: string) {
                             <p class="description">
                                 {entry.data.description}
                             </p>
+
                         </div>
                     </Hero>
+
                 </div>
             </header>
 
@@ -90,33 +106,41 @@ function assetPath(path: string) {
         ? import.meta.env.BASE_URL
         : `${import.meta.env.BASE_URL}/`;
 
-    function fixAssetPaths() {
-        document
-            .querySelectorAll('img, video, source')
-            .forEach((element) => {
-                const src = element.getAttribute('src');
+    function fixAssets() {
+        const elements = document.querySelectorAll(
+            'img, video, audio, source'
+        );
 
-                if (!src) return;
+        elements.forEach((element) => {
+            const src = element.getAttribute('src');
 
-                if (
-                    src.startsWith('http://') ||
-                    src.startsWith('https://') ||
-                    src.startsWith('//') ||
-                    src.startsWith(base)
-                ) {
-                    return;
-                }
+            if (!src) return;
 
-                if (src.startsWith('/assets/')) {
-                    element.setAttribute(
-                        'src',
-                        `${base}${src.replace(/^\/+/, '')}`
-                    );
-                }
-            });
+            // Ignore external URLs
+            if (
+                src.startsWith('http://') ||
+                src.startsWith('https://') ||
+                src.startsWith('//') ||
+                src.startsWith(base)
+            ) {
+                return;
+            }
+
+            let path = src;
+
+            // Fix /public/assets/...
+            path = path.replace(/^\/public\//, '/');
+
+            // Only modify site assets
+            if (path.startsWith('/assets/')) {
+                path = path.replace(/^\/+/, '');
+
+                element.setAttribute('src', `${base}${path}`);
+            }
+        });
     }
 
-    fixAssetPaths();
+    fixAssets();
 </script>
 
 <style>

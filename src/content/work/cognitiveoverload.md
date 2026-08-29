@@ -26,7 +26,7 @@ The result is a puzzle where the main challenge isn't simply determining **where
 ## Visuals & Gameplay Showcase
 
 ### Gameplay Footage
-<video controls src="/GDPortfolio/public/assets/Try_out_things - Game - Windows, Mac, Linux - Unity 2021.3.16f1 Personal _DX11_ 2023-11-13 17-54-39.mp4" title="Title"></video>
+<video controls src="../../../public/assets/Try_out_things - Game - Windows, Mac, Linux - Unity 2021.3.16f1 Personal _DX11_ 2023-11-13 17-54-39.mp4" title="Title"></video>
 ![Players Enjoying 1](../../../public/CognitivePeopleTrying1.jpeg)
 ![Players Enjoying 2](../../../public/CognitivePeopleTrying2.jpeg)
 ## The Core Mechanic
