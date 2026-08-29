@@ -27,26 +27,19 @@ const base = import.meta.env.BASE_URL.endsWith('/')
     ? import.meta.env.BASE_URL
     : `${import.meta.env.BASE_URL}/`;
 
-function assetPath(path: string) {
-    if (!path) return path;
+function resolveAssetPath(path: string | undefined | null) {
+    if (!path) return '';
 
-    // External URL
-    if (
-        path.startsWith('http://') ||
-        path.startsWith('https://') ||
-        path.startsWith('//')
-    ) {
+    // Ignore absolute external URLs or data URIs
+    if (/^(https?:|\/\/|data:)/i.test(path)) {
         return path;
     }
 
-    // Remove /public/ if it exists
-    path = path.replace(/^\/public\//, '/');
+    // Standardize path by stripping /public/ and initial leading slashes
+    const cleanPath = path.replace(/^\/?public\//, '').replace(/^\/+/, '');
 
-    // Remove leading slashes
-    path = path.replace(/^\/+/, '');
-
-    // Add Astro base
-    return `${base}${path}`;
+    // Return combined path with base URL
+    return `${base}${cleanPath}`;
 }
 ---
 
@@ -55,14 +48,12 @@ function assetPath(path: string) {
         <div class="stack gap-15">
             <header>
                 <div class="wrapper stack gap-2">
-
                     <a class="back-link" href={`${base}work/`}>
                         <Icon icon="arrow-left" /> Work
                     </a>
 
                     <Hero title={entry.data.title} align="start">
                         <div class="details">
-
                             <div class="tags">
                                 {entry.data.tags.map((t) => (
                                     <Pill>{t}</Pill>
@@ -72,19 +63,16 @@ function assetPath(path: string) {
                             <p class="description">
                                 {entry.data.description}
                             </p>
-
                         </div>
                     </Hero>
-
                 </div>
             </header>
 
             <main class="wrapper">
                 <div class="stack gap-10 content">
-
                     {entry.data.img && (
                         <img
-                            src={assetPath(entry.data.img)}
+                            src={resolveAssetPath(entry.data.img)}
                             alt={entry.data.img_alt || ''}
                         />
                     )}
@@ -92,7 +80,6 @@ function assetPath(path: string) {
                     <div class="content">
                         <Content />
                     </div>
-
                 </div>
             </main>
         </div>
@@ -106,41 +93,46 @@ function assetPath(path: string) {
         ? import.meta.env.BASE_URL
         : `${import.meta.env.BASE_URL}/`;
 
-    function fixAssets() {
-        const elements = document.querySelectorAll(
+    function fixMediaPaths() {
+        const mediaElements = document.querySelectorAll<HTMLElement>(
             'img, video, audio, source'
         );
 
-        elements.forEach((element) => {
+        mediaElements.forEach((element) => {
+            // Fix src attributes
             const src = element.getAttribute('src');
-
-            if (!src) return;
-
-            // Ignore external URLs
-            if (
-                src.startsWith('http://') ||
-                src.startsWith('https://') ||
-                src.startsWith('//') ||
-                src.startsWith(base)
-            ) {
-                return;
+            if (src && !/^(https?:|\/\/|data:)/i.test(src) && !src.startsWith(base)) {
+                const cleanPath = src.replace(/^\/?public\//, '').replace(/^\/+/, '');
+                element.setAttribute('src', `${base}${cleanPath}`);
             }
 
-            let path = src;
+            // Fix srcset attributes for responsive images
+            const srcset = element.getAttribute('srcset');
+            if (srcset) {
+                const updatedSrcset = srcset
+                    .split(',')
+                    .map((item) => {
+                        const [url, descriptor] = item.trim().split(/\s+/);
+                        if (!url || /^(https?:|\/\/|data:)/i.test(url) || url.startsWith(base)) {
+                            return item;
+                        }
+                        const cleanUrl = url.replace(/^\/?public\//, '').replace(/^\/+/, '');
+                        return `${base}${cleanUrl}${descriptor ? ` ${descriptor}` : ''}`;
+                    })
+                    .join(', ');
 
-            // Fix /public/assets/...
-            path = path.replace(/^\/public\//, '/');
+                element.setAttribute('srcset', updatedSrcset);
+            }
 
-            // Only modify site assets
-            if (path.startsWith('/assets/')) {
-                path = path.replace(/^\/+/, '');
-
-                element.setAttribute('src', `${base}${path}`);
+            // Trigger reload for video elements if their sources were altered
+            if (element instanceof HTMLVideoElement) {
+                element.load();
             }
         });
     }
 
-    fixAssets();
+    // Run script after render
+    fixMediaPaths();
 </script>
 
 <style>
@@ -189,11 +181,14 @@ function assetPath(path: string) {
         margin: 1.5rem 0;
     }
 
-    .content :global(img) {
+    .content :global(img),
+    .content :global(video) {
         border-radius: 1.5rem;
         box-shadow: var(--shadow-sm);
         background: var(--gradient-subtle);
         border: 1px solid var(--gray-800);
+        max-width: 100%;
+        height: auto;
     }
 
     .content :global(blockquote) {
