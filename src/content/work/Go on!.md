@@ -22,10 +22,10 @@ This project was a significant milestone in my journey as a game developer. I we
 ## Visuals & Gameplay Showcase
 ### Gameplay Footage
 
-<video controls src="../../../../public/assets/GOON_Gameplay.mp4" title="Title"></video>
-<video controls src="../../../../public/assets/boss2.mp4" title="Title"></video>
-![BossFight Academic](../../../public/assets/boss1-Recovered5.png)
-![BossFight Social Pressure](../../../public/assets/fondopp.png)
+<video controls src="/assets/GOON_Gameplay.mp4" title="Title"></video>
+<video controls src="/assets/boss2.mp4" title="Title"></video>
+![BossFight Academic](/assets/boss1-Recovered5.png)
+![BossFight Social Pressure](/assets/fondopp.png)
 
 ## Challenges & Learning
 

@@ -20,7 +20,7 @@ The project was developed with a strong focus on gameplay programming and multip
 ## Visuals & Gameplay Showcase
 
 ### Gameplay Footage
-<video controls src="../../../../public/assets/NIGHTFALL GAMEPLAY.mp4" title="Title"></video>
+<video controls src="/assets/NIGHTFALL GAMEPLAY.mp4" title="Title"></video>
 ### Screenshots
 
 ![alt text](/assets/nightfall_blank.png)
