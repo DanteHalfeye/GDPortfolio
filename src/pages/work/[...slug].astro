@@ -30,15 +30,17 @@ const base = import.meta.env.BASE_URL.endsWith('/')
 function resolveAssetPath(path: string | undefined | null) {
     if (!path) return '';
 
-    // Ignore absolute external URLs or data URIs
-    if (/^(https?:|\/\/|data:)/i.test(path)) {
+    // Ignore protocols, mailto, tel, or data URIs
+    if (/^(https?:|\/\/|mailto:|tel:|data:)/i.test(path)) {
         return path;
     }
 
-    // Standardize path by stripping /public/ and initial leading slashes
-    const cleanPath = path.replace(/^\/?public\//, '').replace(/^\/+/, '');
+    // Strip leading ../, ./, and public/ prefixes
+    const cleanPath = path
+        .replace(/^(\.\.\/|\.\/)+/, '')
+        .replace(/^public\//, '')
+        .replace(/^\/+/, '');
 
-    // Return combined path with base URL
     return `${base}${cleanPath}`;
 }
 ---
@@ -93,45 +95,60 @@ function resolveAssetPath(path: string | undefined | null) {
         ? import.meta.env.BASE_URL
         : `${import.meta.env.BASE_URL}/`;
 
+    function isExternalOrProtocol(url: string) {
+        return /^(https?:|\/\/|mailto:|tel:|data:)/i.test(url);
+    }
+
+    function cleanAssetUrl(url: string) {
+        return url
+            .replace(/^(\.\.\/|\.\/)+/, '')
+            .replace(/^public\//, '')
+            .replace(/^\/+/, '');
+    }
+
     function fixMediaPaths() {
+        // Fix media sources (images, videos, audio, sources)
         const mediaElements = document.querySelectorAll<HTMLElement>(
             'img, video, audio, source'
         );
 
         mediaElements.forEach((element) => {
-            // Fix src attributes
             const src = element.getAttribute('src');
-            if (src && !/^(https?:|\/\/|data:)/i.test(src) && !src.startsWith(base)) {
-                const cleanPath = src.replace(/^\/?public\//, '').replace(/^\/+/, '');
-                element.setAttribute('src', `${base}${cleanPath}`);
+            if (src && !isExternalOrProtocol(src) && !src.startsWith(base)) {
+                element.setAttribute('src', `${base}${cleanAssetUrl(src)}`);
             }
 
-            // Fix srcset attributes for responsive images
             const srcset = element.getAttribute('srcset');
             if (srcset) {
                 const updatedSrcset = srcset
                     .split(',')
                     .map((item) => {
                         const [url, descriptor] = item.trim().split(/\s+/);
-                        if (!url || /^(https?:|\/\/|data:)/i.test(url) || url.startsWith(base)) {
+                        if (!url || isExternalOrProtocol(url) || url.startsWith(base)) {
                             return item;
                         }
-                        const cleanUrl = url.replace(/^\/?public\//, '').replace(/^\/+/, '');
-                        return `${base}${cleanUrl}${descriptor ? ` ${descriptor}` : ''}`;
+                        return `${base}${cleanAssetUrl(url)}${descriptor ? ` ${descriptor}` : ''}`;
                     })
                     .join(', ');
 
                 element.setAttribute('srcset', updatedSrcset);
             }
 
-            // Trigger reload for video elements if their sources were altered
             if (element instanceof HTMLVideoElement) {
                 element.load();
             }
         });
+
+        // Fix inline Markdown links while explicitly leaving mailto/tel untouched
+        const links = document.querySelectorAll<HTMLAnchorElement>('.content a');
+        links.forEach((link) => {
+            const href = link.getAttribute('href');
+            if (href && !isExternalOrProtocol(href) && !href.startsWith(base) && !href.startsWith('#')) {
+                link.setAttribute('href', `${base}${cleanAssetUrl(href)}`);
+            }
+        });
     }
 
-    // Run script after render
     fixMediaPaths();
 </script>
 
