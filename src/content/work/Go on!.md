@@ -17,7 +17,7 @@ tags:
 
 This project was a significant milestone in my journey as a game developer. I went from having virtually no programming experience beyond Scratch to creating a fully realized game in Unity.
 
-### [Download Go On!](<../../../public/assets/GO ON!.zip>)
+### [Download Go On!](</GDPortfolio/public/assets/GO ON!.zip>)
 
 ## Visuals & Gameplay Showcase
 ### Gameplay Footage
