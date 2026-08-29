@@ -23,14 +23,12 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.endsWith('/')
+    ? import.meta.env.BASE_URL
+    : `${import.meta.env.BASE_URL}/`;
 
 function assetPath(path: string) {
     if (!path) return path;
-
-    if (path.startsWith(base)) {
-        return path;
-    }
 
     return `${base}${path.replace(/^\/+/, '')}`;
 }
@@ -48,7 +46,9 @@ function assetPath(path: string) {
                     <Hero title={entry.data.title} align="start">
                         <div class="details">
                             <div class="tags">
-                                {entry.data.tags.map((t) => <Pill>{t}</Pill>)}
+                                {entry.data.tags.map((t) => (
+                                    <Pill>{t}</Pill>
+                                ))}
                             </div>
 
                             <p class="description">
@@ -78,23 +78,6 @@ function assetPath(path: string) {
         <ContactCTA />
     </div>
 </BaseLayout>
-
-<script>
-    const base = import.meta.env.BASE_URL;
-
-    document.querySelectorAll(
-        'img[src^="/assets/"], video[src^="/assets/"], source[src^="/assets/"]'
-    ).forEach((element) => {
-        const src = element.getAttribute('src');
-
-        if (!src || src.startsWith(base)) return;
-
-        element.setAttribute(
-            'src',
-            `${base}${src.replace(/^\/+/, '')}`
-        );
-    });
-</script>
 
 <style>
     header {
