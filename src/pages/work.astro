@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+
 import ContactCTA from '../components/ContactCTA.astro';
 import Grid from '../components/Grid.astro';
 import Hero from '../components/Hero.astro';
@@ -22,6 +23,7 @@ const projects = (await getCollection('work')).sort(
 				tagline="See my most recent projects below to get an idea of my past experience."
 				align="start"
 			/>
+
 			<Grid variant="offset">
 				{
 					projects.map((project) => (
@@ -32,6 +34,7 @@ const projects = (await getCollection('work')).sort(
 				}
 			</Grid>
 		</main>
+
 		<ContactCTA />
 	</div>
 </BaseLayout>
