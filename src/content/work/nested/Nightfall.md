@@ -17,6 +17,8 @@ tags:
 
 The project was developed with a strong focus on gameplay programming and multiplayer systems, combining combat, progression, enemy spawning, power-ups, and player-driven decision making into a single survival experience.
 
+### [Play it in Fortnite](https://www.fortnite.com/play/island/6097-7326-5868)
+
 ## Visuals & Gameplay Showcase
 
 ### Gameplay Footage
