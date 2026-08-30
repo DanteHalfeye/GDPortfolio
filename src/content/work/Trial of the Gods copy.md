@@ -1,7 +1,7 @@
 ---
 title: Trial of the Gods — Global Game Jam 2026
 publishDate: 2026-01-30 00:00:00
-img: /assets/Trial.png
+img: /Trial.png
 img_alt: Trial of the Gods — Global Game Jam 2026
 description: >
   A 3D action-platformer created during Global Game Jam 2026. Players use divine masks to unlock movement abilities and overcome environmental challenges across an ancient temple.
