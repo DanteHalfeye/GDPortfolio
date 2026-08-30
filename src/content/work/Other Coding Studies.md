@@ -1,7 +1,7 @@
 ---
 title: Other Coding Studies
 publishDate: 2026-08-29 00:00:00
-img: /assets/Forces.jpg
+img: /Forces.jpg
 img_alt: GPU particle force simulation
 description: >
   A collection of programming and simulation studies exploring emergent behavior, procedural systems, physics, forces, and GPU-based particle simulations using p5.js and Three.js.
@@ -33,7 +33,7 @@ The project explores how **simple local interactions can create complex global b
 
 ### [Try the Project](https://editor.p5js.org/deadcoolest/sketches/o3uGwprEI)
 
-![Particle Life](/assets/Particle.jpg)
+![Particle Life](/Particle.jpg)
 
 ## Emergent Ocean Simulation
 
@@ -49,7 +49,7 @@ The simulation combines **procedural generation, autonomous agents, probability 
 
 ### [Try the Project](https://editor.p5js.org/deadcoolest/sketches/YjhET8UF_)
 
-![Emergent Ocean Simulation](/assets/Random.jpg)
+![Emergent Ocean Simulation](/Random.jpg)
 
 ## Instrument Log — GPU Particle Force Instrument
 
@@ -65,7 +65,7 @@ The project explores how **GPU computation can be used to create large-scale int
 
 ### [Try the Project](https://dantehalfeye.github.io/Forces-Simulation-Instrument/)
 
-![GPU Particle Force Instrument](/assets/Forces.jpg)
+![GPU Particle Force Instrument](/Forces.jpg)
 
 ## What I Learned
 
