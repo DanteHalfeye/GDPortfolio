@@ -17,7 +17,6 @@ tags:
 ![Pot](/assets/ArtStudies/Maceta.png)
 ![Notan](/assets/ArtStudies/NOTAN2.jpg)
 ![Dog In Coal](/assets/ArtStudies/PerroCarboncillo.jpeg)
-![Pokemon](/assets/ArtStudies/Pokemon.png)
 ![Car](/assets/ArtStudies/rendermejorado.png)
 ![Robot](/assets/ArtStudies/Robot.png)
 ![Splashart](/assets/ArtStudies/Splashart.png)
