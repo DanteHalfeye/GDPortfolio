@@ -130,6 +130,14 @@ The project reinforced the importance of building a **strong playable prototype 
 | **Role** | Game Designer & Gameplay Programmer |
 | **Tools** | Unity, Adobe Suite, Google Docs |
 
+### Team
+
+- **Alejandro Velásquez**
+- **Juan Esteban Calle**
+- **Juan Gaviria**
+- **Me** — Gameplay Programming & Technical Design
+
+
 ## Technologies
 
 - **Unity**
