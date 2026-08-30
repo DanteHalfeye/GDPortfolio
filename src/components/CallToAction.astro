@@ -5,10 +5,15 @@ interface Props {
 
 const { href } = Astro.props;
 
-const finalHref =
-    href.startsWith('http://') || href.startsWith('https://')
-        ? href
-        : `${import.meta.env.BASE_URL}${href.replace(/^\/+/, '')}`;
+const isExternal =
+    href.startsWith('http://') ||
+    href.startsWith('https://') ||
+    href.startsWith('mailto:') ||
+    href.startsWith('tel:');
+
+const finalHref = isExternal
+    ? href
+    : `${import.meta.env.BASE_URL}${href.replace(/^\/+/, '')}`;
 ---
 
 <a href={finalHref}>
