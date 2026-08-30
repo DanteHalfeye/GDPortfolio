@@ -1,7 +1,7 @@
 ---
 title: Dream Valley
 publishDate: 2023-01-01 00:00:00
-img: /assets//DV1.jpeg
+img: /assets/DV1.jpeg
 img_alt: Dream Valley first-person puzzle horror game
 description: |
   My first 3D game, Dream Valley is a first-person puzzle horror experience where players explore a mysterious house, uncover its story through scattered notes, and evade a hostile white ghoul.
@@ -25,10 +25,10 @@ The project was also an important step in learning how to build complex and main
 ### Gameplay Footage
 <video controls src="/assets/DreamValleyss.mp4" title="Title"></video>
 
-![DV2](/DV2.jpeg)
-![DV3](/DV3.jpeg)
-![DV4](/DV4.jpeg)
-![DV5](/DV5.jpeg)
+![DV2](/assets/DV2.jpeg)
+![DV3](/assets/DV3.jpeg)
+![DV4](/assets/DV4.jpeg)
+![DV5](/assets/DV5.jpeg)
 
 ## My Role
 

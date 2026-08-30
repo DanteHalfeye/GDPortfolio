@@ -1,7 +1,7 @@
 ---
 title: Devil's Canteen
 publishDate: 2024-01-01 00:00:00
-img: /assets/devils_canteen.png
+img: /assets/POSTER.png
 img_alt: Devil's Canteen
 description: >
   A walking simulator murder mystery developed during Global Game Jam 2024,
@@ -30,7 +30,6 @@ In the game, you play as a Colombian mountaineer tasked with finding and killing
 ### Gameplay Footage
 <video controls src="/assets/SC_CantinaDelDiablo.mp4" title="Title"></video>
 
-![Poster](/POSTER.png)
 
 ## Gameplay Concept
 
