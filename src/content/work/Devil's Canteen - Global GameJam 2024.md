@@ -1,5 +1,5 @@
 ---
-title: Devil's Canteen
+title: Devil's Canteen Global Game Jam 2024
 publishDate: 2024-01-01 00:00:00
 img: /assets/POSTER.png
 img_alt: Devil's Canteen
@@ -93,16 +93,16 @@ It was also an important milestone for me because, compared to my previous Game 
 
 ### Programmers
 
-- **Eliham Alejandro Peláez**
-- Isabella Montoya
-- Gabriel Eduardo Renowitzky
-- Juan Esteban Trillos
+- **Me**
+- **Isabella Montoya**
+- **Gabriel Eduardo Renowitzky**
+- **Juan Esteban Trillos**
 
 ### Art
 
-- Valeria Quintero Cuervo [@KrowKrapp](https://www.instagram.com/Krowkrapp/)
-- Miguel Ángel Grisales
-- N1K0
+- **Valeria Quintero Cuervo** [@KrowKrapp](https://www.instagram.com/Krowkrapp/)
+- **Miguel Ángel Grisales**
+- **N1K0**
 
 ## Project Details
 
