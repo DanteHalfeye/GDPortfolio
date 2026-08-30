@@ -20,10 +20,9 @@ Tide and Tale is a 3D platformer collectathon set inside a world of stories.
 In the game, we play as a writer who enters a mysterious world of stories and discovers the ability to manipulate water. The player uses this power to defeat enemies, traverse the environment, interact with the world, and collect important objects.
 
 <!-- VIDEO: Main gameplay / project overview -->
-<video controls src="VIDEO_URL_HERE"></video>
 
 <!-- IMAGE: Main game screenshot / key art -->
-![Tide and Tale](IMAGE_URL_HERE)
+
 
 > **Project Status:** Development discontinued before release.
 >
@@ -79,10 +78,10 @@ The controller supported states including:
 These states allowed different gameplay behaviors to be isolated while still sharing the same character movement architecture.
 
 <!-- IMAGE: Player controller gameplay -->
-![Player Controller](IMAGE_URL_HERE)
+
 
 <!-- VIDEO: Player movement showcase -->
-<video controls src="VIDEO_URL_HERE"></video>
+
 
 ## Movement
 
@@ -191,10 +190,10 @@ This allowed different gameplay objects to participate in the same damage archit
 Environmental hazards, player attacks, enemies, and defensive systems could all communicate through the same damage interfaces.
 
 <!-- IMAGE: Combat gameplay -->
-![Combat System](IMAGE_URL_HERE)
+
 
 <!-- VIDEO: Combat showcase -->
-<video controls src="VIDEO_URL_HERE"></video>
+
 
 ---
 
@@ -262,10 +261,10 @@ The system supported:
 This separated projectile data from the manager responsible for creating and reusing projectile instances.
 
 <!-- IMAGE: Projectile types / abilities -->
-![Projectile System](IMAGE_URL_HERE)
+
 
 <!-- VIDEO: Projectile and ability gameplay -->
-<video controls src="VIDEO_URL_HERE"></video>
+
 
 ---
 
@@ -334,7 +333,7 @@ GameSaveData
 This allowed the game to preserve progression between play sessions and remember state independently for different levels.
 
 <!-- IMAGE: Progression / collectibles -->
-![Progression System](IMAGE_URL_HERE)
+
 
 ---
 
@@ -402,10 +401,10 @@ Trigger
 Once a trigger had been activated, its state could be saved and restored when returning to the level.
 
 <!-- IMAGE: Trigger in Unity -->
-![Trigger System](IMAGE_URL_HERE)
+
 
 <!-- VIDEO: Trigger demonstration -->
-<video controls src="VIDEO_URL_HERE"></video>
+
 
 ---
 
@@ -472,10 +471,10 @@ Rather than requiring designers to modify code for every gameplay object, I expo
 One example was a configurable moving saw hazard.
 
 <!-- IMAGE: Custom Unity tool -->
-![Designer Tool](IMAGE_URL_HERE)
+
 
 <!-- VIDEO: Designer tool demonstration -->
-<video controls src="VIDEO_URL_HERE"></video>
+
 
 ---
 
@@ -529,10 +528,10 @@ The tool displayed:
 Designers could move waypoints directly in the Scene view instead of manually editing coordinates.
 
 <!-- IMAGE: Waypoint handles -->
-![Waypoint Tool](IMAGE_URL_HERE)
+
 
 <!-- IMAGE: Waypoint visualization -->
-![Waypoint Visualization](IMAGE_URL_HERE)
+
 
 This reduced iteration time when creating moving hazards and made the movement path easier to understand spatially.
 
@@ -570,7 +569,7 @@ private Vector3 CalculateQuadraticBezierPoint(
 The resulting path could be visualized directly in the Scene view using Gizmos.
 
 <!-- IMAGE: Bézier curve in Scene view -->
-![Bezier Tool](IMAGE_URL_HERE)
+
 
 ---
 
@@ -599,10 +598,10 @@ Gameplay Object
 This allowed objects to follow designer-authored spline paths while still using the project's existing physics movement architecture.
 
 <!-- IMAGE: Spline setup -->
-![Spline Movement](IMAGE_URL_HERE)
+
 
 <!-- VIDEO: Spline movement -->
-<video controls src="VIDEO_URL_HERE"></video>
+
 
 ---
 
@@ -636,7 +635,7 @@ This helped prevent traversal failures from requiring the player to restart an e
 The system also temporarily blocked the character during the teleportation process before returning control to the player.
 
 <!-- VIDEO: Player recovery demonstration -->
-<video controls src="VIDEO_URL_HERE"></video>
+
 
 ---
 
@@ -660,16 +659,16 @@ I worked with:
 The goal was to create spaces where the player's abilities were not only available, but encouraged through the layout of the environment.
 
 <!-- IMAGE: Level overview -->
-![Level Design Overview](IMAGE_URL_HERE)
+
 
 <!-- IMAGE: Level screenshot -->
-![Level Gameplay](IMAGE_URL_HERE)
+
 
 <!-- IMAGE: Additional level screenshot -->
-![Level Design](IMAGE_URL_HERE)
+
 
 <!-- VIDEO: Level walkthrough -->
-<video controls src="VIDEO_URL_HERE"></video>
+
 
 ---
 
@@ -802,7 +801,7 @@ Because the project never received a final public release, I am presenting this 
 The focus is on the systems I implemented, the tools I created, the levels I designed, and my experience integrating the work of a larger team.
 
 <!-- OPTIONAL VIDEO: Older development build -->
-<video controls src="VIDEO_URL_HERE"></video>
+
 
 ---
 
