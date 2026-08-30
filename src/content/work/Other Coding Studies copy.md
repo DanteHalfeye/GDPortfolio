@@ -1,6 +1,6 @@
 ---
 title: Other Coding Studies
-publishDate: 2026-08-29 00:00:00
+publishDate: 2020-08-29 00:00:00
 img: /Forces.jpg
 img_alt: GPU particle force simulation
 description: >

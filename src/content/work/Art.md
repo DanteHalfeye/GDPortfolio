@@ -1,18 +1,14 @@
 ---
 title: Art Studies
-publishDate: 2026-08-29 00:00:00
-img: /Forces.jpg
+publishDate: 2020-00-00 00:00:00
+img: /ArtStudies/Pokemon.png
 img_alt: GPU particle force simulation
 description: >
-  A collection of programming and simulation studies exploring emergent behavior, procedural systems, physics, forces, and GPU-based particle simulations using p5.js and Three.js.
+  A collection of my multiple art studices
 tags:
-  - Three.js
-  - WebGPU
-  - JavaScript
-  - p5.js
-  - Simulation
-  - Procedural Generation
-  - Gameplay Programming
+  - Art
+  - Digital Art
+  - Studies
 ---
 
 ![Bag](/ArtStudies/15_Minutos_Tarde.png)
