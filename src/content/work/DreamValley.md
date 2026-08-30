@@ -20,6 +20,16 @@ The player explores a mysterious house, gradually uncovering its purpose by find
 
 The project was also an important step in learning how to build complex and maintainable gameplay systems while working as part of a larger development team.
 
+### [Download Dream Valley](../../../public/DreamValley.zip)
+
+### Gameplay Footage
+<video controls src="/assets/DreamValleyss.mp4" title="Title"></video>
+![DV1](/DV1.jpeg)
+![DV2](/DV2.jpeg)
+![DV3](/DV3.jpeg)
+![DV4](/DV4.jpeg)
+![DV5](/DV5.jpeg)
+
 ## My Role
 
 I worked primarily as a **Gameplay Programmer and Technical Designer**, while also helping establish programming practices that allowed the rest of the team to work independently.
