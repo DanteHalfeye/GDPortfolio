@@ -24,7 +24,7 @@ The core mechanic revolves around blowing objects up with bubbles. However, obje
 
 This mechanic creates a puzzle system where players must think about the relationships between objects and carefully consider the consequences of interacting with them.
 
-### [Download Dream Valley](../../../public/DreamyBubbles.zip)
+### [Download Dreamy Bubbles](../../../assets/DreamyBubbles.zip)
 
 ### Gameplay Footage
 

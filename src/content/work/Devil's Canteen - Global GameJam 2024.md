@@ -23,7 +23,7 @@ In the game, you play as a Colombian mountaineer tasked with finding and killing
 
 ## Project
 
-[Global Game Jam 2024 — Devil's Canteen](https://globalgamejam.org/games/2024/la-cantina-del-diablo-6)
+### [Global Game Jam 2024 — Devil's Canteen](https://globalgamejam.org/games/2024/la-cantina-del-diablo-6)
 
 ## Visuals & Gameplay Showcase
 
@@ -110,5 +110,5 @@ It was also an important milestone for me because, compared to my previous Game 
 
 **Engine:** Unity
 
-**Tools:** Unity, Adobe Suite, Google Docs
+**Tools:** Unity, Adobe Suite, Google Docs, Visual Studio
 
