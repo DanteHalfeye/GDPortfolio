@@ -29,6 +29,7 @@ In the game, you play as a Colombian mountaineer tasked with finding and killing
 
 ### Gameplay Footage
 <video controls src="/assets/SC_CantinaDelDiablo.mp4" title="Title"></video>
+
 ![Poster](/POSTER.png)
 
 ## Gameplay Concept
