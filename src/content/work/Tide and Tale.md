@@ -1,6 +1,8 @@
 ---
 title: Tide and Tale
 publishDate: 2025-05-30
+img: /Forces.jpg
+img_alt: GPU particle force simulation
 description: A 3D platformer collectathon set inside a world of stories, where a writer uses the power of water to defeat enemies, traverse the world, and uncover its mysteries.
 tags:
   - Unity
