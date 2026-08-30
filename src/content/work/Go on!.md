@@ -17,12 +17,12 @@ tags:
 
 This project was a significant milestone in my journey as a game developer. I went from having virtually no programming experience beyond Scratch to creating a fully realized game in Unity.
 
-### [Download Go On!](</GDPortfolio/public/assets/GO ON!.zip>)
+### [Download Go On!](</GDPortfolio/assets/GO ON!.zip>)
 
 ## Visuals & Gameplay Showcase
 ### Gameplay Footage
 
-<video controls src="/assets/GOON_Gameplay.mp4" title="Title"></video>
+<video controls src="/assets/GOON_Gameplay_small.mp4" title="Title"></video>
 <video controls src="/assets/boss2.mp4" title="Title"></video>
 ![BossFight Academic](/assets/boss1-Recovered5.png)
 ![BossFight Social Pressure](/assets/fondopp.png)
