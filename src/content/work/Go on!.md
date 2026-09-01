@@ -2,46 +2,58 @@
 title: Go On!
 publishDate: 2022-11-01 00:00:00
 img: /assets/poster1.png
-img_alt: A bright pink sheet of paper used to wrap flowers curves in front of rich blue background
-description: |
-  My first game, Go On! is a bullet-hell platformer about Max, a university student navigating the stresses of academic life. Developed in Unity as my first major programming project, the game focuses on fast-paced movement, evasion, and dynamic bullet patterns inspired by games like Just Shapes & Beats.
+img_alt: Go On! bullet-hell platformer
+description: >
+  My first game, Go On! is a bullet-hell platformer about Max, a university
+  student navigating the stresses of academic life. Developed in Unity as my
+  first major programming project, the game focuses on fast-paced movement,
+  evasion, and dynamic bullet patterns inspired by games like Just Shapes & Beats.
 tags:
   - Unity
   - Gameplay Programming
   - Game Design
+role: Gameplay Programmer
+engine: Unity
+language: C#
+projectType: Bullet-Hell Platformer
+heroVideo: /assets/GOON_Gameplay_small.mp4
+featuredImages:
+  - src: /assets/boss1-Recovered5.png
+    alt: Go On! academic boss fight
+  - src: /assets/fondopp.png
+    alt: Go On! social pressure boss fight
+gallery:
+  - /assets/boss1-Recovered5.png
+  - /assets/fondopp.png
+  - /assets/GOON_Gameplay_small.mp4
+  - /assets/boss2.mp4
 ---
 
 ## Overview
 
 **Go On!** is my first game: a bullet-hell platformer about **Max**, a university student struggling with the stresses and challenges of academic life.
 
-This project was a significant milestone in my journey as a game developer. I went from having virtually no programming experience beyond Scratch to creating a fully realized game in Unity.
+This project was a major milestone in my journey as a game developer. I went from having virtually no programming experience beyond Scratch to creating a complete playable game in Unity.
 
-### [Download Go On!](</GDPortfolio/assets/GO ON!.zip>)
-
-## Visuals & Gameplay Showcase
-### Gameplay Footage
-
-<video controls src="/assets/GOON_Gameplay_small.mp4" title="Title"></video>
-
-<video controls src="/assets/boss2.mp4" title="Title"></video>
-
-![BossFight Academic](/assets/boss1-Recovered5.png)
-![BossFight Social Pressure](/assets/fondopp.png)
+The project taught me how to approach game development as a combination of programming, design, iteration, and collaboration rather than simply writing individual pieces of code.
 
 ## Challenges & Learning
 
-When I started this project, my programming experience was limited to **Scratch**. I dedicated the first week to intensive self-learning, exploring programming concepts and development techniques that were completely new to me.
+When I started **Go On!**, my programming experience was limited to **Scratch**.
 
-This crash course allowed me to develop the skills necessary to turn the game's initial concept into a functional and engaging experience.
+I dedicated the first week to intensive self-learning, exploring programming concepts and development techniques that were completely new to me.
 
-The project became an important learning experience in understanding how different gameplay, technical, and production systems come together to create a complete game.
+This crash course gave me the foundation necessary to turn the original concept into a functional game while continuing to learn throughout development.
+
+The project became an important introduction to understanding how gameplay, technical, visual, and production systems can work together to create a complete experience.
 
 ## Design Inspiration
 
-The main inspiration for **Go On** was **Just Shapes & Beats**, a rhythmic bullet-hell game that had captivated me years earlier.
+The main inspiration for **Go On!** was **Just Shapes & Beats**, a rhythmic bullet-hell game that had captivated me years earlier.
 
 Its influence can be seen in the game's dynamic bullet patterns, fast-paced encounters, and emphasis on movement and evasion.
+
+Rather than copying its gameplay directly, I used these ideas as a starting point for creating my own interpretation of a bullet-hell experience.
 
 ## Movement Mechanics
 
@@ -49,7 +61,15 @@ Max's movement system takes inspiration from games such as **Hollow Knight** and
 
 Because I was still learning how to design and implement combat systems, I chose to focus the gameplay primarily around **evasion rather than direct combat**.
 
-This resulted in a gameplay experience where the player must carefully navigate through bullet patterns, obstacles, and enemies while maintaining control of Max's movement.
+This created a gameplay experience where the player must carefully navigate through bullet patterns, obstacles, and enemies while maintaining precise control over Max's movement.
+
+## Bullet-Hell Gameplay
+
+The game's encounters are built around increasingly complex bullet patterns.
+
+Players must read the incoming attacks, identify safe areas, and continuously reposition Max to avoid damage.
+
+The design focuses on making movement itself the primary challenge. Instead of relying on powerful attacks, the player is encouraged to understand enemy patterns and improve their ability to navigate through them.
 
 ## Technical Development
 
@@ -69,12 +89,31 @@ Throughout development, I worked with a variety of Unity systems and programming
 
 Working with these systems gave me my first experience building interconnected gameplay and technical features rather than isolated programming exercises.
 
+## My Role
+
+I was responsible for **all programming and technical implementation** for the project.
+
+My work included:
+
+- Player movement and controls
+- Bullet and projectile systems
+- Gameplay programming
+- Enemy and boss interactions
+- Scene management
+- Asynchronous scene loading
+- Audio systems
+- Visual effects
+- Timeline implementation
+- Input handling
+- Gameplay iteration and debugging
+
+This made **Go On!** an important foundation for my later work in gameplay programming and technical design.
 
 ## Team Collaboration
 
 The project was developed by a team of three.
 
-I was responsible for **all programming and technical implementation**, while my teammates focused on the visual and level-design aspects of the game.
+While I handled the programming and technical implementation, my teammates focused on the visual and level-design aspects of the game.
 
 ### Team
 
@@ -82,15 +121,11 @@ I was responsible for **all programming and technical implementation**, while my
 - **Miguel Ángel Grisales** — Level Design
 - **Valeria Quintero Cuervo** — Art — [@KrowKrapp](https://www.instagram.com/Krowkrapp/)
 
-The collaboration allowed us to combine programming, art, and level design into a cohesive final experience.
-
-
-
-
+The collaboration allowed us to combine programming, art, and level design into a cohesive playable experience.
 
 ## What I Learned
 
-**Go On** was a challenging but extremely rewarding first step into game development.
+**Go On!** was a challenging but extremely rewarding first step into game development.
 
 Starting with only Scratch experience, I had to quickly learn programming, Unity, game systems, and development workflows while simultaneously building the game.
 
@@ -100,14 +135,16 @@ Most importantly, creating a bullet-hell platformer from scratch gave me the fou
 
 ## Project Details
 
-**Team Size:** 3  
-**Project Length:** 4 months  
-**Engine:** Unity  
-**Tools:** Adobe Creative Suite, Google Docs
+| | |
+|---|---|
+| **Team Size** | 3 |
+| **Project Length** | 4 months |
+| **Engine** | Unity |
+| **Language** | C# |
+| **Role** | Gameplay Programmer |
+| **Genre** | Bullet-Hell Platformer |
+| **Tools** | Adobe Creative Suite, Google Docs |
 
-### My Role
+## Technologies
 
-**Gameplay Programmer**
-
-I was responsible for the game's programming and technical implementation, including gameplay systems, player movement, scene management, audio systems, and visual effects.
-
+**Unity · C# · URP · Gameplay Programming · Bullet-Hell Systems · Player Movement · Timeline · Audio Systems · Scene Management**

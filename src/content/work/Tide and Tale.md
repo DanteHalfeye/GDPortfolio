@@ -2,7 +2,7 @@
 title: Tide and Tale
 publishDate: 2025-05-30
 img: /Forces.jpg
-img_alt: GPU particle force simulation
+img_alt: Tide and Tale gameplay
 description: A 3D platformer collectathon set inside a world of stories, where a writer uses the power of water to defeat enemies, traverse the world, and uncover its mysteries.
 tags:
   - Unity
@@ -11,7 +11,24 @@ tags:
   - Level Design
   - Tools Programming
   - Systems Integration
+role: Gameplay Programmer
+engine: Unity
+language: C#
+projectType: 3D Platformer
+heroVideo: /Forces.jpg
+
+#featuredImages:
+#  - src: /assets/boss1-Recovered5.png
+#    alt: Go On! academic boss fight
+#  - src: /assets/fondopp.png
+#    alt: Go On! social pressure boss fight
+#gallery:
+#  - /assets/boss1-Recovered5.png
+#  - /assets/fondopp.png
+#  - /assets/GOON_Gameplay_small.mp4
+#  - /assets/boss2.mp4
 ---
+
 
 # Tide and Tale
 

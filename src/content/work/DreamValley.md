@@ -3,13 +3,31 @@ title: Dream Valley
 publishDate: 2023-01-01 00:00:00
 img: /assets/DV1.jpeg
 img_alt: Dream Valley first-person puzzle horror game
-description: |
+description: >
   My first 3D game, Dream Valley is a first-person puzzle horror experience where players explore a mysterious house, uncover its story through scattered notes, and evade a hostile white ghoul.
 tags:
   - Unity
   - Gameplay Programming
   - AI
   - Systems Programming
+role: Gameplay Programmer & Technical Designer
+engine: Unity
+language: C#
+projectType: First-Person Puzzle Horror
+heroVideo: /assets/DreamValleyss.mp4
+featuredImages:
+  - src: /assets/DV2.jpeg
+    alt: Dream Valley gameplay
+  - src: /assets/DV3.jpeg
+    alt: Dream Valley environment
+  - src: /assets/DV4.jpeg
+    alt: Dream Valley gameplay
+gallery:
+  - /assets/DV2.jpeg
+  - /assets/DV3.jpeg
+  - /assets/DV4.jpeg
+  - /assets/DV5.jpeg
+  - /assets/DreamValleyss.mp4
 ---
 
 ## Overview
@@ -19,16 +37,6 @@ tags:
 The player explores a mysterious house, gradually uncovering its purpose by finding notes scattered throughout the environment. At the same time, a mysterious **white ghoul** hunts the player, turning exploration into a constant risk.
 
 The project was also an important step in learning how to build complex and maintainable gameplay systems while working as part of a larger development team.
-
-### [Download Dream Valley](../../../public/DreamValley.zip)
-
-### Gameplay Footage
-<video controls src="/assets/DreamValleyss.mp4" title="Title"></video>
-
-![DV2](/assets/DV2.jpeg)
-![DV3](/assets/DV3.jpeg)
-![DV4](/assets/DV4.jpeg)
-![DV5](/assets/DV5.jpeg)
 
 ## My Role
 
@@ -146,10 +154,15 @@ The project strengthened my understanding of **gameplay architecture, AI, modula
 
 ## Project Details
 
-**Team Size:** 4  
-**Project Length:** 3 months  
-**Engine:** Unity  
-**Tools:** Adobe Creative Suite, Google Docs, Notion, Clip Studio Paint, Blender
+| | |
+|---|---|
+| **Team Size** | 4 |
+| **Project Length** | 3 months |
+| **Engine** | Unity |
+| **Language** | C# |
+| **Role** | Gameplay Programmer & Technical Designer |
+| **Project Type** | First-Person Puzzle Horror |
+| **Tools** | Adobe Creative Suite, Google Docs, Notion, Clip Studio Paint, Blender |
 
 ### Team
 

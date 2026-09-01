@@ -3,13 +3,27 @@ title: Cognitive Overload
 publishDate: 2022-11-01 00:00:00
 img: /assets/Cognitive.jpeg
 img_alt: Cognitive Overload puzzle platformer
-description: |
+description: >
   A puzzle platformer designed to demonstrate divided attention through four deliberately misaligned camera views. Players must mentally reconstruct the level while navigating an intentionally difficult-to-read environment.
 tags:
   - Unity
   - Gameplay Programming
   - Level Design
   - Game Design
+role: Gameplay Programmer, Level Designer & Director
+engine: Unity
+language: C#
+projectType: Experimental Puzzle Platformer
+heroVideo: "/assets/Try_out_things - Game - Windows, Mac, Linux - Unity 2021.3.16f1 Personal _DX11_ 2023-11-13 17-54-39.mp4"
+featuredImages:
+  - src: /assets/CognitivePeopleTrying1.jpeg
+    alt: Players experiencing Cognitive Overload
+  - src: /assets/CognitivePeopleTrying2.jpeg
+    alt: Players testing the Cognitive Overload gameplay
+gallery:
+  - /assets/CognitivePeopleTrying1.jpeg
+  - /assets/CognitivePeopleTrying2.jpeg
+  - "/assets/Try_out_things - Game - Windows, Mac, Linux - Unity 2021.3.16f1 Personal _DX11_ 2023-11-13 17-54-39.mp4"
 ---
 
 ## Overview
@@ -22,14 +36,6 @@ However, the views do not represent the actual layout in the correct spatial ord
 
 The result is a puzzle where the main challenge isn't simply determining **where to go**, but understanding **what the player is actually looking at**.
 
-### [Download Cognitive Overload](../../../public/Cognitive.zip)
-## Visuals & Gameplay Showcase
-
-### Gameplay Footage
-<video controls src="/assets/Try_out_things - Game - Windows, Mac, Linux - Unity 2021.3.16f1 Personal _DX11_ 2023-11-13 17-54-39.mp4" title="Title"></video>
-
-![Players Enjoying 1](/assets/CognitivePeopleTrying1.jpeg)
-![Players Enjoying 2](/assets/CognitivePeopleTrying2.jpeg)
 ## The Core Mechanic
 
 The entire game was built around the relationship between the four cameras.
@@ -50,15 +56,13 @@ Normally, clear visual communication is an important principle of level design. 
 
 The chaotic visual language made it harder for players to immediately understand the relationship between the four camera views, reinforcing the feeling of cognitive overload.
 
-This was also particularly challenging because the entire project was developed in only **four days**.
-
 ## My Role
 
-### Programming
+### Gameplay Programming
 
 I programmed the gameplay systems and implemented the interactions required for the platforming experience.
 
-A major part of my work was making the different camera views work together as a coherent gameplay mechanic while maintaining smooth transitions and player interactions.
+A major part of my work was making the different camera views work together as a coherent gameplay mechanic while maintaining smooth player interactions.
 
 ### Level Design
 
@@ -72,15 +76,25 @@ I directed the overall project and coordinated the team around the game's concep
 
 One of the biggest challenges was making sure that every design decision supported the idea of **divided attention**, including the intentionally difficult-to-read visual style.
 
+## Player Testing
+
+The project was tested with other players to evaluate how effectively the four-camera system communicated the intended experience.
+
+Watching players interact with the game helped us understand how they interpreted the different camera views and where the visual confusion became either interesting or frustrating.
+
+![Players Enjoying 1](/assets/CognitivePeopleTrying1.jpeg)
+
+![Players Enjoying 2](/assets/CognitivePeopleTrying2.jpeg)
+
 ## Challenges
 
-The biggest challenge wasn't implementing the mechanic—it was convincing the team to intentionally make parts of the game **harder to understand**.
+The biggest challenge wasn't implementing the mechanic — it was intentionally making parts of the game **harder to understand**.
 
 Traditional game development usually pushes toward clarity, readability, and intuitive navigation. For this project, those principles had to be intentionally subverted.
 
 We had to find a balance where the game was confusing enough to communicate the concept without becoming completely impossible to understand.
 
-The four-day development period also required us to prioritize the core mechanic and focus our development time on the elements that directly supported the concept.
+The entire project was also developed in only **four days**, requiring us to prioritize the core mechanic and focus our development time on the elements that directly supported the concept.
 
 ## What I Learned
 
@@ -88,13 +102,20 @@ The four-day development period also required us to prioritize the core mechanic
 
 Instead of simply telling players what divided attention is, we designed a system that makes them experience the effects of divided attention themselves.
 
-The project also strengthened my understanding of **level design, visual communication, rapid prototyping, and directing a team under a strict deadline**.
+The project strengthened my understanding of **gameplay programming, level design, visual communication, rapid prototyping, player testing, and team direction**.
+
+It also taught me how intentionally breaking conventional design principles can become an effective tool when the goal is to create a specific player experience.
 
 ## Project Details
 
-**Team Size:** 2 Programmers, 1 Artist, 6 Presenters  
-**Project Length:** 4 days  
-**Engine:** Unity  
+**Team Size:** 2 Programmers, 1 Artist, 6 Presenters
+
+**Project Length:** 4 days
+
+**Engine:** Unity
+
+**Language:** C#
+
 **Tools:** Adobe Creative Suite, Google Docs
 
 ### Team
@@ -105,4 +126,4 @@ The project also strengthened my understanding of **level design, visual communi
 
 ## Technologies
 
-**Unity · C# · Gameplay Programming · Level Design · Camera Systems · Rapid Prototyping**
+**Unity · C# · Gameplay Programming · Level Design · Camera Systems · Rapid Prototyping · Player Testing**

@@ -1,14 +1,29 @@
 ---
 title: Nightfall Zombie Survival
-publishDate: 2026-08-16 00:00:00
+publishDate: 2026-08-16
 img: /assets/nightfall_TEXT.png
 img_alt: Nightfall Zombie Survival title artwork
-description: |
+description: >
   A round-based cooperative zombie survival game built in UEFN, focused on gameplay systems, progression, and multiplayer cooperation.
 tags:
   - UEFN
   - Gameplay Programming
   - Multiplayer Design
+role: Gameplay Programmer & Designer
+engine: UEFN
+language: Verse
+projectType: Co-op Round-Based Survival
+playUrl: https://www.fortnite.com/play/island/6097-7326-5868
+heroVideo: /assets/NIGHTFALL_GAMEPLAY_small.mp4
+featuredImages:
+  - src: /assets/nightfall_blank.png
+    alt: Nightfall zombie survival gameplay
+  - src: /assets/image.png
+    alt: Nightfall gameplay and environment
+gallery:
+  - /assets/nightfall_blank.png
+  - /assets/image.png
+  - /assets/NIGHTFALL_GAMEPLAY_small.mp4
 ---
 
 # Nightfall Zombie Survival
@@ -16,19 +31,6 @@ tags:
 **Nightfall** is a cooperative, round-based zombie survival game created in Unreal Editor for Fortnite (UEFN). Players work together to survive increasingly dangerous waves of creatures, earn resources, unlock new areas, and purchase upgrades to improve their chances of survival.
 
 The project was developed with a strong focus on gameplay programming and multiplayer systems, combining combat, progression, enemy spawning, power-ups, and player-driven decision making into a single survival experience.
-
-### [Play it in Fortnite](https://www.fortnite.com/play/island/6097-7326-5868)
-
-## Visuals & Gameplay Showcase
-
-### Gameplay Footage
-<video controls src="/assets/NIGHTFALL_GAMEPLAY_small.mp4" title="Title"></video>
-### Screenshots
-
-![alt text](/assets/nightfall_blank.png)
-![alt text](/assets/image.png)
-
-
 
 ## My Role
 
@@ -51,15 +53,13 @@ The core loop is built around surviving each round while making strategic decisi
 
 As the rounds progress, the difficulty increases, forcing players to cooperate and make better use of the weapons, upgrades, perks, and resources available to them.
 
-The goal was to create a gameplay loop that is easy to understand initially while gradually introducing more systems and challenges as the player progresses.
-
 ## Enemy & Wave Systems
 
 Nightfall uses a round-based spawning system to control the escalation of enemy encounters.
 
 Each round increases the pressure placed on the players, requiring them to adapt their strategy and coordinate with their teammates.
 
-The enemy management system was designed to handle spawning, progression, and fail-safe situations while keeping the experience manageable in a multiplayer environment.
+> The goal was to create a wave system that continuously increases pressure while remaining manageable in multiplayer.
 
 ## Progression & Power-Ups
 
@@ -74,14 +74,11 @@ The game includes systems for:
 - Player upgrades
 - Round progression
 
-These systems work together to create a sense of progression throughout a match.
-
 ## Multiplayer
 
 A major focus of Nightfall was making the gameplay systems work reliably for multiple players.
 
 The experience was designed around cooperation, with players needing to coordinate their actions and manage increasingly difficult encounters together.
-
 
 ## What I Learned
 
