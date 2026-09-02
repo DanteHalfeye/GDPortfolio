@@ -1,34 +1,26 @@
 ---
+
 title: Tide and Tale
 publishDate: 2025-05-30
 img: /Forces.jpg
 img_alt: Tide and Tale gameplay
-description: A 3D platformer collectathon set inside a world of stories, where a writer uses the power of water to defeat enemies, traverse the world, and uncover its mysteries.
+description: >
+A 3D platformer collectathon set inside a world of stories, where a writer uses the power of water to defeat enemies, traverse the world, and uncover its mysteries. I worked across gameplay programming, tools programming, level design, and systems integration.
 tags:
-  - Unity
-  - C#
-  - Gameplay Programming
-  - Level Design
-  - Tools Programming
-  - Systems Integration
-role: Gameplay Programmer
-engine: Unity
-language: C#
-projectType: 3D Platformer
-heroVideo: /Forces.jpg
 
-#featuredImages:
-#  - src: /assets/boss1-Recovered5.png
-#    alt: Go On! academic boss fight
-#  - src: /assets/fondopp.png
-#    alt: Go On! social pressure boss fight
-#gallery:
-#  - /assets/boss1-Recovered5.png
-#  - /assets/fondopp.png
-#  - /assets/GOON_Gameplay_small.mp4
-#  - /assets/boss2.mp4
+* Unity
+* C#
+* Gameplay Programming
+* Level Design
+* Tools Programming
+* Systems Integration
+  role: Gameplay Programmer
+  engine: Unity
+  language: C#
+  projectType: 3D Platformer
+  heroVideo: /Forces.jpg
+
 ---
-
 
 # Tide and Tale
 
@@ -36,16 +28,13 @@ heroVideo: /Forces.jpg
 
 Tide and Tale is a 3D platformer collectathon set inside a world of stories.
 
-In the game, we play as a writer who enters a mysterious world of stories and discovers the ability to manipulate water. The player uses this power to defeat enemies, traverse the environment, interact with the world, and collect important objects.
+The player takes the role of a writer who enters a mysterious world and discovers the ability to manipulate water. This ability becomes the foundation for combat, traversal, environmental interactions, and progression.
 
-<!-- VIDEO: Main gameplay / project overview -->
-
-<!-- IMAGE: Main game screenshot / key art -->
-
+The project was one of my larger team-based Unity projects, giving me experience working not only on individual gameplay features, but also on the tools, systems, and integration required to make those features work together.
 
 > **Project Status:** Development discontinued before release.
 >
-> The available build is an older development build and does not represent the best state reached during development. This case study focuses on my contributions to the project rather than presenting the build as a finished game.
+> The available build is an older development build and does not represent the best state reached during development. This case study focuses on my contributions and development work rather than presenting the build as a finished product.
 
 ---
 
@@ -53,77 +42,76 @@ In the game, we play as a writer who enters a mysterious world of stories and di
 
 **Gameplay Programmer · Tools Programmer · Level Designer · Systems Integrator**
 
-Tide and Tale was one of the most ambitious team projects I worked on.
+My work covered several areas of the project, with a particular focus on gameplay systems and the infrastructure connecting them.
 
-My responsibilities extended beyond implementing individual gameplay features. I worked across gameplay programming, level design, tools development, and the integration of systems created by different members of the team.
+### Main Contributions
 
-### My Contributions
+* Player controller and movement systems
+* Input architecture
+* Character state management
+* Combat and damage systems
+* Projectile and ability systems
+* Object pooling
+* Game state management
+* Save/load and progression systems
+* Persistent collectibles and triggers
+* Designer-facing Unity tools
+* Environmental hazards
+* Spline and path-based movement
+* Player recovery systems
+* Level design
+* Integration of gameplay systems developed by other team members
 
-- Player controller and movement systems
-- Input architecture
-- Combat and damage systems
-- Projectile and ability systems
-- Object pooling
-- Game state management
-- Save/load and progression systems
-- Persistent collectibles and triggers
-- Designer-facing Unity tools
-- Environmental hazards
-- Spline and path-based movement
-- Player recovery systems
-- Level design
-- Integration of gameplay systems developed by other team members
+This combination of responsibilities gave me experience working on both **feature implementation** and the systems required to integrate those features into a larger project.
 
 ---
 
 # Player Controller
 
-The player controller was one of my main gameplay programming responsibilities.
+The player controller was one of my primary gameplay programming responsibilities.
 
-I implemented a state-based character controller designed around the different movement and gameplay mechanics of Tide and Tale.
+I worked on a state-based character controller designed around the different movement and gameplay behaviors required by the project.
 
-The controller supported states including:
+The controller supported states such as:
 
-- Idle
-- Running
-- Jumping
-- Dashing
-- Sliding
-- Tricking
-- Pounding
-- Recovering
-- Blocked
+* Idle
+* Running
+* Jumping
+* Dashing
+* Sliding
+* Tricking
+* Pounding
+* Recovering
+* Blocked
 
-These states allowed different gameplay behaviors to be isolated while still sharing the same character movement architecture.
+Organizing these behaviors into states allowed movement rules and transitions to be handled independently instead of putting every behavior into one large update loop.
 
-<!-- IMAGE: Player controller gameplay -->
+---
 
-
-<!-- VIDEO: Player movement showcase -->
-
-
-## Movement
+# Movement System
 
 The controller handled both grounded and aerial movement.
 
-The system included:
+The movement system included:
 
-- Ground movement
-- Air movement
-- Acceleration
-- Drag
-- Gravity
-- Slope-aware movement
-- Camera-relative movement
-- Character orientation
-- Jumping
-- Dashing
-- Sliding
-- Tricks
-- Ground pounding
-- Recovery states
+* Ground movement
+* Air movement
+* Acceleration
+* Drag
+* Gravity
+* Slope-aware movement
+* Camera-relative movement
+* Character orientation
+* Jumping
+* Dashing
+* Sliding
+* Tricks
+* Ground pounding
+* Recovery states
 
-The character used a kinematic motor to handle movement and collision behavior while the controller determined the gameplay-specific movement rules.
+The character used a kinematic motor for movement and collision handling, while the gameplay controller determined how the character should behave based on its current state.
+
+This separation made it easier to add movement behaviors without completely rewriting the underlying character motor.
 
 ---
 
@@ -132,22 +120,24 @@ The character used a kinematic motor to handle movement and collision behavior w
 The character's behavior was organized around explicit gameplay states.
 
 ```text
-                    Character
-                        |
-        ┌───────────────┼───────────────┐
-        |               |               |
-      Ground          Air            Special
-        |               |               |
-     Idle/Run        Jumping       Dash/Trick
-        |                               |
-        └───────────────┬───────────────┘
-                        |
-                 Recovery / Blocked
+                     Character
+                         |
+         ┌───────────────┼───────────────┐
+         |               |               |
+       Ground           Air           Special
+         |               |               |
+      Idle/Run        Jumping       Dash/Trick
+         |                               |
+         └───────────────┬───────────────┘
+                         |
+                  Recovery / Blocked
 ```
 
-Each state could define its own movement, input, animation, and transition behavior.
+Each state could define its own movement and transition behavior.
 
-For example, entering the dash state could trigger the dash animation and modify the character's movement behavior, while leaving the state restored the relevant movement properties.
+For example, a special movement state could modify how the character responds to input while active, then restore the appropriate movement behavior when the state ends.
+
+This structure helped keep character behavior organized as more mechanics were added.
 
 ---
 
@@ -155,7 +145,7 @@ For example, entering the dash state could trigger the dash animation and modify
 
 I separated input collection from character behavior through a centralized input manager and a structured `PlayerCharacterInputs` data structure.
 
-Instead of having the character controller directly read keyboard or controller input, the player gathered the current inputs and converted them into gameplay-oriented commands.
+Instead of having the character controller directly depend on keyboard or controller input, the input system collected the current controls and converted them into gameplay-oriented commands.
 
 ```csharp
 public struct PlayerCharacterInputs
@@ -181,15 +171,17 @@ public struct PlayerCharacterInputs
 }
 ```
 
-This separation allowed the character controller to remain independent from the specific input-reading implementation.
+This separation meant that the character controller could operate on gameplay commands instead of being tightly coupled to the specific input source.
+
+It also made the controller easier to reason about because input collection and movement behavior had separate responsibilities.
 
 ---
 
-# Combat System
+# Combat Architecture
 
-I worked on the combat architecture, including the interaction between different attack types, enemy defenses, and health systems.
+I worked on the combat architecture, including the communication between attacks, enemies, defenses, and health systems.
 
-The combat system used shared interfaces for damage senders and receivers.
+The system used shared interfaces for damage senders and receivers.
 
 ```text
 Damage Sender
@@ -204,45 +196,41 @@ Damage Receiver
 Defense / Health
 ```
 
-This allowed different gameplay objects to participate in the same damage architecture.
+This allowed different gameplay objects to communicate through the same damage architecture.
 
-Environmental hazards, player attacks, enemies, and defensive systems could all communicate through the same damage interfaces.
-
-<!-- IMAGE: Combat gameplay -->
-
-
-<!-- VIDEO: Combat showcase -->
-
+Instead of each attack requiring a completely different interaction with every enemy, damage information could be passed through a shared structure and interpreted by the receiving system.
 
 ---
 
 # Armor & Damage Types
 
-One of the combat mechanics I implemented was an armor system that reacted differently depending on the type of incoming attack.
+One of the combat mechanics I worked on was an armor system that responded differently depending on the type of incoming attack.
 
-For example, an enemy could require a ranged attack to break its armor before becoming vulnerable to melee attacks.
+For example, an enemy could require a ranged attack to break its armor before becoming vulnerable to another type of attack.
 
 ```text
-              Enemy
-                |
-             Armor
-                |
-       ┌────────┴────────┐
-       |                 |
-    Ranged              Melee
-       |                 |
-       v                 |
-  Break Armor             |
-       |                 |
-       └────────┬────────┘
-                |
-                v
-           Damage Health
+                 Enemy
+                   |
+                 Armor
+                   |
+          ┌────────┴────────┐
+          |                 |
+       Ranged             Melee
+          |                 |
+          v                 |
+     Break Armor             |
+          |                 |
+          └────────┬────────┘
+                   |
+                   v
+              Damage Health
 ```
 
-The system used `DamagePayload` to communicate information about the attack, allowing the receiver to determine whether the incoming damage was valid for its current state.
+The system used `DamagePayload` to communicate information about an attack.
 
-This created combat interactions where the player had to use the appropriate ability rather than relying on a single attack type.
+This allowed the receiving object to determine whether the incoming damage was appropriate for its current state.
+
+The result was a combat system where the player's available abilities could have different gameplay purposes rather than simply dealing different amounts of damage.
 
 ---
 
@@ -250,88 +238,84 @@ This created combat interactions where the player had to use the appropriate abi
 
 I implemented a reusable projectile management system based around `ScriptableObject` projectile definitions.
 
-Projectile types could be added to the player's available abilities and selected during gameplay.
+Projectile data could be separated from the runtime manager responsible for selecting, spawning, and reusing projectile instances.
 
 The system supported:
 
-- Multiple projectile types
-- Projectile selection
-- Cycling between projectiles
-- Runtime projectile unlocking
-- Duplicate prevention
-- Per-projectile object pools
-- Runtime pool expansion
-- Returning projectiles to their pools
+* Multiple projectile types
+* Projectile selection
+* Cycling between projectiles
+* Runtime projectile unlocking
+* Duplicate prevention
+* Per-projectile object pools
+* Runtime pool expansion
+* Returning projectiles to their pools
+
+The overall structure was:
 
 ```text
-                ProyectileSO
-              /      |      \
-             /       |       \
-          Type A   Type B   Type C
-             \       |       /
-              \      |      /
-               ProyectileManager
-                       |
-              ┌────────┴────────┐
-              |                 |
-         Current Type       Object Pools
+             ProjectileSO
+              /    |    \
+             /     |     \
+         Type A  Type B  Type C
+             \     |     /
+              \    |    /
+           ProjectileManager
+                   |
+          ┌────────┴────────┐
+          |                 |
+    Current Type       Object Pools
 ```
 
-This separated projectile data from the manager responsible for creating and reusing projectile instances.
-
-<!-- IMAGE: Projectile types / abilities -->
-
-
-<!-- VIDEO: Projectile and ability gameplay -->
-
+This separated the definition of a projectile from the runtime systems managing its instances.
 
 ---
 
 # Object Pooling
 
-Because projectiles could be created repeatedly during gameplay, I implemented object pooling to reduce repeated instantiation and destruction.
+Because projectiles could be spawned repeatedly during gameplay, I implemented object pooling to reduce repeated instantiation and destruction.
 
 Each projectile type maintained its own pool.
 
 ```csharp
-private Dictionary<ProyectileSO, Queue<GameObject>> pools = new();
+private Dictionary<ProjectileSO, Queue<GameObject>> pools = new();
 ```
 
-When a projectile was needed, the system retrieved an inactive object from the pool:
+When a projectile was needed, the system could retrieve an inactive instance:
 
 ```csharp
 GameObject projectile = poolQueue.Dequeue();
 projectile.SetActive(true);
 ```
 
-After the projectile finished its behavior, it could be returned:
+After the projectile finished its behavior, it could be returned to the pool:
 
 ```csharp
 obj.SetActive(false);
 pools[proj].Enqueue(obj);
 ```
 
-The pools could also expand at runtime when all existing instances were in use.
+The system could also expand a pool when all existing instances were currently being used.
 
-This made the projectile system reusable while reducing unnecessary runtime object creation.
+This made projectile spawning reusable while avoiding unnecessary repeated creation and destruction of GameObjects.
 
 ---
 
 # Progression & Persistence
 
-I implemented systems for tracking player progression and persistent gameplay state.
+I implemented systems for tracking persistent player progression and level-specific state.
 
-The save system stored information including:
+The save system stored information such as:
 
-- Current level
-- Player position
-- Player rotation
-- Coins
-- Key collectibles
-- Unlocked power-ups
-- Persistent trigger states
+* Current level
+* Player position
+* Player rotation
+* Coins
+* Key collectibles
+* Unlocked power-ups
+* Persistent trigger states
 
-The save structure was divided into global progression and level-specific information.
+The save structure separated global progression from level-specific information.
 
 ```text
 GameSaveData
@@ -349,10 +333,7 @@ GameSaveData
           └── Trigger States
 ```
 
-This allowed the game to preserve progression between play sessions and remember state independently for different levels.
-
-<!-- IMAGE: Progression / collectibles -->
-
+This allowed the game to preserve progression between sessions while keeping level-specific information associated with its corresponding level.
 
 ---
 
@@ -360,9 +341,9 @@ This allowed the game to preserve progression between play sessions and remember
 
 I created a reusable collectible architecture based around unique IDs.
 
-Instead of only storing a global number of collected objects, each collectible could be identified individually.
+Rather than only storing a global number of collected objects, individual collectibles could be identified separately.
 
-This allowed the save system to remember exactly which collectibles had already been obtained.
+This allowed the save system to remember which specific collectibles had already been collected.
 
 ```csharp
 protected string GenerateUniqueID()
@@ -371,34 +352,36 @@ protected string GenerateUniqueID()
 }
 ```
 
-When the game loaded, previously collected objects could be disabled based on their saved IDs.
+When the game loaded, previously collected objects could be disabled according to their saved IDs.
 
-This made the system reusable for different types of collectibles.
+This made the system applicable to different types of persistent collectibles.
 
 ---
 
 # Persistent Trigger System
 
-I also created a configurable trigger system for gameplay and level interactions.
+I also worked on a configurable trigger system for gameplay and level interactions.
 
-Triggers could be configured to activate on:
+Triggers could be configured to respond to:
 
-- Enter
-- Stay
-- Exit
+* Enter
+* Stay
+* Exit
 
 They could also filter objects using:
 
-- Tags
-- Layers
+* Tags
+* Layers
 
-Additional options included:
+Additional configuration included:
 
-- Startup delays
-- Duration timers
-- UnityEvents
-- Different materials for trigger states
-- Persistent trigger states
+* Startup delays
+* Duration timers
+* UnityEvents
+* Different materials for trigger states
+* Persistent trigger states
+
+The general flow was:
 
 ```text
 Player
@@ -417,52 +400,51 @@ Trigger
    └── Save State
 ```
 
-Once a trigger had been activated, its state could be saved and restored when returning to the level.
-
-<!-- IMAGE: Trigger in Unity -->
-
-
-<!-- VIDEO: Trigger demonstration -->
-
+When configured as persistent, a trigger's state could be stored and restored when returning to the level.
 
 ---
 
 # Event-Driven Architecture
 
-To allow different systems to communicate without requiring direct references between every component, I implemented a centralized event system.
+I worked with a centralized event system to allow different gameplay systems to communicate without requiring every component to maintain direct references to every other system.
 
 The event layer handled gameplay changes such as:
 
-- Health changes
-- Damage
-- Player death
-- Enemy death
-- Water changes
-- Score changes
-- Main collectibles
-- Objective completion
-- Game state changes
+* Health changes
+* Damage
+* Player death
+* Enemy death
+* Water changes
+* Score changes
+* Main collectibles
+* Objective completion
+* Game state changes
 
 For example:
 
 ```csharp
 public static event Action OnHealthChanged;
+
 public static event Action OnPlayerDeath;
+
 public static event Action OnEnemyDeath;
+
 public static event Action OnScoreChanged;
+
 public static event Action OnMainCollected;
+
 public static event Action<GameState> OnGameStateChanged;
 ```
 
 Systems could broadcast events while other systems, such as UI or progression systems, could subscribe to them.
 
-This helped reduce direct dependencies between gameplay logic and presentation systems.
+This reduced the amount of direct coupling between gameplay systems and presentation or progression systems.
 
 ---
 
 # Game State Management
 
-I also worked on the game's centralized game-state management.
+I also worked on centralized game-state management.
 
 The game used states such as:
 
@@ -475,44 +457,38 @@ public enum GameState
 }
 ```
 
-Changing the game state notified other systems through the event architecture.
+Changing the game state could notify other systems through the event architecture.
 
-This allowed UI and gameplay systems to react to state changes without each system needing to directly control the others.
+This gave systems such as UI and gameplay a common source of truth for the current state of the game.
 
 ---
 
-# Designer Tools
+# Designer-Facing Tools
 
-One of my responsibilities was creating tools that made it easier for the team to build and iterate on gameplay.
+Another important part of my role was creating tools that allowed gameplay objects to be configured and iterated on directly inside Unity.
 
-Rather than requiring designers to modify code for every gameplay object, I exposed important parameters through the Unity Inspector and Scene view.
+The goal was to move common gameplay configuration away from hard-coded values and into the Unity editor.
 
-One example was a configurable moving saw hazard.
-
-<!-- IMAGE: Custom Unity tool -->
-
-
-<!-- VIDEO: Designer tool demonstration -->
-
+This was especially useful for level-design tasks where movement paths, hazards, and environmental behaviors needed to be adjusted repeatedly.
 
 ---
 
 # Moving Saw Tool
 
-I created a reusable moving-saw hazard that could be configured directly in the Unity Inspector.
+I created a reusable moving-saw hazard that could be configured through the Unity Inspector.
 
-Designers could configure:
+The system supported configuration for:
 
-- Movement speed
-- Rotation speed
-- Rotation axis
-- Waypoints
-- Wait time
-- Ping-pong movement
-- Local/world waypoint positioning
-- Damage behavior
+* Movement speed
+* Rotation speed
+* Rotation axis
+* Waypoints
+* Wait time
+* Ping-pong movement
+* Local/world waypoint positioning
+* Damage behavior
 
-The system also integrated with the project's damage architecture through `IDamageSender`.
+The hazard integrated with the project's damage architecture through `IDamageSender`.
 
 ```text
 Moving Saw
@@ -529,30 +505,24 @@ Moving Saw
     IDamageReceiver
 ```
 
-This meant the saw could behave as a gameplay hazard without requiring a custom damage implementation for every new hazard.
+This allowed the hazard to use the same damage communication pattern as other gameplay systems.
 
 ---
 
 # Scene View Waypoint Editing
 
-To make the saw easier to use during level design, I implemented Scene view visualization for its waypoints.
+To make moving hazards easier to author, I implemented Scene view visualization for their waypoints.
 
 The tool displayed:
 
-- Waypoint positions
-- Waypoint connections
-- Waypoint numbers
-- Editable position handles
+* Waypoint positions
+* Waypoint connections
+* Waypoint numbers
+* Editable position handles
 
-Designers could move waypoints directly in the Scene view instead of manually editing coordinates.
+Designers could therefore modify movement paths directly in the Scene view rather than manually entering coordinates.
 
-<!-- IMAGE: Waypoint handles -->
-
-
-<!-- IMAGE: Waypoint visualization -->
-
-
-This reduced iteration time when creating moving hazards and made the movement path easier to understand spatially.
+This made path editing more visual and reduced iteration time during level design.
 
 ---
 
@@ -560,13 +530,13 @@ This reduced iteration time when creating moving hazards and made the movement p
 
 I also implemented a Bézier visualization and calculation tool for creating curved paths.
 
-The tool exposed configurable parameters for:
+The tool exposed parameters including:
 
-- Starting position
-- Forward distance
-- Control point offset
-- Resolution
-- Camera-relative positioning
+* Starting position
+* Forward distance
+* Control point offset
+* Resolution
+* Camera-relative positioning
 
 The curve was calculated using a quadratic Bézier function:
 
@@ -585,10 +555,9 @@ private Vector3 CalculateQuadraticBezierPoint(
 }
 ```
 
-The resulting path could be visualized directly in the Scene view using Gizmos.
+The resulting curve could be visualized directly in the Unity Scene view using Gizmos.
 
-<!-- IMAGE: Bézier curve in Scene view -->
-
+This allowed path behavior to be tested visually while developing the associated gameplay systems.
 
 ---
 
@@ -596,7 +565,7 @@ The resulting path could be visualized directly in the Scene view using Gizmos.
 
 I also integrated Unity's Spline system with the project's physics mover architecture.
 
-The system connected:
+The system connected designer-authored splines with runtime movement:
 
 ```text
 Designer Spline
@@ -614,13 +583,7 @@ Physics Mover
 Gameplay Object
 ```
 
-This allowed objects to follow designer-authored spline paths while still using the project's existing physics movement architecture.
-
-<!-- IMAGE: Spline setup -->
-
-
-<!-- VIDEO: Spline movement -->
-
+This allowed objects to follow paths authored visually by designers while still using the project's existing movement architecture.
 
 ---
 
@@ -628,7 +591,7 @@ This allowed objects to follow designer-authored spline paths while still using 
 
 I implemented a player recovery system that tracked the player's last valid grounded position.
 
-When the player entered a recovery area, the system could return them to their last valid platform.
+The general flow was:
 
 ```text
 Player Movement
@@ -649,163 +612,163 @@ Recovery Trigger
 Last Valid Position
 ```
 
-This helped prevent traversal failures from requiring the player to restart an entire level.
+When the player entered a recovery situation, the system could return them to their last valid platform.
 
-The system also temporarily blocked the character during the teleportation process before returning control to the player.
+This prevented traversal failures from requiring the player to restart an entire level.
 
-<!-- VIDEO: Player recovery demonstration -->
-
+The system also temporarily blocked player control during the recovery process before returning control to the player.
 
 ---
 
 # Level Design
 
-In addition to programming, I worked on level design.
+Alongside programming, I worked on level design.
 
-My level-design work focused on building spaces around the player's movement, abilities, combat mechanics, and collectible objectives.
+My level-design work focused on building spaces around the player's movement, abilities, combat systems, hazards, and collectible objectives.
 
 I worked with:
 
-- Platforming
-- Traversal
-- Collectibles
-- Combat encounters
-- Environmental hazards
-- Player recovery
-- Ability usage
-- Movement challenges
+* Platforming
+* Traversal
+* Collectibles
+* Combat encounters
+* Environmental hazards
+* Player recovery
+* Ability usage
+* Movement challenges
 
-The goal was to create spaces where the player's abilities were not only available, but encouraged through the layout of the environment.
+Programming the gameplay systems also influenced how I designed the levels.
 
-<!-- IMAGE: Level overview -->
-
-
-<!-- IMAGE: Level screenshot -->
-
-
-<!-- IMAGE: Additional level screenshot -->
-
-
-<!-- VIDEO: Level walkthrough -->
-
+Because I understood how the movement, hazards, and abilities worked internally, I could design spaces around their actual capabilities and limitations.
 
 ---
 
 # Systems Integration
 
-One of my most important responsibilities on the project was integrating systems developed by different members of the team.
+One of my most valuable responsibilities on Tide and Tale was integrating systems developed by different members of the team.
 
-Rather than working exclusively on isolated features, I connected gameplay systems through shared interfaces, managers, events, and persistent data.
+Instead of only implementing isolated features, I worked on connecting gameplay systems through shared interfaces, managers, events, and persistent data.
 
-For example:
+The overall relationship between systems could be thought of as:
 
 ```text
-                       Game Manager
-                            |
-             ┌──────────────┼──────────────┐
-             |              |              |
-             v              v              v
-         Save Data      Event System    Objectives
-             |              |              |
-             |        ┌─────┼─────┐        |
-             |        v     v     v        |
-             |      Health Water Score      |
-             |              |              |
-             └──────────────┼──────────────┘
-                            |
-                            v
-                     Player Systems
-                            |
-                 ┌──────────┼──────────┐
-                 v          v          v
-              Combat    Movement   Abilities
+                    Game Systems
+                         |
+          ┌──────────────┼──────────────┐
+          |              |              |
+          v              v              v
+      Save Data      Event System    Objectives
+          |              |              |
+          |        ┌─────┼─────┐        |
+          |        v     v     v        |
+          |      Health Water Score     |
+          |              |              |
+          └──────────────┼──────────────┘
+                         |
+                         v
+                  Player Systems
+                         |
+              ┌──────────┼──────────┐
+              v          v          v
+           Combat    Movement   Abilities
 ```
 
-This required understanding how independently developed systems interacted and making sure they could work together inside the same game.
+This meant dealing with dependencies between:
 
-My work included connecting systems such as:
+* Player movement
+* Combat
+* Abilities
+* Projectile management
+* Health
+* Water
+* Objectives
+* Collectibles
+* Save data
+* Game states
+* UI events
+* Level-specific triggers
 
-- Player movement
-- Combat
-- Abilities
-- Projectile management
-- Health
-- Water
-- Objectives
-- Collectibles
-- Save data
-- Game states
-- UI events
-- Level-specific triggers
-
-This was one of the most valuable parts of the project because it gave me experience working on gameplay as part of a larger team rather than only developing isolated features.
+This was an important step in learning how to work on gameplay code as part of a larger architecture rather than treating each feature as an isolated system.
 
 ---
 
-# Working Across Design & Programming
+# Working Across Programming & Design
 
-One of the things that made Tide and Tale particularly valuable to me was working across both programming and design.
+Tide and Tale also gave me experience working between programming and level design.
 
-Programming allowed me to build the systems behind the game, while level design allowed me to directly use those systems to create player experiences.
+The systems I programmed directly affected how levels could be designed, while level-design requirements influenced how those systems needed to be exposed and configured.
 
-For example, the movement system influenced how I approached platforming spaces, while the hazard and trigger tools allowed me to iterate on gameplay encounters directly inside Unity.
-
-This combination helped me understand the relationship between:
+This relationship became particularly important for tools programming.
 
 ```text
 Gameplay Systems
-       ↓
+       |
+       v
 Player Abilities
-       ↓
+       |
+       v
 Level Design
-       ↓
+       |
+       v
 Player Experience
 ```
+
+For example, configurable hazards and movement paths allowed me to iterate on level layouts without repeatedly changing gameplay code.
+
+This helped me understand tools programming as part of the gameplay-development workflow rather than as a separate discipline.
 
 ---
 
 # Challenges
 
-Working on a larger team introduced challenges that I would not have encountered in a smaller project.
+The biggest challenge was working with a large number of interconnected systems while the project was still changing.
 
-Different systems were developed independently, which meant that integration was often as important as implementation.
+Different team members were responsible for different areas of the game, which meant that implementation and integration often happened simultaneously.
 
 I had to work with:
 
-- Different gameplay systems
-- Shared interfaces
-- Dependencies between components
-- Persistent game state
-- Designer workflows
-- Runtime and editor code
-- Systems that were still changing during development
+* Shared interfaces
+* Gameplay dependencies
+* Persistent state
+* Runtime systems
+* Editor tools
+* Designer workflows
+* Systems that were still evolving
 
-This taught me to think about gameplay code not only as individual features, but as part of a larger architecture.
+This taught me that good gameplay programming is not only about making a feature work in isolation.
+
+It also needs to provide a clear way for other systems and team members to use that feature.
 
 ---
 
 # What I Learned
 
-Tide and Tale was one of my most ambitious projects at the time.
+Tide and Tale was one of my most valuable projects for learning how to work on a larger Unity game.
 
-Although the project was ultimately discontinued before release, it gave me experience working on a larger team and dealing with the complexity that comes with integrating multiple gameplay systems.
+The project strengthened my understanding of:
 
-The project taught me how to:
+* State-based character controllers
+* Gameplay architecture
+* C# interfaces
+* Event-driven communication
+* Object pooling
+* Persistent progression
+* Save/load systems
+* Runtime state management
+* Unity Editor tooling
+* Scene view visualization
+* Spline-based movement
+* Gameplay-system integration
+* Level design
+* Team-based development
 
-- Build reusable gameplay systems
-- Work with state-driven character controllers
-- Separate input from gameplay logic
-- Design systems around shared interfaces
-- Use event-driven communication
-- Implement persistent progression
-- Build designer-facing Unity tools
-- Use object pooling for frequently spawned objects
-- Integrate systems created by other programmers
-- Design levels around player abilities
-- Think about gameplay architecture at team scale
-- Balance programming and level-design responsibilities
+The most important lesson was learning to think beyond individual mechanics.
 
-Most importantly, it taught me that building a game with a team is not only about creating individual features. It is also about making sure those features can communicate, integrate, and remain usable by everyone else working on the project.
+A gameplay programmer working on a team needs to consider how a system will be:
+
+**implemented → configured → communicated → reused → integrated**
+
+That became one of the main takeaways I carried into later projects.
 
 ---
 
@@ -813,87 +776,95 @@ Most importantly, it taught me that building a game with a team is not only abou
 
 Tide and Tale was discontinued before the team could complete and release the game.
 
-The build currently available is an older development build and does not represent the best state reached during development.
+The currently available build is an older development build and does not represent the best state reached during development.
 
-Because the project never received a final public release, I am presenting this project primarily as a **development case study**.
+For that reason, I present Tide and Tale primarily as a **development case study**.
 
-The focus is on the systems I implemented, the tools I created, the levels I designed, and my experience integrating the work of a larger team.
-
-<!-- OPTIONAL VIDEO: Older development build -->
-
+The focus is on the systems I programmed, the tools I developed, the levels I designed, and the experience I gained integrating multiple areas of a larger Unity project.
 
 ---
 
 # Technical Summary
 
-| Category | Technologies / Responsibilities |
-| --- | --- |
-| Engine | Unity |
-| Programming | C# |
-| Gameplay | Character Controller, Combat, Abilities, Movement |
-| Architecture | Interfaces, Events, State-Based Systems |
-| Persistence | Save/Load, Collectibles, Triggers, Progression |
-| Performance | Object Pooling |
-| Tools | Unity Editor Tools, Gizmos, Scene Handles |
-| Level Design | Platforming, Traversal, Combat Encounters |
-| Team Role | Gameplay Programming, Tools, Level Design, Systems Integration |
+| Category     | Technologies / Responsibilities                                |
+| ------------ | -------------------------------------------------------------- |
+| Engine       | Unity                                                          |
+| Programming  | C#                                                             |
+| Gameplay     | Character Controller, Movement, Combat, Abilities              |
+| Architecture | Interfaces, Events, State-Based Systems                        |
+| Persistence  | Save/Load, Collectibles, Triggers, Progression                 |
+| Performance  | Object Pooling                                                 |
+| Tools        | Unity Editor Tools, Gizmos, Scene Handles                      |
+| Movement     | Kinematic Motor, Splines, Bézier Paths                         |
+| Level Design | Platforming, Traversal, Combat Encounters                      |
+| Team Role    | Gameplay Programming, Tools, Level Design, Systems Integration |
 
 ---
 
 # My Contributions
 
 ### Gameplay Programming
-- Character controller
-- Movement states
-- Jumping
-- Dash
-- Slide
-- Trick
-- Pound
-- Combat
-- Damage interactions
-- Projectile management
-- Ability systems
+
+* Player controller
+* Movement states
+* Jumping
+* Dash
+* Slide
+* Trick
+* Ground pound
+* Recovery
+* Combat
+* Damage interactions
+* Projectile management
+* Ability systems
 
 ### Systems Programming
-- Game manager
-- Event system
-- Save/load
-- Persistent progression
-- Collectibles
-- Trigger persistence
-- Game states
+
+* Game state management
+* Event system
+* Save/load
+* Persistent progression
+* Collectibles
+* Persistent triggers
+* Object pooling
 
 ### Tools Programming
-- Custom Unity inspectors
-- Waypoint editing
-- Scene view visualization
-- Moving hazard tools
-- Bézier visualization
-- Spline movement integration
+
+* Configurable gameplay hazards
+* Waypoint editing
+* Scene view visualization
+* Moving hazard tools
+* Bézier path visualization
+* Spline movement integration
+* Designer-facing configuration
 
 ### Level Design
-- Platforming spaces
-- Traversal challenges
-- Combat encounters
-- Collectible placement
-- Environmental hazards
-- Player recovery
 
-### Team Integration
-- Integrated gameplay systems developed by different team members
-- Connected gameplay, progression, UI, and state systems
-- Worked across programming and level-design responsibilities
-- Helped maintain interactions between the project's different systems
+* Platforming spaces
+* Traversal challenges
+* Combat encounters
+* Collectible placement
+* Environmental hazards
+* Player recovery
+
+### Systems Integration
+
+* Integrated gameplay systems developed by different team members
+* Connected gameplay, progression, UI, and state systems
+* Worked with shared interfaces and events
+* Integrated runtime systems with designer-facing tools
+* Maintained interactions between different gameplay systems
 
 ---
 
 # Final Reflection
 
-Tide and Tale was never completed, but it remains an important project in my development as a game developer.
+Tide and Tale was never completed, but it represents an important stage in my development as a gameplay programmer.
 
-It was one of the first projects where I had to think beyond individual mechanics and consider how a larger collection of systems could work together.
+Unlike smaller projects where I could focus primarily on individual mechanics, this project required me to think about how multiple systems could communicate and how those systems could be exposed to the rest of the team.
 
-The project gave me experience not only as a gameplay programmer, but also as a tools developer, level designer, and systems integrator.
+My work ranged from the player controller and combat systems to save data, object pooling, editor tools, level design, and systems integration.
 
-While the final game was never released, the work I contributed to the project became valuable experience that I have carried into later projects.
+That breadth made the project particularly valuable because it taught me to approach gameplay programming as an interconnected discipline:
+
+## **Build the mechanic → design the system → expose the system → integrate the system → use it to create gameplay.**

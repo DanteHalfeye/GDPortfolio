@@ -13,238 +13,809 @@ import Pill from '../components/Pill.astro';
 import PortfolioPreview from '../components/PortfolioPreview.astro';
 import Skills from '../components/Skills.astro';
 
-// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
+// Layout
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Content Fetching: List four most recent work projects
+// Content
 const projects = (await getCollection('work'))
-	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
-	.slice(0, 4);
+    .sort(
+        (a, b) =>
+            b.data.publishDate.valueOf() -
+            a.data.publishDate.valueOf(),
+    )
+    .slice(0, 4);
 
 // GitHub Pages base path
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.endsWith('/')
+    ? import.meta.env.BASE_URL
+    : `${import.meta.env.BASE_URL}/`;
 ---
 
 <BaseLayout>
-	<div class="stack gap-20 lg:gap-48">
-		<div class="wrapper stack gap-8 lg:gap-20">
-			<header class="hero">
-				<Hero
-					title="Hello, my name is Eliham Pelaez"
-					tagline="I am a Game Developer who is currently based in Medellín, Colombia."
-					align="start"
-				>
-					<div class="roles">
-						<Pill>
-							<Icon icon="game-controller-2" size="1.33em" />
-							Game Developer
-						</Pill>
 
-						<Pill>
-							<Icon icon="code" size="1.33em" />
-							Gameplay Programmer
-						</Pill>
+    <div class="stack gap-20 lg:gap-48">
 
-						<Pill>
-							<Icon icon="crosshair" size="1.33em" />
-							Fast learner
-						</Pill>
-					</div>
-				</Hero>
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
 
-				<img
-					alt="Eliham Pelaez"
-					width="480"
-					height="620"
-					src={`/GDPortfolio/assets/portrait.jpg`}
-				/>
-			</header>
+        <div class="wrapper stack gap-8 lg:gap-20">
 
-			<Skills />
-		</div>
+            <header class="hero">
 
-		<main class="wrapper stack gap-20 lg:gap-48">
-			<section class="section with-background with-cta">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Recent Work</h3>
+                <Hero
+                    title="Hello, my name is Eliham Pelaez"
+                    tagline="I am a Game Developer who is currently based in Medellín, Colombia."
+                    align="start"
+                >
 
-					<p>
-						Take a look below at my recent work.
-					</p>
-				</header>
+                    <div class="roles">
 
-				<div class="gallery">
-					<Grid variant="offset">
-						{
-							projects.map((project) => (
-								<li>
-									<PortfolioPreview project={project} />
-								</li>
-							))
-						}
-					</Grid>
-				</div>
+                        <Pill>
+                            <Icon
+                                icon="game-controller-2"
+                                size="1.33em"
+                            />
+                            Game Developer
+                        </Pill>
 
-				<div class="cta">
-					<CallToAction href={`/work/`}>
-						View All
-						<Icon icon="arrow-right" size="1.2em" />
-					</CallToAction>
-				</div>
-			</section>
-		</main>
+                        <Pill>
+                            <Icon
+                                icon="code"
+                                size="1.33em"
+                            />
+                            Gameplay Programmer
+                        </Pill>
 
-		<ContactCTA />
-	</div>
+                        <Pill>
+                            <Icon
+                                icon="crosshair"
+                                size="1.33em"
+                            />
+                            Fast learner
+                        </Pill>
+
+                    </div>
+
+                </Hero>
+
+                <img
+                    alt="Eliham Pelaez"
+                    width="480"
+                    height="620"
+                    src={`${base}assets/portrait.jpg`}
+                />
+
+            </header>
+
+            <Skills />
+
+        </div>
+
+
+        <!-- =====================================================
+             SELECTED WORK
+        ====================================================== -->
+
+        <main class="work-wrapper">
+
+            <section class="work-section with-background">
+
+
+                <!-- =================================================
+                     SECTION INTRO
+                ================================================== -->
+
+                <header class="work-header">
+
+                    <div class="work-kicker">
+
+                        <span class="kicker-line"></span>
+
+                        <span>
+                            SELECTED PROJECTS
+                        </span>
+
+                        <span class="kicker-year">
+                            2026
+                        </span>
+
+                    </div>
+
+
+                    <div class="work-heading">
+
+                        <div>
+
+                            <h2>
+                                Gameplay I've
+                                <em> done.</em>
+                            </h2>
+
+                        </div>
+
+
+                        <div class="work-intro">
+
+                            <p>
+                                Games, prototypes, and interactive
+                                experiences where I explore gameplay,
+                                systems, and the way players interact
+                                with a world.
+                            </p>
+
+                            <div class="project-count">
+
+                                <span class="count-number">
+                                    {String(projects.length).padStart(2, '0')}
+                                </span>
+
+                                <span class="count-label">
+                                    FEATURED PROJECTS
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="work-divider"></div>
+
+                </header>
+
+
+                <!-- =================================================
+                     PROJECT GRID
+                ================================================== -->
+
+                <div class="gallery">
+
+                    <Grid variant="offset">
+
+                        {
+                            projects.map((project, index) => (
+
+                                <li>
+
+                                    <div class="project-wrapper">
+
+                                        <div class="project-index">
+                                            {String(index + 1).padStart(2, '0')}
+                                        </div>
+
+                                        <PortfolioPreview
+                                            project={project}
+                                        />
+
+                                    </div>
+
+                                </li>
+
+                            ))
+                        }
+
+                    </Grid>
+
+                </div>
+
+
+                <!-- =================================================
+                     CTA
+                ================================================== -->
+
+                <div class="work-footer">
+
+                    <div class="footer-line"></div>
+
+                    <div class="footer-content">
+
+                        <div>
+
+                            <span class="footer-label">
+                                WANT TO SEE MORE?
+                            </span>
+
+                            <p>
+                                Explore the complete archive
+                                of my projects and experiments.
+                            </p>
+
+                        </div>
+
+                        <CallToAction href={`${base}work/`}>
+
+                            View All Projects
+
+                            <Icon
+                                icon="arrow-right"
+                                size="1.2em"
+                            />
+
+                        </CallToAction>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- =====================================================
+             CONTACT
+        ====================================================== -->
+
+        <ContactCTA />
+
+    </div>
+
 </BaseLayout>
 
+
 <style>
-	.hero {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 2rem;
-	}
 
-	.roles {
-		display: none;
-	}
+    /* ==========================================================
+       HERO
+    ========================================================== */
 
-	.hero img {
-		aspect-ratio: 5 / 4;
-		object-fit: cover;
-		object-position: top;
-		border-radius: 1.5rem;
-		box-shadow: var(--shadow-md);
-	}
+    .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
 
-	@media (min-width: 50em) {
-		.hero {
-			display: grid;
-			grid-template-columns: 6fr 4fr;
-			padding-inline: 2.5rem;
-			gap: 3.75rem;
-		}
 
-		.roles {
-			margin-top: 0.5rem;
-			display: flex;
-			gap: 0.5rem;
-		}
+    .roles {
+        display: none;
+    }
 
-		.hero img {
-			aspect-ratio: 3 / 4;
-			border-radius: 4.5rem;
-			object-fit: cover;
-		}
-	}
 
-	/* ====================================================== */
+    .hero img {
+        aspect-ratio: 5 / 4;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 1.5rem;
+        box-shadow: var(--shadow-md);
+    }
 
-	.section {
-		display: grid;
-		gap: 2rem;
-	}
 
-	.with-background {
-		position: relative;
-	}
+    @media (min-width: 50em) {
 
-	.with-background::before {
-		--hero-bg: var(--bg-image-subtle-2);
+        .hero {
+            display: grid;
+            grid-template-columns: 6fr 4fr;
+            padding-inline: 2.5rem;
+            gap: 3.75rem;
+        }
 
-		content: '';
-		position: absolute;
-		pointer-events: none;
-		left: 50%;
-		width: 100vw;
-		aspect-ratio: calc(2.25 / var(--bg-scale));
-		top: 0;
-		transform: translateY(-75%) translateX(-50%);
 
-		background:
-			url('/GDPortfolio/assets/backgrounds/noise.png') top center/220px repeat,
-			var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
-			var(--gray-999);
+        .roles {
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+        }
 
-		background-blend-mode: overlay, normal, normal, normal;
-		mix-blend-mode: var(--bg-blend-mode);
-		z-index: -1;
-	}
 
-	.with-background.bg-variant::before {
-		--hero-bg: var(--bg-image-subtle-1);
-	}
+        .hero img {
+            aspect-ratio: 3 / 4;
+            border-radius: 4.5rem;
+            object-fit: cover;
+        }
 
-	.section-header {
-		justify-self: center;
-		text-align: center;
-		max-width: 50ch;
-		font-size: var(--text-md);
-		color: var(--gray-300);
-	}
+    }
 
-	.section-header h3 {
-		font-size: var(--text-2xl);
-	}
 
-	@media (min-width: 50em) {
-		.section {
-			grid-template-columns: repeat(4, 1fr);
-			grid-template-areas:
-				'header header header header'
-				'gallery gallery gallery gallery';
-			gap: 5rem;
-		}
+    /* ==========================================================
+       WORK WRAPPER
+    ========================================================== */
 
-		.section.with-cta {
-			grid-template-areas:
-				'header header header cta'
-				'gallery gallery gallery gallery';
-		}
+    /*
+     * The global .wrapper is limited to 83rem.
+     *
+     * Recent Work intentionally uses more of the available
+     * desktop width so the project cards don't feel cramped.
+     */
 
-		.section-header {
-			grid-area: header;
-			font-size: var(--text-lg);
-		}
+    .work-wrapper {
+        width: 100%;
+        max-width: none;
+        margin-inline: auto;
+        padding-inline: 1.5rem;
+    }
 
-		.section-header h3 {
-			font-size: var(--text-4xl);
-		}
 
-		.with-cta .section-header {
-			justify-self: flex-start;
-			text-align: left;
-		}
+    @media (min-width: 50em) {
 
-		.gallery {
-			grid-area: gallery;
-		}
+        .work-wrapper {
+            width: min(
+                1500px,
+                calc(100vw - 4rem)
+            );
 
-		.cta {
-			grid-area: cta;
-		}
-	}
+            max-width: none;
+            padding-inline: 0;
+        }
 
-	/* ====================================================== */
+    }
 
-	.mention-card {
-		display: flex;
-		height: 7rem;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
-		border: 1px solid var(--gray-800);
-		border-radius: 1.5rem;
-		color: var(--gray-300);
-		background: var(--gradient-subtle);
-		box-shadow: var(--shadow-sm);
-	}
 
-	@media (min-width: 50em) {
-		.mention-card {
-			border-radius: 1.5rem;
-			height: 9.5rem;
-		}
-	}
+    /* ==========================================================
+       WORK SECTION
+       ========================================================== */
+
+    .work-section {
+        position: relative;
+        display: grid;
+        gap: 4rem;
+        width: 100%;
+    }
+
+
+    .with-background::before {
+        --hero-bg: var(--bg-image-subtle-2);
+
+        content: '';
+
+        position: absolute;
+
+        pointer-events: none;
+
+        left: 50%;
+
+        width: 100vw;
+
+        aspect-ratio:
+            calc(
+                2.25 /
+                var(--bg-scale)
+            );
+
+        top: 0;
+
+        transform:
+            translateY(-75%)
+            translateX(-50%);
+
+        background:
+            url('/GDPortfolio/assets/backgrounds/noise.png')
+                top center /
+                220px
+                repeat,
+
+            var(--hero-bg)
+                center center /
+                var(--bg-gradient-size)
+                no-repeat,
+
+            var(--gray-999);
+
+        background-blend-mode:
+            overlay,
+            normal,
+            normal;
+
+        mix-blend-mode:
+            var(--bg-blend-mode);
+
+        z-index: -1;
+    }
+
+
+    /* ==========================================================
+       WORK HEADER
+    ========================================================== */
+
+    .work-header {
+        width: 100%;
+    }
+
+
+    .work-kicker {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        margin-bottom: 1.5rem;
+
+        font-family:
+            var(
+                --font-mono,
+                monospace
+            );
+
+        font-size: 0.65rem;
+
+        font-weight: 600;
+
+        letter-spacing: 0.16em;
+
+        text-transform: uppercase;
+
+        color: var(--gray-400);
+    }
+
+
+    .kicker-line {
+        display: block;
+
+        width: 2.5rem;
+
+        height: 1px;
+
+        background:
+            currentColor;
+
+        opacity: 0.5;
+    }
+
+
+    .kicker-year {
+        margin-left: auto;
+
+        opacity: 0.45;
+    }
+
+
+    /* ==========================================================
+       HEADING
+    ========================================================== */
+
+    .work-heading {
+        display: grid;
+
+        gap: 2rem;
+    }
+
+
+    .work-heading h2 {
+        margin: 0;
+
+        max-width: 900px;
+
+        font-size:
+            clamp(
+                3.5rem,
+                8vw,
+                8rem
+            );
+
+        line-height: 0.82;
+
+        letter-spacing: -0.065em;
+    }
+
+
+    .work-heading h2 em {
+        font-style: normal;
+
+        opacity: 0.35;
+    }
+
+
+    .work-intro {
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: flex-end;
+
+        gap: 1.5rem;
+    }
+
+
+    .work-intro p {
+        max-width: 42ch;
+
+        margin: 0;
+
+        font-size:
+            clamp(
+                1rem,
+                1.5vw,
+                1.2rem
+            );
+
+        line-height: 1.6;
+
+        color: var(--gray-400);
+    }
+
+
+    /* ==========================================================
+       PROJECT COUNT
+    ========================================================== */
+
+    .project-count {
+        display: flex;
+
+        align-items: baseline;
+
+        gap: 0.75rem;
+
+        font-family:
+            var(
+                --font-mono,
+                monospace
+            );
+    }
+
+
+    .count-number {
+        font-size: 1.5rem;
+
+        letter-spacing: -0.05em;
+    }
+
+
+    .count-label {
+        font-size: 0.6rem;
+
+        letter-spacing: 0.12em;
+
+        color: var(--gray-500);
+    }
+
+
+    /* ==========================================================
+       DIVIDER
+    ========================================================== */
+
+    .work-divider {
+        width: 100%;
+
+        height: 1px;
+
+        margin-top: 2rem;
+
+        background:
+            var(--gray-800);
+    }
+
+
+    /* ==========================================================
+       GALLERY
+    ========================================================== */
+
+    .gallery {
+        width: 100%;
+        min-width: 0;
+    }
+
+
+    .project-wrapper {
+        position: relative;
+        width: 100%;
+    }
+
+
+    .project-index {
+        position: absolute;
+
+        top: -2rem;
+
+        left: 0;
+
+        font-family:
+            var(
+                --font-mono,
+                monospace
+            );
+
+        font-size: 0.6rem;
+
+        letter-spacing: 0.12em;
+
+        color: var(--gray-500);
+
+        z-index: 5;
+
+        pointer-events: none;
+    }
+
+
+    /* ==========================================================
+       FOOTER / CTA
+    ========================================================== */
+
+    .work-footer {
+        width: 100%;
+
+        margin-top: 2rem;
+    }
+
+
+    .footer-line {
+        width: 100%;
+
+        height: 1px;
+
+        background:
+            var(--gray-800);
+    }
+
+
+    .footer-content {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 2rem;
+
+        padding-top: 2rem;
+    }
+
+
+    .footer-label {
+        display: block;
+
+        margin-bottom: 0.5rem;
+
+        font-family:
+            var(
+                --font-mono,
+                monospace
+            );
+
+        font-size: 0.6rem;
+
+        letter-spacing: 0.14em;
+
+        color: var(--gray-500);
+    }
+
+
+    .footer-content p {
+        margin: 0;
+
+        font-size: 0.95rem;
+
+        color: var(--gray-400);
+    }
+
+
+    /* ==========================================================
+       DESKTOP
+    ========================================================== */
+
+    @media (min-width: 50em) {
+
+        .work-section {
+            gap: 5rem;
+        }
+
+
+        .work-heading {
+            grid-template-columns:
+                minmax(0, 1.7fr)
+                minmax(280px, 0.7fr);
+
+            align-items: end;
+
+            gap: 5rem;
+        }
+
+
+        .work-heading h2 {
+            font-size:
+                clamp(
+                    5rem,
+                    8vw,
+                    8rem
+                );
+        }
+
+
+        .work-intro {
+            padding-bottom: 0.5rem;
+        }
+
+
+        .work-divider {
+            margin-top: 1rem;
+        }
+
+
+        .project-index {
+            top: -2.25rem;
+        }
+
+    }
+
+
+    /* ==========================================================
+       MOBILE
+    ========================================================== */
+
+    @media (max-width: 49.99em) {
+
+        .work-section {
+            gap: 3rem;
+        }
+
+
+        .work-kicker {
+            margin-bottom: 1.25rem;
+        }
+
+
+        .work-heading h2 {
+            font-size:
+                clamp(
+                    3.2rem,
+                    15vw,
+                    5rem
+                );
+        }
+
+
+        .work-intro {
+            margin-top: 1rem;
+        }
+
+
+        .work-intro p {
+            font-size: 0.95rem;
+        }
+
+
+        .project-index {
+            top: -1.5rem;
+        }
+
+
+        .footer-content {
+            flex-direction: column;
+
+            align-items: flex-start;
+        }
+
+    }
+
+
+    /* ==========================================================
+       MENTION CARD
+    ========================================================== */
+
+    .mention-card {
+        display: flex;
+
+        height: 7rem;
+
+        justify-content: center;
+
+        align-items: center;
+
+        text-align: center;
+
+        border:
+            1px solid
+            var(--gray-800);
+
+        border-radius: 1.5rem;
+
+        color: var(--gray-300);
+
+        background:
+            var(--gradient-subtle);
+
+        box-shadow:
+            var(--shadow-sm);
+    }
+
+
+    @media (min-width: 50em) {
+
+        .mention-card {
+            border-radius: 1.5rem;
+            height: 9.5rem;
+        }
+
+    }
+
 </style>

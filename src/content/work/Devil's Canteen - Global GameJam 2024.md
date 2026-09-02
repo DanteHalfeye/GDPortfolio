@@ -1,29 +1,26 @@
 ---
-title: Devil's Canteen 
+title: Devil's Canteen
 publishDate: 2024-01-01 00:00:00
 img: /assets/POSTER.png
 img_alt: Devil's Canteen
 description: >
-  — Global Game Jam 2024 — A walking simulator murder mystery developed during Global Game Jam 2024,
-  inspired by Colombian folklore and the song "La Pelea con el Diablo" by Octavio Mesa.
-
+  — Global Game Jam 2024 — A walking simulator murder mystery inspired by Colombian folklore and the song "La Pelea con el Diablo" by Octavio Mesa. The project focused on data-driven NPC systems, dynamic character states, procedural population, and gameplay programming.
 tags:
   - Unity
-  - Game Design
+  - C#
   - Gameplay Programming
+  - Systems Programming
+  - Data-Driven Design
   - Global Game Jam
-
 role: Gameplay Programmer & Game Designer
 engine: Unity
 language: C#
 projectType: Walking Simulator / Murder Mystery
 playUrl: https://globalgamejam.org/games/2024/la-cantina-del-diablo-6
 heroVideo: /assets/SC_CantinaDelDiablo.mp4
-
 featuredImages:
   - src: /assets/POSTER.png
     alt: Devil's Canteen poster
-
 gallery:
   - /assets/POSTER.png
   - /assets/SC_CantinaDelDiablo.mp4
@@ -31,125 +28,369 @@ gallery:
 
 ## Overview
 
-**Devil's Canteen** was developed during **Global Game Jam 2024** and is a walking simulator murder mystery inspired by Colombian folklore and culture.
+**Devil's Canteen** was developed during **Global Game Jam 2024** as a two-day walking simulator and murder mystery inspired by Colombian folklore and culture.
 
-This was my second Game Jam, and it marked an important step in my development as a game developer. Compared to my previous project, I felt much more confident designing and implementing gameplay systems and was significantly more satisfied with the final prototype.
+The player takes the role of a Colombian mountaineer investigating a group of characters while the devil secretly kills people and takes over their identities.
 
-In the game, you play as a Colombian mountaineer tasked with finding and killing the devil with a machete.
+The central gameplay challenge was creating a mystery around a large population of characters whose states could change dynamically during gameplay.
 
-## Gameplay Concept
+For me, the project was an opportunity to experiment with **data-driven gameplay**, **Scriptable Objects**, randomized character assignment, and interconnected character-state systems under an extremely limited development time.
 
-The devil is killing and replacing his victims.
+## My Role
 
-The player receives a list of everyone present, with victims marked in red. The objective is to identify who the devil has most recently replaced and **machetazo** — hit them with a machete — before the devil can continue killing.
+I worked primarily as a **Gameplay Programmer and Game Designer**.
 
-The game combines investigation, observation, character management, and a simple action mechanic into a short murder mystery experience.
+My programming responsibilities included:
 
-## Core Gameplay
+- NPC population
+- Character data management
+- Scriptable Object architecture
+- Randomized character assignment
+- NPC state management
+- Devil mechanics
+- Character death states
+- Dialogue data
+- Character list generation
+- NPC interaction
+- Dynamic gameplay events
+- Gameplay debugging
 
-The main gameplay loop revolves around:
+I also contributed to the design of the investigation loop and the overall structure of the mystery.
 
-* Observing the characters in the environment.
-* Checking the list of people present.
-* Tracking changes in character status.
-* Identifying who has been replaced by the devil.
-* Finding the current devil.
-* Attacking the correct character with the machete.
-* Repeating the investigation as the devil changes hosts.
+## Gameplay Loop
 
-The changing identity of the devil forces the player to continuously pay attention to the state of the characters rather than simply memorizing a single target.
+The devil continuously moves through the population by killing characters and taking their identities.
 
-## NPC Population System
+The player must:
 
-One of the main systems I programmed was the NPC population system.
+- Observe the NPCs
+- Consult the list of characters
+- Remember who has disappeared
+- Determine who the devil has replaced
+- Interact with the suspected character
+- Decide whether to use the machete
+- Repeat the investigation as the situation changes
 
-The system uses linked lists containing **Scriptable Objects**, with each Scriptable Object representing an individual character.
+The important design goal was that the player could not simply identify one permanent target.
 
-Each character's Scriptable Object contains information such as:
+The state of the population changes throughout the game, forcing the player to continuously update their understanding of what is happening.
 
-* Character name.
-* Character sprite.
-* Dialogue.
-* Current status.
-* Whether the character is alive, dead, or the devil.
+## Data-Driven Character System
 
-This system allowed the game to populate the environment with more than **40 different characters**, each with references to different elements of internet culture.
+One of the main systems I programmed was the **character data architecture**.
 
-Using Scriptable Objects also allowed character data to remain separated from the NPC behaviour itself, making it easier to manage a large number of characters within the project.
+Each character is represented by a `CharacterSO` Scriptable Object containing information such as:
+
+- Name
+- Dialogue
+- Avatar
+- Death state
+- Devil state
+
+```csharp id="3h8s2p"
+[CreateAssetMenu(menuName = "Character", fileName = "New Character")]
+public class CharacterSO : ScriptableObject
+{
+    [SerializeField] string name = "Enter a name";
+    [SerializeField] string Dialogue = "Enter a dialogue";
+
+    [SerializeField] Sprite avatar;
+    [SerializeField] bool isDead = false;
+    [SerializeField] bool isDiablo = false;
+}
+```
+
+This separated **character data** from the GameObject representing the NPC.
+
+The same data could then be accessed by different systems, including the NPC, dialogue interface, character list, and devil mechanics.
+
+This was one of my first experiences using a data-driven approach to gameplay programming.
+
+## Randomized NPC Population
+
+The game contains more than **40 possible character definitions**.
+
+At the beginning of the game, the `SpawnNPC` system selects characters from the available Scriptable Objects and assigns them to the NPCs in the scene.
+
+The system keeps a separate list of characters that have already been selected:
+
+```csharp id="r7k1m4"
+if (!usedCharacters.Contains(characters[populateIndex]))
+{
+    usedCharacters.Add(characters[populateIndex]);
+}
+else
+{
+    GiveRandomCharacters();
+}
+```
+
+This prevents the same character definition from being assigned multiple times during population.
+
+The selected character data is then assigned to the corresponding NPC:
+
+```csharp id="m2x8qa"
+nPCs[populatedIndex].SetAvatar(
+    usedCharacters[populatedIndex].GetAvatar()
+);
+
+nPCs[populatedIndex].SetCharacter(
+    usedCharacters[populatedIndex]
+);
+```
+
+This allowed the same NPC prefab structure to represent many different characters without manually creating a unique GameObject for every possible character.
+
+## Character State Management
+
+The `CharacterSO` also stores the dynamic state of each character.
+
+Two important states are:
+
+- `isDead`
+- `isDiablo`
+
+This meant the character's identity and gameplay state could be accessed by multiple systems.
+
+For example, the NPC list checks whether a character has died and updates the UI accordingly:
+
+```csharp id="f3n9kd"
+if (usedCharacters[i].GetDeath())
+{
+    textMeshProUGUI[i].fontStyle =
+        TMPro.FontStyles.Strikethrough;
+}
+```
+
+The same state is then used by the devil system to determine which characters can become the next target.
+
+This created a shared source of truth for the population rather than having separate copies of character state across different scripts.
+
+## Dynamic Devil System
+
+The devil mechanic was the main gameplay system connecting the character population together.
+
+After an initial delay, the game begins selecting victims.
+
+A character is randomly selected from the active population, with checks preventing already-dead or already-selected devil characters from being chosen again:
+
+```csharp id="v5c6az"
+int randomSelector =
+    UnityEngine.Random.Range(0, usedCharacters.Count);
+
+if (usedCharacters[randomSelector].GetIsDiavlo() ||
+    usedCharacters[randomSelector].GetDeath())
+{
+    yield return StartCoroutine(SeleccionVictima());
+}
+```
+
+When a valid character is selected:
+
+```csharp id="a6p2wm"
+usedCharacters[randomSelector].SetIsDiavlo(true);
+usedCharacters[randomSelector].SetDeath(true);
+```
+
+The character becomes both **dead** and the current **devil identity**.
+
+After the configured delay, the character is removed from the population and replaced by a corpse.
+
+The devil system then continues selecting new victims.
+
+## Escalating Gameplay
+
+The devil's killing cycle also becomes progressively faster or slower depending on the configured gameplay values.
+
+After each kill, the time between kills is modified:
+
+```csharp id="k8r4ye"
+looseCondition--;
+timeForKill = timeForKill + 1f;
+```
+
+This means the game's pressure changes as the investigation continues.
+
+The player therefore has to make decisions while the state of the world continues changing in the background.
 
 ## Dialogue System
 
-I also worked on the system responsible for populating the game's dialogue boxes.
+The character data also drives the game's dialogue system.
 
-Character information could be retrieved from their associated Scriptable Object and used to display the appropriate dialogue during interactions.
+When the player interacts with an NPC, the NPC provides its associated `CharacterSO` to the UI manager.
 
-This allowed the same underlying character data to drive both the NPC and their dialogue, reducing the need to manually configure every character interaction.
+The UI then retrieves:
 
-## Devil Mechanics
+- Character name
+- Dialogue
+- Avatar
 
-The devil's actions are controlled by a timer that progressively slows down exponentially.
+```csharp id="n4q7sx"
+nameText.text = character.GetCharacterName();
+dialog.text = character.GetDialogue();
+avatar.sprite = character.GetAvatar();
+```
 
-When the timer reaches its trigger point, the system randomly selects an in-game character and changes their status to **dead** and **devil**.
+This meant dialogue did not have to be individually configured for every NPC instance.
 
-When the devil changes characters, the previous devil's status is removed and the newly selected character becomes the current devil.
+Instead, the NPC's assigned character data determined what information the player would see.
 
-This creates a constantly changing mystery where the player has to pay attention to the state of the characters and determine who the devil has most recently replaced.
+## NPC Interaction
 
-## My Contribution
+I implemented the interaction flow that connects NPCs to the investigation system.
 
-I worked primarily as a **Gameplay Programmer**, while also contributing to the overall game design.
+When the player clicks an NPC, the system checks whether another interface is currently open before displaying the character's information.
 
-My work included:
+The interaction then:
 
-* Programming the NPC population system.
-* Programming the dialogue box population system.
-* Implementing the devil mechanics.
-* Managing character states and references.
-* Creating the systems used to determine which character was the devil.
-* Supporting the implementation of the investigation gameplay loop.
-* Testing and debugging interactions between the different systems.
+1. Opens the dialogue interface.
+2. Stores which NPC was selected.
+3. Passes the NPC's `CharacterSO` to the UI.
+4. Displays the character's information.
+5. Allows the player to make a decision.
 
-The project gave me experience building interconnected gameplay systems where changes in one system could affect several other parts of the game.
+This connected the NPC representation, character data, dialogue, and investigation mechanics into a single gameplay loop.
+
+## The Machete Mechanic
+
+The machete interaction is where the investigation system becomes an actual gameplay decision.
+
+When the player chooses to attack a character, the game checks the character's current state.
+
+If the character is the devil:
+
+- The devil is killed.
+- The player wins.
+
+If the character is not the devil:
+
+- The character is killed.
+- The player's available lives are reduced.
+- The player can eventually lose the game.
+
+```csharp id="j2c9vb"
+character.SetDeath(true);
+playerStats.interactedNPC.SetUnctive();
+
+if (!character.GetIsDiavlo())
+{
+    playerStats.life--;
+
+    if (playerStats.life <= 0)
+    {
+        LoseScreen();
+    }
+}
+else
+{
+    WinScreen();
+}
+```
+
+This made the character state system directly responsible for determining the outcome of the player's investigation.
+
+## NPC Movement
+
+The NPCs use a lightweight random movement system to make the population feel active.
+
+Each NPC periodically chooses a random direction and moves for a randomized duration before stopping and selecting another direction.
+
+```csharp id="u8p3le"
+direction = RandomDirection();
+
+yield return new WaitForSeconds(
+    Random.Range(minMovementTime, maxMovementTime)
+);
+
+direction = Vector2.zero;
+
+yield return new WaitForSeconds(
+    Random.Range(minWaitTime, maxWaitTime)
+);
+```
+
+The movement system also performs a 2D raycast to detect walls and stop movement when an obstacle is encountered.
+
+This gave the environment background activity without requiring complex navigation for every NPC.
+
+## Designing for a Large Character Population
+
+A major challenge was managing a game with dozens of possible characters during a **two-day Game Jam**.
+
+Creating completely separate logic for every character would have made the project difficult to maintain.
+
+Instead, I separated the problem into three layers:
+
+**Character Data**
+
+`CharacterSO` stores the identity and state of a character.
+
+**NPC Representation**
+
+`NPC` handles the GameObject representation of the character.
+
+**Population Management**
+
+`SpawnNPC` decides which characters are active and controls the changing population.
+
+This separation allowed one NPC implementation to represent many different characters.
+
+It also made the game's character list, dialogue, and devil mechanics able to work from the same underlying data.
+
+## Rapid Prototyping
+
+Because the project was created during a two-day Game Jam, the architecture had to support fast iteration.
+
+Scriptable Objects were particularly useful because character content could be created and modified independently of the NPC GameObjects.
+
+This allowed us to rapidly add characters and content without rewriting the underlying gameplay code.
+
+The project taught me that even during a Game Jam, a small amount of structure can make iteration significantly faster.
 
 ## Cultural Inspiration
 
 **Devil's Canteen** draws heavily from **Colombian folklore and culture**.
 
-One of the main inspirations was the song **"La Pelea con el Diablo" by Octavio Mesa**, which helped establish the game's tone and thematic direction.
+One of the main inspirations was the song **"La Pelea con el Diablo" by Octavio Mesa**, which influenced the game's setting and tone.
 
-The characters also incorporate references to internet culture, creating a combination of Colombian cultural elements and recognizable characters.
+The character roster also incorporates references to internet culture, creating a deliberately humorous contrast with the folklore-inspired premise.
 
-This mixture was intended to give the game a distinct identity while keeping the tone humorous and approachable.
+The result was a short mystery experience that combined a distinctly Colombian thematic identity with systemic gameplay.
 
-## Design Challenges
+## Challenges
 
-One of the biggest challenges was creating a mystery that could remain understandable despite the number of characters present in the game.
+The biggest technical challenge was creating a dynamic mystery while working with a large number of characters and only two days of development time.
 
-With more than **40 characters**, manually managing every character's state would quickly become difficult and error-prone.
+The system needed to keep track of:
 
-The use of Scriptable Objects and centralized character state management helped solve this problem by giving each character a consistent data structure that could be accessed by the different gameplay systems.
+- Which characters were active
+- Which characters were dead
+- Which character was currently the devil
+- Which character was assigned to each NPC
+- What dialogue belonged to each character
+- What information appeared in the player's list
 
-Another challenge was making the devil's changing identity feel unpredictable without making the investigation impossible.
+Scriptable Objects provided a practical way to centralize this information.
 
-The timer and character-selection system provided a way to continuously change the state of the game while still giving the player enough information to investigate what had happened.
+The second major challenge was ensuring that the random selection system did not repeatedly select invalid characters. Checks against the character's current state allowed the system to continue searching for a valid target.
 
 ## What I Learned
 
-**Devil's Canteen** was an important learning experience in gameplay programming and system design.
+**Devil's Canteen** was an important step in my development as a gameplay programmer because it introduced me to **data-driven gameplay systems**.
 
-Working on the NPC population, dialogue systems, and devil mechanics gave me experience creating systems that interact with each other rather than functioning as isolated mechanics.
+I learned how to:
 
-I particularly learned how to:
+- Use Scriptable Objects to represent gameplay data
+- Separate data from GameObject behavior
+- Manage a large NPC population
+- Randomize gameplay states
+- Connect shared character data to multiple systems
+- Build dialogue systems around gameplay data
+- Manage dynamic character states
+- Create interconnected gameplay systems under extreme time constraints
+- Prototype systems quickly without completely sacrificing structure
 
-* Structure gameplay data using Scriptable Objects.
-* Manage large groups of NPCs.
-* Create interconnected character-state systems.
-* Build gameplay logic around changing states.
-* Connect character data with dialogue.
-* Design systems that support a large number of characters.
-* Prototype gameplay mechanics quickly during a Game Jam.
-
-It was also an important milestone for me because, compared to my previous Game Jam, I felt much more confident with both the technical implementation and the overall design process.
+Compared with my earlier Game Jam projects, I felt significantly more confident designing systems rather than only implementing individual mechanics.
 
 ## Project Details
 
@@ -167,37 +408,35 @@ It was also an important milestone for me because, compared to my previous Game 
 
 ### Programmers
 
-* **Me** — Gameplay Programming
-* **Isabella Montoya**
-* **Gabriel Eduardo Renowitzky**
-* **Juan Esteban Trillos**
+- **Me** — Gameplay Programming
+- **Isabella Montoya**
+- **Gabriel Eduardo Renowitzky**
+- **Juan Esteban Trillos**
 
 ### Art
 
-* **Valeria Quintero Cuervo** — Art
-* **Miguel Ángel Grisales** — Art
-* **N1K0** — Art
+- **Valeria Quintero Cuervo** — Art
+- **Miguel Ángel Grisales** — Art
+- **N1K0** — Art
 
 ## Project
 
-The project was developed for **Global Game Jam 2024**.
+The project was developed for **Global Game Jam 2024** as a short experimental prototype.
 
-The game was created as a short experimental prototype focused on combining investigation mechanics with Colombian cultural references and a constantly changing mystery.
+The goal was to combine investigation mechanics with Colombian cultural references and a dynamically changing mystery.
+
+The two-day development period required us to prioritize the core gameplay loop and build systems that could be implemented and connected quickly.
 
 ## Technologies
 
-* **Unity**
-* **C#**
-* **Scriptable Objects**
-* **Gameplay Programming**
-* **NPC Systems**
-* **Dialogue Systems**
-* **State Management**
+**Unity · C# · Scriptable Objects · Data-Driven Design · NPC Systems · Character State Management · Dialogue Systems · Coroutines · Rigidbody2D · Physics2D · Gameplay Programming**
 
 ## Takeaway
 
-**Devil's Canteen** was an important step in my development as a gameplay programmer.
+**Devil's Canteen** represents an important transition in my programming development.
 
-The project allowed me to move beyond isolated mechanics and work on interconnected systems involving **NPCs, character data, dialogue, state management, and dynamic gameplay events**.
+Rather than focusing on one isolated mechanic, I worked on a collection of systems that shared and modified the same underlying character data.
 
-More importantly, it showed me how a relatively simple gameplay idea can become much more interesting when supported by well-structured systems and a strong thematic identity.
+The project gave me practical experience with **data-driven design, randomized gameplay, NPC population systems, dynamic state management, and rapid gameplay prototyping**.
+
+Most importantly, it showed me how separating **data, representation, and gameplay logic** can make a system much easier to expand—even when it has to be built in only two days.

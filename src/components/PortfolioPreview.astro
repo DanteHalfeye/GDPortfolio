@@ -5,78 +5,1911 @@ interface Props {
     project: CollectionEntry<'work'>;
 }
 
-const { data, id } = Astro.props.project;
+const { project } = Astro.props;
+const data = project.data;
 
 const base = import.meta.env.BASE_URL.endsWith('/')
     ? import.meta.env.BASE_URL
     : `${import.meta.env.BASE_URL}/`;
 
-const imagePath = data.img
-    ? `${base}${data.img.replace(/^\/+/, '')}`
+function resolveAssetPath(path: string | undefined | null) {
+    if (!path) return '';
+
+    if (/^(https?:|\/\/|mailto:|tel:|data:|#)/i.test(path)) {
+        return path;
+    }
+
+    if (path.startsWith(base)) {
+        return path;
+    }
+
+    const cleanPath = path
+        .replace(/^(?:\.\.\/|\.\/)+/, '')
+        .replace(/^public\//, '')
+        .replace(/^\/+/, '');
+
+    return `${base}${cleanPath}`;
+}
+
+const image = data.img
+    ? resolveAssetPath(data.img)
     : '';
 
-const projectPath = `${base}work/${id}/`;
+const heroVideo = data.heroVideo
+    ? resolveAssetPath(data.heroVideo)
+    : '';
+
+const readMoreUrl = `${base}work/${project.id}`;
+
+const previewId = `preview-${project.id}`;
 ---
 
-<a class="card" href={projectPath}>
-    <span class="title">{data.title}</span>
+<div class="portfolio-preview">
 
-    {data.img && (
-        <img
-            src={imagePath}
-            alt={data.img_alt || ''}
-            loading="lazy"
-            decoding="async"
-        />
-    )}
-</a>
+    <!-- PROJECT CARD -->
 
-<style>
-    .card {
-        display: grid;
-        grid-template: auto 1fr / auto 1fr;
-        height: 11rem;
-        background: var(--gradient-subtle);
-        border: 1px solid var(--gray-800);
-        border-radius: 0.75rem;
-        overflow: hidden;
-        box-shadow: var(--shadow-sm);
-        text-decoration: none;
-        font-family: var(--font-brand);
-        font-size: var(--text-lg);
-        font-weight: 500;
-        transition: box-shadow var(--theme-transition);
-    }
+    <button
+        class="project-card"
+        type="button"
+        data-project-preview
+        data-preview-id={previewId}
+        aria-label={`Preview ${data.title}`}
+    >
+        <div class="card-media">
+            {image && (
+                <img
+                    src={image}
+                    alt={data.img_alt || data.title}
+                    loading="lazy"
+                    decoding="async"
+                />
+            )}
+        </div>
 
-    .card:hover {
-        box-shadow: var(--shadow-md);
-    }
+        <div class="card-shade"></div>
 
-    .title {
-        grid-area: 1 / 1 / 2 / 2;
-        z-index: 1;
-        margin: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: var(--gray-999);
-        color: var(--gray-200);
-        border-radius: 0.375rem;
-    }
+        
 
-    img {
-        grid-area: 1 / 1 / 3 / 3;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+        <div class="card-content">
 
-    @media (min-width: 50em) {
-        .card {
-            height: 22rem;
-            border-radius: 1.5rem;
+            <div class="card-top">
+                <span class="card-type">
+                </span>
+
+               
+            </div>
+
+            <div class="card-bottom">
+
+                {data.tags && data.tags.length > 0 && (
+                    <div class="card-tags">
+                        {data.tags.slice(0, 3).map((tag) => (
+                            <span>{tag}</span>
+                        ))}
+                    </div>
+                )}
+
+                <h2>
+                    {data.title}
+                </h2>
+
+                <p>
+                    {data.description}
+                </p>
+
+            </div>
+
+        </div>
+    </button>
+
+
+    <!-- PREVIEW MODAL -->
+
+    <div
+        class="preview-modal"
+        id={previewId}
+        data-preview-modal
+        aria-hidden="true"
+    >
+
+        <div
+            class="preview-backdrop"
+            data-preview-close
+        ></div>
+
+        <div
+            class="preview-box"
+            role="dialog"
+            aria-modal="true"
+            aria-label={data.title}
+        >
+
+            <button
+                class="close-button"
+                type="button"
+                data-preview-close
+                aria-label="Close preview"
+            >
+                ×
+            </button>
+
+
+            <!-- MEDIA -->
+
+            <div class="preview-media">
+
+                {image && (
+                    <img
+                        class="preview-poster"
+                        src={image}
+                        alt=""
+                        aria-hidden="true"
+                        loading="eager"
+                        decoding="async"
+                    />
+                )}
+
+                {heroVideo && (
+                    <video
+                        class="preview-video"
+                        muted
+                        loop
+                        playsinline
+                        preload="none"
+                        data-video-src={heroVideo}
+                    ></video>
+                )}
+
+                <div class="preview-video-shade"></div>
+
+                <div class="preview-gradient"></div>
+
+            </div>
+
+
+            <!-- CONTENT -->
+
+            <div class="preview-content">
+
+                <div class="preview-eyebrow">
+                </div>
+
+                <h2>
+                    {data.title}
+                </h2>
+
+                {data.tags && data.tags.length > 0 && (
+                    <div class="preview-tags">
+                        {data.tags.map((tag) => (
+                            <span class="preview-tag">
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+                )}
+
+                <p class="preview-description">
+                    {data.description}
+                </p>
+
+                <div class="preview-actions">
+
+                    {data.playUrl && (
+                        <a
+                            class="play-button"
+                            href={data.playUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <span>▶</span>
+                            <span>PLAY PROJECT</span>
+                            <span>↗</span>
+                        </a>
+                    )}
+
+                    <a
+                        class="read-button"
+                        href={readMoreUrl}
+                    >
+                        <span>GO READ MORE</span>
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- CORNERS -->
+
+            <div class="preview-corner preview-corner-tl"></div>
+            <div class="preview-corner preview-corner-tr"></div>
+            <div class="preview-corner preview-corner-bl"></div>
+            <div class="preview-corner preview-corner-br"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+    /*
+     * ============================================================
+     * MOVE MODALS TO BODY
+     * ============================================================
+     */
+
+    document
+        .querySelectorAll('[data-preview-modal]')
+        .forEach((modal) => {
+
+            if (modal.parentElement !== document.body) {
+                document.body.appendChild(modal);
+            }
+
+        });
+
+
+    let activeModal = null;
+    let activeVideo = null;
+
+
+    /*
+     * ============================================================
+     * STOP + UNLOAD VIDEO
+     * ============================================================
+     */
+
+    function stopVideo(modal) {
+
+        if (!modal) return;
+
+        const video =
+            modal.querySelector('.preview-video');
+
+        if (!video) return;
+
+
+        video.pause();
+
+
+        /*
+         * Completely unload the video.
+         *
+         * This is important when there are many projects.
+         */
+
+        video.removeAttribute('src');
+
+        video.load();
+
+
+        video.classList.remove(
+            'is-ready'
+        );
+
+
+        const poster =
+            modal.querySelector(
+                '.preview-poster'
+            );
+
+        if (poster) {
+            poster.classList.remove(
+                'is-hidden'
+            );
         }
 
-        .title {
-            border-radius: 0.9375rem;
+
+        activeVideo = null;
+    }
+
+
+    /*
+     * ============================================================
+     * START VIDEO
+     * ============================================================
+     */
+
+    async function startVideo(modal) {
+
+        if (!modal) return;
+
+
+        const video =
+            modal.querySelector(
+                '.preview-video'
+            );
+
+        if (!video) return;
+
+
+        /*
+         * Stop the previous project.
+         */
+
+        if (
+            activeVideo &&
+            activeVideo !== video
+        ) {
+
+            activeVideo.pause();
+
+            activeVideo.removeAttribute(
+                'src'
+            );
+
+            activeVideo.load();
+
+            activeVideo.classList.remove(
+                'is-ready'
+            );
+
+
+            const previousModal =
+                activeVideo.closest(
+                    '.preview-modal'
+                );
+
+            const previousPoster =
+                previousModal?.querySelector(
+                    '.preview-poster'
+                );
+
+            if (previousPoster) {
+                previousPoster.classList.remove(
+                    'is-hidden'
+                );
+            }
+        }
+
+
+        activeVideo = video;
+
+
+        /*
+         * Get the source only when needed.
+         */
+
+        const source =
+            video.dataset.videoSrc;
+
+        if (!source) return;
+
+
+        /*
+         * Set the source lazily.
+         */
+
+        video.src = source;
+
+        video.muted = true;
+
+        video.playsInline = true;
+
+        video.loop = true;
+
+
+        /*
+         * Reveal the video only after
+         * an actual frame is available.
+         */
+
+        const revealVideo = () => {
+
+            video.classList.add(
+                'is-ready'
+            );
+
+
+            const poster =
+                modal.querySelector(
+                    '.preview-poster'
+                );
+
+            if (poster) {
+                poster.classList.add(
+                    'is-hidden'
+                );
+            }
+        };
+
+
+        video.addEventListener(
+            'loadeddata',
+            revealVideo,
+            { once: true }
+        );
+
+
+        video.addEventListener(
+            'canplay',
+            revealVideo,
+            { once: true }
+        );
+
+
+        /*
+         * Start loading.
+         */
+
+        video.load();
+
+
+        /*
+         * Start playback.
+         */
+
+        try {
+            await video.play();
+        } catch {
+            /*
+             * Poster stays visible if playback
+             * is blocked by the browser.
+             */
+        }
+    }
+
+
+    /*
+     * ============================================================
+     * OPEN
+     * ============================================================
+     */
+
+    function openModal(card) {
+
+        const previewId =
+            card.dataset.previewId;
+
+        if (!previewId) return;
+
+
+        const modal =
+            document.getElementById(
+                previewId
+            );
+
+        if (!modal) return;
+
+
+        /*
+         * Close another open modal.
+         */
+
+        if (
+            activeModal &&
+            activeModal !== modal
+        ) {
+            closeModal(activeModal);
+        }
+
+
+        activeModal = modal;
+
+
+        modal.classList.add(
+            'is-open'
+        );
+
+        modal.setAttribute(
+            'aria-hidden',
+            'false'
+        );
+
+
+        document.body.classList.add(
+            'preview-open'
+        );
+
+
+        /*
+         * Start video immediately.
+         */
+
+        startVideo(modal);
+    }
+
+
+    /*
+     * ============================================================
+     * CLOSE
+     * ============================================================
+     */
+
+    function closeModal(modal) {
+
+        if (!modal) return;
+
+
+        stopVideo(modal);
+
+
+        modal.classList.remove(
+            'is-open'
+        );
+
+        modal.setAttribute(
+            'aria-hidden',
+            'true'
+        );
+
+
+        if (activeModal === modal) {
+            activeModal = null;
+        }
+
+
+        document.body.classList.remove(
+            'preview-open'
+        );
+    }
+
+
+    /*
+     * ============================================================
+     * CARD CLICK
+     * ============================================================
+     */
+
+    document.addEventListener(
+        'click',
+        (event) => {
+
+            const target =
+                event.target;
+
+            if (!(target instanceof Element)) {
+                return;
+            }
+
+
+            const card =
+                target.closest(
+                    '[data-project-preview]'
+                );
+
+            if (!card) return;
+
+
+            event.preventDefault();
+
+            openModal(card);
+        }
+    );
+
+
+    /*
+     * ============================================================
+     * CLOSE
+     * ============================================================
+     */
+
+    document.addEventListener(
+        'click',
+        (event) => {
+
+            const target =
+                event.target;
+
+            if (!(target instanceof Element)) {
+                return;
+            }
+
+
+            const closeButton =
+                target.closest(
+                    '[data-preview-close]'
+                );
+
+            if (!closeButton) return;
+
+
+            const modal =
+                closeButton.closest(
+                    '[data-preview-modal]'
+                );
+
+            if (!modal) return;
+
+
+            closeModal(modal);
+        }
+    );
+
+
+    /*
+     * ============================================================
+     * ESCAPE
+     * ============================================================
+     */
+
+    document.addEventListener(
+        'keydown',
+        (event) => {
+
+            if (
+                event.key !== 'Escape'
+            ) {
+                return;
+            }
+
+
+            if (activeModal) {
+                closeModal(activeModal);
+            }
+        }
+    );
+</script>
+
+
+<style>
+    /* ============================================================
+       CARD
+       ============================================================ */
+
+    .portfolio-preview {
+        position: static;
+        width: 100%;
+        min-width: 0;
+    }
+
+
+    .project-card {
+        position: relative;
+
+        display: block;
+
+        width: 100%;
+        min-height: 480px;
+
+        padding: 0;
+
+        overflow: hidden;
+
+        border: 1px solid var(--gray-800);
+
+        border-radius: 1.5rem;
+
+        background: #080808;
+
+        color: inherit;
+
+        cursor: pointer;
+
+        text-align: left;
+
+        transition:
+            transform 0.25s ease,
+            border-color 0.25s ease,
+            box-shadow 0.25s ease;
+
+        /*
+         * Helps the browser isolate card rendering.
+         */
+
+        contain: layout paint;
+    }
+
+
+    .project-card:hover {
+        transform: translateY(-6px);
+
+        border-color: var(--gray-600);
+
+        box-shadow:
+            0 20px 50px
+            rgba(
+                0,
+                0,
+                0,
+                0.3
+            );
+    }
+
+
+    .project-card:focus-visible {
+        outline: 2px solid currentColor;
+
+        outline-offset: 4px;
+    }
+
+
+    /* ============================================================
+       CARD IMAGE
+       ============================================================ */
+
+    .card-media {
+        position: absolute;
+
+        inset: 0;
+
+        overflow: hidden;
+
+        z-index: 0;
+    }
+
+
+    .card-media img {
+        width: 100%;
+        height: 100%;
+
+        display: block;
+
+        object-fit: cover;
+
+        transition:
+            transform 0.6s ease,
+            filter 0.35s ease;
+    }
+
+
+    .project-card:hover
+        .card-media img {
+
+        transform: scale(1.035);
+
+        filter: brightness(1.05);
+    }
+
+
+    /* ============================================================
+       CARD SHADE
+       ============================================================ */
+
+    .card-shade {
+        position: absolute;
+
+        inset: 0;
+
+        z-index: 1;
+
+        background:
+            linear-gradient(
+                180deg,
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.05
+                ) 0%,
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.15
+                ) 35%,
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.88
+                ) 100%
+            );
+    }
+
+
+    /* ============================================================
+       NUMBER
+       ============================================================ */
+
+    .card-number {
+        position: absolute;
+
+        top: 1.5rem;
+        right: 1.5rem;
+
+        z-index: 2;
+
+        font-family:
+            var(
+                --font-mono,
+                monospace
+            );
+
+        font-size: 0.65rem;
+
+        letter-spacing: 0.12em;
+
+        text-transform: uppercase;
+
+        opacity: 0.65;
+    }
+
+
+    /* ============================================================
+       CARD CONTENT
+       ============================================================ */
+
+    .card-content {
+        position: absolute;
+
+        inset: 0;
+
+        z-index: 2;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: space-between;
+
+        padding: 1.75rem;
+    }
+
+
+    .card-top {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+    }
+
+
+    .card-type {
+        font-family:
+            var(
+                --font-brand,
+                sans-serif
+            );
+
+        font-size: 0.65rem;
+
+        font-weight: 600;
+
+        letter-spacing: 0.16em;
+
+        text-transform: uppercase;
+
+        opacity: 0.8;
+    }
+
+
+    .card-arrow {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        width: 2.5rem;
+        height: 2.5rem;
+
+        border: 1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.25
+            );
+
+        border-radius: 999px;
+
+        font-size: 1rem;
+
+        background:
+            rgba(
+                0,
+                0,
+                0,
+                0.2
+            );
+
+        transition:
+            transform 0.25s ease,
+            background 0.25s ease;
+    }
+
+
+    .project-card:hover
+        .card-arrow {
+
+        transform:
+            translate(
+                2px,
+                -2px
+            );
+
+        background:
+            rgba(
+                255,
+                255,
+                255,
+                0.12
+            );
+    }
+
+
+    .card-bottom {
+        max-width: 720px;
+    }
+
+
+    .card-tags {
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 0.4rem;
+
+        margin-bottom: 0.9rem;
+    }
+
+
+    .card-tags span {
+        padding:
+            0.35rem
+            0.6rem;
+
+        border: 1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.18
+            );
+
+        border-radius: 999px;
+
+        font-size: 0.6rem;
+
+        letter-spacing: 0.08em;
+
+        text-transform: uppercase;
+
+        background:
+            rgba(
+                0,
+                0,
+                0,
+                0.25
+            );
+    }
+
+
+    .card-content h2 {
+        margin: 0;
+
+        max-width: 900px;
+
+        font-size:
+            clamp(
+                2rem,
+                4vw,
+                3.5rem
+            );
+
+        line-height: 0.95;
+
+        letter-spacing: -0.04em;
+    }
+
+
+    .card-content p {
+        max-width: 650px;
+
+        margin: 1rem 0 0;
+
+        font-size: 0.95rem;
+
+        line-height: 1.55;
+
+        opacity: 0.75;
+    }
+
+
+    /* ============================================================
+       MODAL
+       ============================================================ */
+
+    .preview-modal {
+        position: fixed !important;
+
+        inset: 0 !important;
+
+        width: 100vw;
+
+        height: 100vh;
+
+        margin: 0 !important;
+
+        padding: 2rem;
+
+        box-sizing: border-box;
+
+        z-index: 999999;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        pointer-events: none;
+
+        transition:
+            opacity 0.2s ease,
+            visibility 0.2s ease;
+
+        /*
+         * Don't let hidden modals participate in rendering.
+         */
+
+        content-visibility: hidden;
+    }
+
+
+    .preview-modal.is-open {
+        opacity: 1;
+
+        visibility: visible;
+
+        pointer-events: auto;
+
+        content-visibility: visible;
+    }
+
+
+    /* ============================================================
+       BACKDROP
+       ============================================================ */
+
+    .preview-backdrop {
+        position: absolute;
+
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+
+        background:
+            rgba(
+                0,
+                0,
+                0,
+                0.86
+            );
+
+        /*
+         * Removed backdrop-filter blur.
+         *
+         * This is significantly cheaper,
+         * especially on laptops.
+         */
+    }
+
+
+    /* ============================================================
+       MODAL BOX
+       ============================================================ */
+
+    .preview-box {
+        position: relative;
+
+        width:
+            min(
+                1250px,
+                94vw
+            );
+
+        height:
+            min(
+                720px,
+                88vh
+            );
+
+        overflow: hidden;
+
+        border:
+            1px solid
+            var(--gray-700);
+
+        border-radius: 2rem;
+
+        background: #080808;
+
+        box-shadow:
+            0 30px 90px
+            rgba(
+                0,
+                0,
+                0,
+                0.6
+            );
+
+        transform:
+            scale(0.97)
+            translateY(10px);
+
+        transition:
+            transform 0.25s
+            ease;
+    }
+
+
+    .preview-modal.is-open
+        .preview-box {
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+
+
+    /* ============================================================
+       MEDIA
+       ============================================================ */
+
+    .preview-media {
+        position: absolute;
+
+        inset: 0;
+
+        overflow: hidden;
+
+        z-index: 0;
+
+        background: #050505;
+
+        /*
+         * Isolate video rendering.
+         */
+
+        contain: paint;
+    }
+
+
+    /* ============================================================
+       POSTER
+       ============================================================ */
+
+    .preview-poster {
+        position: absolute;
+
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+
+        display: block;
+
+        object-fit: cover;
+
+        z-index: 0;
+
+        opacity: 1;
+
+        transition:
+            opacity 0.2s ease;
+
+        will-change: opacity;
+    }
+
+
+    .preview-poster.is-hidden {
+        opacity: 0;
+
+        visibility: hidden;
+    }
+
+
+    /* ============================================================
+       VIDEO
+       ============================================================ */
+
+    .preview-video {
+        position: absolute;
+
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+
+        display: block;
+
+        object-fit: cover;
+
+        z-index: 1;
+
+        opacity: 0;
+
+        /*
+         * Don't continuously tell the browser
+         * to promote every video.
+         */
+
+        transition:
+            opacity 0.2s ease;
+    }
+
+
+    .preview-video.is-ready {
+        opacity: 1;
+    }
+
+
+    /* ============================================================
+       VIDEO SHADE
+       ============================================================ */
+
+    .preview-video-shade {
+        position: absolute;
+
+        inset: 0;
+
+        z-index: 2;
+
+        pointer-events: none;
+
+        background:
+            rgba(
+                0,
+                0,
+                0,
+                0.08
+            );
+    }
+
+
+    /* ============================================================
+       GRADIENT
+       ============================================================ */
+
+    .preview-gradient {
+        position: absolute;
+
+        inset: 0;
+
+        z-index: 3;
+
+        pointer-events: none;
+
+        background:
+            linear-gradient(
+                90deg,
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.94
+                ) 0%,
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.72
+                ) 28%,
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.25
+                ) 65%,
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.15
+                ) 100%
+            ),
+            linear-gradient(
+                0deg,
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.72
+                ) 0%,
+                transparent 50%
+            );
+    }
+
+
+    /* ============================================================
+       CONTENT
+       ============================================================ */
+
+    .preview-content {
+        position: relative;
+
+        z-index: 4;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: flex-end;
+
+        width: 100%;
+        height: 100%;
+
+        box-sizing: border-box;
+
+        max-width: 760px;
+
+        padding:
+            clamp(
+                2rem,
+                5vw,
+                5rem
+            );
+    }
+
+
+    .preview-eyebrow {
+        display: flex;
+
+        align-items: center;
+
+        gap: 0.6rem;
+
+        margin-bottom: 1rem;
+
+        font-family:
+            var(
+                --font-mono,
+                monospace
+            );
+
+        font-size: 0.65rem;
+
+        letter-spacing: 0.15em;
+
+        text-transform: uppercase;
+
+        opacity: 0.75;
+    }
+
+
+    .status-dot {
+        width: 7px;
+        height: 7px;
+
+        border-radius: 50%;
+
+        background:
+            currentColor;
+
+        box-shadow:
+            0 0 8px
+            currentColor;
+    }
+
+
+    .preview-content h2 {
+        margin: 0;
+
+        font-size:
+            clamp(
+                2.75rem,
+                6vw,
+                6rem
+            );
+
+        line-height: 0.88;
+
+        letter-spacing: -0.055em;
+    }
+
+
+    /* ============================================================
+       TAGS
+       ============================================================ */
+
+    .preview-tags {
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 0.45rem;
+
+        margin-top: 1.4rem;
+    }
+
+
+    .preview-tag {
+        padding:
+            0.45rem
+            0.7rem;
+
+        border:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.22
+            );
+
+        border-radius: 999px;
+
+        font-size: 0.62rem;
+
+        letter-spacing: 0.08em;
+
+        text-transform: uppercase;
+
+        background:
+            rgba(
+                0,
+                0,
+                0,
+                0.28
+            );
+    }
+
+
+    /* ============================================================
+       DESCRIPTION
+       ============================================================ */
+
+    .preview-description {
+        max-width: 650px;
+
+        margin:
+            1.25rem
+            0
+            0;
+
+        font-size: 1rem;
+
+        line-height: 1.65;
+
+        opacity: 0.82;
+    }
+
+
+    /* ============================================================
+       ACTIONS
+       ============================================================ */
+
+    .preview-actions {
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 0.75rem;
+
+        margin-top: 2rem;
+    }
+
+
+    .play-button,
+    .read-button {
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 0.75rem;
+
+        min-height: 52px;
+
+        padding:
+            0.8rem
+            1.2rem;
+
+        border-radius: 999px;
+
+        font-family:
+            var(
+                --font-brand,
+                sans-serif
+            );
+
+        font-size: 0.7rem;
+
+        font-weight: 700;
+
+        letter-spacing: 0.1em;
+
+        text-decoration: none;
+
+        text-transform: uppercase;
+
+        transition:
+            transform 0.2s ease,
+            background 0.2s ease,
+            border-color 0.2s ease;
+    }
+
+
+    .play-button {
+        border:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.9
+            );
+
+        background: white;
+
+        color: black;
+    }
+
+
+    .read-button {
+        border:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.25
+            );
+
+        background:
+            rgba(
+                0,
+                0,
+                0,
+                0.25
+            );
+
+        color: white;
+    }
+
+
+    .play-button:hover,
+    .read-button:hover {
+        transform:
+            translateY(-2px);
+    }
+
+
+    .read-button:hover {
+        background:
+            rgba(
+                255,
+                255,
+                255,
+                0.1
+            );
+
+        border-color:
+            rgba(
+                255,
+                255,
+                255,
+                0.5
+            );
+    }
+
+
+    /* ============================================================
+       CLOSE
+       ============================================================ */
+
+    .close-button {
+        position: absolute;
+
+        top: 1.25rem;
+        right: 1.25rem;
+
+        z-index: 10;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        width: 44px;
+        height: 44px;
+
+        padding: 0;
+
+        border:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.25
+            );
+
+        border-radius: 50%;
+
+        background:
+            rgba(
+                0,
+                0,
+                0,
+                0.35
+            );
+
+        color: white;
+
+        font-size: 1.7rem;
+
+        line-height: 1;
+
+        cursor: pointer;
+
+        transition:
+            transform 0.2s ease,
+            background 0.2s ease;
+    }
+
+
+    .close-button:hover {
+        transform:
+            rotate(90deg);
+
+        background:
+            rgba(
+                255,
+                255,
+                255,
+                0.12
+            );
+    }
+
+
+    /* ============================================================
+       CORNERS
+       ============================================================ */
+
+    .preview-corner {
+        position: absolute;
+
+        z-index: 5;
+
+        width: 28px;
+        height: 28px;
+
+        pointer-events: none;
+    }
+
+
+    .preview-corner-tl {
+        top: 1rem;
+        left: 1rem;
+
+        border-top:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.25
+            );
+
+        border-left:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.25
+            );
+    }
+
+
+    .preview-corner-tr {
+        top: 1rem;
+        right: 1rem;
+
+        border-top:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.25
+            );
+
+        border-right:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.25
+            );
+    }
+
+
+    .preview-corner-bl {
+        bottom: 1rem;
+        left: 1rem;
+
+        border-bottom:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.25
+            );
+
+        border-left:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.25
+            );
+    }
+
+
+    .preview-corner-br {
+        right: 1rem;
+        bottom: 1rem;
+
+        border-right:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.25
+            );
+
+        border-bottom:
+            1px solid
+            rgba(
+                255,
+                255,
+                255,
+                0.25
+            );
+    }
+
+
+    /* ============================================================
+       BODY
+       ============================================================ */
+
+    :global(body.preview-open) {
+        overflow: hidden;
+    }
+
+
+    /* ============================================================
+       MOBILE
+       ============================================================ */
+
+    @media (max-width: 700px) {
+
+        .project-card {
+            min-height: 420px;
+        }
+
+
+        .card-content {
+            padding: 1.4rem;
+        }
+
+
+        .card-content h2 {
+            font-size: 2.3rem;
+        }
+
+
+        .card-content p {
+            font-size: 0.85rem;
+        }
+
+
+        .preview-modal {
+            padding: 0.75rem;
+        }
+
+
+        .preview-box {
+            width: 100%;
+
+            height:
+                min(
+                    720px,
+                    92vh
+                );
+
+            border-radius: 1.35rem;
+        }
+
+
+        .preview-gradient {
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(
+                        0,
+                        0,
+                        0,
+                        0.15
+                    ) 0%,
+                    rgba(
+                        0,
+                        0,
+                        0,
+                        0.45
+                    ) 35%,
+                    rgba(
+                        0,
+                        0,
+                        0,
+                        0.94
+                    ) 100%
+                );
+        }
+
+
+        .preview-content {
+            max-width: none;
+
+            padding: 1.5rem;
+        }
+
+
+        .preview-content h2 {
+            font-size:
+                clamp(
+                    2.5rem,
+                    12vw,
+                    4rem
+                );
+        }
+
+
+        .preview-description {
+            font-size: 0.9rem;
+
+            line-height: 1.5;
+        }
+
+
+        .preview-actions {
+            flex-direction: column;
+
+            align-items: stretch;
+        }
+
+
+        .play-button,
+        .read-button {
+            width: 100%;
+
+            box-sizing: border-box;
+        }
+
+
+        .close-button {
+            top: 0.8rem;
+
+            right: 0.8rem;
+        }
+    }
+
+
+    /* ============================================================
+       REDUCED MOTION
+       ============================================================ */
+
+    @media (prefers-reduced-motion: reduce) {
+
+        .project-card,
+        .project-card:hover,
+        .card-media img,
+        .preview-box,
+        .preview-video,
+        .preview-poster,
+        .close-button,
+        .play-button,
+        .read-button {
+            transition: none;
         }
     }
 </style>
