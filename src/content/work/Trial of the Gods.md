@@ -1,6 +1,6 @@
 ---
 title: Trial of the Gods
-publishDate: 2026-01-30 00:00:00
+publishDate: 2026-06-16
 img: /Trial.png
 img_alt: Trial of the Gods — Global Game Jam 2026
 description: >

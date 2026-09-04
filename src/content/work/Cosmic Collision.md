@@ -1,7 +1,7 @@
 ---
 title: Cosmic Collision
 
-publishDate: 2024-11-12 00:00:00
+publishDate: 2026-01-16
 
 img: /assets/POSTER_COSMICCOLLITION.png
 
