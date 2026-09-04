@@ -13,6 +13,11 @@ tags:
   - Game Architecture
   - Wave-Based Survival
   - Game Design
+contributions:
+  - UEFN
+  - Verse
+  - Gameplay Programming
+ 
 role: Gameplay Programmer & Designer
 engine: UEFN
 language: Verse

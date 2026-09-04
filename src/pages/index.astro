@@ -1,4 +1,5 @@
 ---
+
 import { getCollection } from 'astro:content';
 
 // Component Imports
@@ -18,802 +19,920 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 // Content
 const projects = (await getCollection('work'))
-    .sort(
-        (a, b) =>
-            b.data.publishDate.valueOf() -
-            a.data.publishDate.valueOf(),
-    )
-    .slice(0, 4);
+.sort(
+(a, b) =>
+b.data.publishDate.valueOf() -
+a.data.publishDate.valueOf(),
+)
+.slice(0, 4);
 
 // GitHub Pages base path
 const base = import.meta.env.BASE_URL.endsWith('/')
-    ? import.meta.env.BASE_URL
-    : `${import.meta.env.BASE_URL}/`;
+? import.meta.env.BASE_URL
+: `${import.meta.env.BASE_URL}/`;
 ---
 
 <BaseLayout>
+	<div class="stack gap-18 lg:gap-45">
 
-    <div class="stack gap-18 lg:gap-48">
+	<!-- =====================================================
+	     HERO
+	====================================================== -->
 
-        <!-- =====================================================
-             HERO
-        ====================================================== -->
+	<div class="wrapper stack gap-8 lg:gap-20">
+		<header class="hero">
 
-        <div class="wrapper stack gap-8 lg:gap-20">
+			<div class="hero-content">
+				<Hero
+					title="Eliham Pelaez"
+					tagline="Gameplay Programmer specializing in gameplay systems, mechanics, multiplayer interactions, and interactive experiences."
+					align="start"
+				>
+					<div class="roles">
 
-            <header class="hero">
+						<Pill>
+							<Icon
+								icon="code"
+								size="1.33em"
+							/>
+							Gameplay Programmer
+						</Pill>
 
-                <Hero
-                    title="Hello, my name is Eliham Pelaez"
-                    tagline="I am a Game Developer who is currently based in Medellín, Colombia."
-                    align="start"
-                >
+						<Pill>
+							<Icon
+								icon="game-controller-2"
+								size="1.33em"
+							/>
+							C# · Unity
+						</Pill>
 
-                    <div class="roles">
+						<Pill>
+							<Icon
+								icon="crosshair"
+								size="1.33em"
+							/>
+							Unreal · UEFN · Verse
+						</Pill>
 
-                        <Pill>
-                            <Icon
-                                icon="game-controller-2"
-                                size="1.33em"
-                            />
-                            Game Developer
-                        </Pill>
+					</div>
+				</Hero>
 
-                        <Pill>
-                            <Icon
-                                icon="code"
-                                size="1.33em"
-                            />
-                            Gameplay Programmer
-                        </Pill>
 
-                        <Pill>
-                            <Icon
-                                icon="crosshair"
-                                size="1.33em"
-                            />
-                            Fast learner
-                        </Pill>
+				<div class="hero-actions">
 
-                    </div>
+					<CallToAction href={`work/`}>
+						<span>View My Work</span>
 
-                </Hero>
+						<Icon
+							icon="arrow-right"
+							size="1.2em"
+						/>
+					</CallToAction>
 
-                <img
-                    alt="Eliham Pelaez"
-                    width=100%
-                    height=100%
-                    src={`${base}assets/portrait.jpg`}
-                />
+					<CallToAction href={`/assets/Eliham-Pelaez-CV.pdf`}>
+						<span>Download CV</span>
+					</CallToAction>
 
-            </header>
+				</div>
 
-            <Skills />
 
-        </div>
+				<div class="hero-meta">
 
+					<span>
+						Medellín, Colombia
+					</span>
 
-        <!-- =====================================================
-             SELECTED WORK
-        ====================================================== -->
+					<span class="meta-divider">
+						•
+					</span>
 
-        <main class="work-wrapper">
+					<span>
+						B.A. Game Development · 2027
+					</span>
 
-            <section class="work-section with-background">
+				</div>
+			</div>
 
 
-                <!-- =================================================
-                     SECTION INTRO
-                ================================================== -->
+			<img
+				alt="Portrait of Eliham Pelaez"
+				width="100%"
+				height="100%"
+				src={`${base}assets/portrait.jpg`}
+			/>
 
-                <header class="work-header">
+		</header>
 
-                    <div class="work-kicker">
 
-                        <span class="kicker-line"></span>
+		<!-- =================================================
+		     SKILLS
+		================================================== -->
 
-                        <span>
-                            SELECTED PROJECTS
-                        </span>
+		<Skills />
 
-                        <span class="kicker-year">
-                            2026
-                        </span>
+	</div>
 
-                    </div>
 
 
-                    <div class="work-heading">
+	<!-- =====================================================
+	     SELECTED WORK
+	====================================================== -->
 
-                        <div>
+	<main class="work-wrapper">
 
-                            <h2>
-                                Gameplay I've
-                                <em> done.</em>
-                            </h2>
+		<section
+			class="work-section with-background"
+			aria-labelledby="work-title"
+		>
 
-                        </div>
+			<!-- =================================================
+			     SECTION INTRO
+			================================================== -->
 
+			<header class="work-header">
 
-                        <div class="work-intro">
+				<div class="work-kicker">
 
-                            <p>
-                                Games, prototypes, and interactive
-                                experiences where I explore gameplay,
-                                systems, and the way players interact
-                                with a world.
-                            </p>
+					<span class="kicker-line"></span>
 
-                            <div class="project-count">
+					<span>
+						SELECTED WORK
+					</span>
 
-                                <span class="count-number">
-                                    {String(projects.length).padStart(2, '0')}
-                                </span>
+					<span class="kicker-year">
+						04 PROJECTS
+					</span>
 
-                                <span class="count-label">
-                                    FEATURED PROJECTS
-                                </span>
+				</div>
 
-                            </div>
 
-                        </div>
+				<div class="work-heading">
 
-                    </div>
+					<div>
 
+						<h2 id="work-title">
+							Selected
+							<em> work.</em>
+						</h2>
 
-                    <div class="work-divider"></div>
+					</div>
 
-                </header>
 
+					<div class="work-intro">
 
-                <!-- =================================================
-                     PROJECT GRID
-                ================================================== -->
+						<p>
+							Gameplay programming and game design
+							projects focused on mechanics,
+							systems, multiplayer, and tools.
+						</p>
 
-                <div class="gallery">
 
-                    <Grid variant="offset">
+						<div class="project-count">
 
-                        {
-                            projects.map((project, index) => (
+							<span class="count-number">
+								{String(projects.length).padStart(2, '0')}
+							</span>
 
-                                <li>
+							<span class="count-label">
+								FEATURED PROJECTS
+							</span>
 
-                                    <div class="project-wrapper">
+						</div>
 
-                                        <div class="project-index">
-                                            {String(index + 1).padStart(2, '0')}
-                                        </div>
+					</div>
 
-                                        <PortfolioPreview
-                                            project={project}
-                                        />
+				</div>
 
-                                    </div>
 
-                                </li>
+				<div class="work-divider"></div>
 
-                            ))
-                        }
+			</header>
 
-                    </Grid>
 
-                </div>
 
+			<!-- =================================================
+			     PROJECT GRID
+			================================================== -->
 
-                <!-- =================================================
-                     CTA
-                ================================================== -->
+			<div class="gallery">
 
-                <div class="work-footer">
+				<Grid variant="offset">
 
-                    <div class="footer-line"></div>
+					{
+						projects.map((project, index) => (
 
-                    <div class="footer-content">
+							<li>
 
-                        <div>
+								<div class="project-wrapper">
 
-                            <span class="footer-label">
-                                WANT TO SEE MORE?
-                            </span>
+									<div
+										class="project-index"
+										aria-hidden="true"
+									>
+										{String(index + 1).padStart(2, '0')}
+									</div>
 
-                            <p>
-                                Explore the complete archive
-                                of my projects and experiments.
-                            </p>
 
-                        </div>
+									<PortfolioPreview
+										project={project}
+									/>
 
-                        <CallToAction href={`${base}work/`}>
+								</div>
 
-                            View All Projects
+							</li>
 
-                            <Icon
-                                icon="arrow-right"
-                                size="1.2em"
-                            />
+						))
+					}
 
-                        </CallToAction>
+				</Grid>
 
-                    </div>
+			</div>
 
-                </div>
 
-            </section>
 
-        </main>
+			<!-- =================================================
+			     CTA
+			================================================== -->
 
+			<div class="work-footer">
 
-        <!-- =====================================================
-             CONTACT
-        ====================================================== -->
+				<div class="footer-line"></div>
 
-        <ContactCTA />
 
-    </div>
+				<div class="footer-content">
+
+					<div>
+
+						<span class="footer-label">
+							WANT TO SEE MORE?
+						</span>
+
+						<p>
+							Explore the complete archive
+							of my projects and experiments.
+						</p>
+
+					</div>
+
+
+					<CallToAction href={`${base}work/`}>
+
+						View All Projects
+
+						<Icon
+							icon="arrow-right"
+							size="1.2em"
+						/>
+
+					</CallToAction>
+
+				</div>
+
+			</div>
+
+		</section>
+
+	</main>
+
+
+
+	<!-- =====================================================
+	     CONTACT
+	====================================================== -->
+
+	<ContactCTA />
+
+</div>
 
 </BaseLayout>
 
-
 <style>
+	/* ==========================================================
+	   HERO
+	========================================================== */
 
-    /* ==========================================================
-       HERO
-    ========================================================== */
+	.hero {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+	}
 
-    .hero {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-    }
+	.hero-content {
+		width: 100%;
+	}
 
+	.roles {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-top: 1rem;
+	}
 
-    .roles {
-        display: none;
-    }
+	.hero img {
+		width: 100%;
+		aspect-ratio: 5 / 4;
+		object-fit: cover;
+		object-position: top;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
 
 
-    .hero img {
-        aspect-ratio: 5 / 4;
-        object-fit: cover;
-        object-position: top;
-        border-radius: 1.5rem;
-        box-shadow: var(--shadow-md);
-    }
 
+	/* ==========================================================
+	   HERO ACTIONS
+	========================================================== */
 
-    @media (min-width: 50em) {
+	.hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		margin-top: 1.75rem;
+	}
 
-        .hero {
-            display: grid;
-            grid-template-columns: 6fr 4fr;
-            padding-inline: 2.5rem;
-            gap: 3.75rem;
-        }
+	.hero-actions :global(a) {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.75rem;
 
+		min-height: 58px;
+		padding: 1rem 1.5rem;
 
-        .roles {
-            margin-top: 0.5rem;
-            display: flex;
-            gap: 0.5rem;
-        }
+		border-radius: 0.8rem;
 
+		font-family: var(--font-brand);
+		font-size: 1rem;
+		font-weight: 900;
+		letter-spacing: 0.04em;
+		text-decoration: none;
 
-        .hero img {
-            aspect-ratio: ;
-            border-radius: 4.5rem;
-            object-fit: cover;
-        }
+		transition:
+			transform 0.2s ease,
+			background 0.2s ease,
+			border-color 0.2s ease,
+			box-shadow 0.2s ease;
+	}
 
-    }
 
 
-    /* ==========================================================
-       WORK WRAPPER
-    ========================================================== */
+	/* ==========================================================
+	   VIEW MY WORK
+	   PRIMARY RED ACTION
+	========================================================== */
 
-    /*
-     * The global .wrapper is limited to 83rem.
-     *
-     * Recent Work intentionally uses more of the available
-     * desktop width so the project cards don't feel cramped.
-     */
+	.hero-actions :global(a:first-child) {
+		background: var(--accent-dark) !important;
+		color: white !important;
 
-    .work-wrapper {
-        width: 100%;
-        max-width: none;
-        margin-inline: auto;
-        padding-inline: 1.5rem;
-    }
+		border: 1px solid var(--accent-dark) !important;
 
+		box-shadow:
+			0 0 30px rgba(239, 68, 68, 0.22);
+	}
 
-    @media (min-width: 50em) {
+	.hero-actions :global(a:first-child:hover) {
+		background: var(--accent-dark) !important;
+		color: var(--gray-0) !important;
 
-        .work-wrapper {
-            width: min(
-                1500px,
-                calc(100vw - 4rem)
-            );
+		transform: translateY(-3px);
 
-            max-width: none;
-            padding-inline: 0;
-        }
+		box-shadow:
+			0 0 45px rgba(239, 68, 68, 0.4);
+	}
 
-    }
 
 
-    /* ==========================================================
-       WORK SECTION
-       ========================================================== */
+	/* ==========================================================
+	   DOWNLOAD CV
+	   SECONDARY OUTLINE ACTION
+	========================================================== */
 
-    .work-section {
-        position: relative;
-        display: grid;
-        gap: 4rem;
-        width: 100%;
-    }
+	.hero-actions :global(a:last-child) {
+		background: white !important;
+		color:red !important;
 
+		border: 1px solid var(--gray-600) !important;
 
-    .with-background::before {
-        --hero-bg: var(--bg-image-subtle-2);
+		box-shadow: none !important;
+	}
 
-        content: '';
+	.hero-actions :global(a:last-child:hover) {
+		background: var(--gray-800) !important;
+		color: var(--gray-0) !important;
 
-        position: absolute;
+		border-color: var(--gray-400) !important;
 
-        pointer-events: none;
+		transform: translateY(-3px);
 
-        left: 50%;
+		box-shadow:
+			0 0 25px rgba(255, 255, 255, 0.08) !important;
+	}
 
-        width: 100vw;
 
-        aspect-ratio:
-            calc(
-                2.25 /
-                var(--bg-scale)
-            );
 
-        top: 0;
+	/* ==========================================================
+	   HERO META
+	========================================================== */
 
-        transform:
-            translateY(-75%)
-            translateX(-50%);
+	.hero-meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.6rem;
+		margin-top: 1.25rem;
 
-        background:
-            url('/GDPortfolio/assets/backgrounds/noise.png')
-                top center /
-                220px
-                repeat,
+		font-family:
+			var(--font-mono),
+			monospace;
 
-            var(--hero-bg)
-                center center /
-                var(--bg-gradient-size)
-                no-repeat,
+		font-size: 0.7rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--gray-500);
+	}
 
-            var(--gray-999);
+	.meta-divider {
+		opacity: 0.5;
+	}
 
-        background-blend-mode:
-            overlay,
-            normal,
-            normal;
 
-        mix-blend-mode:
-            var(--bg-blend-mode);
 
-        z-index: -1;
-    }
+	/* ==========================================================
+	   HERO DESKTOP
+	========================================================== */
 
+	@media (min-width: 50em) {
 
-    /* ==========================================================
-       WORK HEADER
-    ========================================================== */
+		.hero {
+			display: grid;
+			grid-template-columns: 6fr 4fr;
+			padding-inline: 2.5rem;
+			gap: 3.75rem;
+			align-items: center;
+		}
 
-    .work-header {
-        width: 100%;
-    }
+		.hero img {
+			aspect-ratio: 5 / 4;
+			border-radius: 4.5rem;
+			object-fit: cover;
+		}
 
+		.hero-actions {
+			margin-top: 2rem;
+			gap: 1rem;
+		}
 
-    .work-kicker {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
+		.hero-actions :global(a) {
+			min-height: 62px;
+			padding: 1rem 1.6rem;
+			font-size: 1.05rem;
+		}
+	}
 
-        margin-bottom: 1.5rem;
 
-        font-family:
-            var(
-                --font-mono,
-                monospace
-            );
 
-        font-size: 0.65rem;
+	/* ==========================================================
+	   WORK WRAPPER
+	========================================================== */
 
-        font-weight: 600;
+	.work-wrapper {
+		width: 100%;
+		max-width: none;
+		margin-inline: auto;
+		padding-inline: 1.5rem;
+	}
 
-        letter-spacing: 0.16em;
+	@media (min-width: 50em) {
 
-        text-transform: uppercase;
+		.work-wrapper {
+			width: min(
+				1500px,
+				calc(100vw - 4rem)
+			);
 
-        color: var(--gray-400);
-    }
+			max-width: none;
+			padding-inline: 0;
+		}
+	}
 
 
-    .kicker-line {
-        display: block;
 
-        width: 2.5rem;
+	/* ==========================================================
+	   WORK SECTION
+	========================================================== */
 
-        height: 1px;
+	.work-section {
+		position: relative;
+		display: grid;
+		gap: 4rem;
+		width: 100%;
+	}
 
-        background:
-            currentColor;
+	.with-background::before {
+		--hero-bg: var(--bg-image-subtle-2);
 
-        opacity: 0.5;
-    }
+		content: '';
 
+		position: absolute;
+		pointer-events: none;
 
-    .kicker-year {
-        margin-left: auto;
+		left: 50%;
+		width: 100vw;
 
-        opacity: 0.45;
-    }
+		aspect-ratio:
+			calc(
+				2.25 /
+				var(--bg-scale)
+			);
 
+		top: 0;
 
-    /* ==========================================================
-       HEADING
-    ========================================================== */
+		transform:
+			translateY(-75%)
+			translateX(-50%);
 
-    .work-heading {
-        display: grid;
+		background:
+			url('/GDPortfolio/assets/backgrounds/noise.png')
+				top center /
+				220px
+				repeat,
 
-        gap: 2rem;
-    }
+			var(--hero-bg)
+				center center /
+				var(--bg-gradient-size)
+				no-repeat,
 
+			var(--gray-999);
 
-    .work-heading h2 {
-        margin: 0;
+		background-blend-mode:
+			overlay,
+			normal,
+			normal;
 
-        max-width: 900px;
+		mix-blend-mode:
+			var(--bg-blend-mode);
 
-        font-size:
-            clamp(
-                3.5rem,
-                8vw,
-                8rem
-            );
+		z-index: -1;
+	}
 
-        line-height: 0.82;
 
-        letter-spacing: -0.065em;
-    }
 
+	/* ==========================================================
+	   WORK HEADER
+	========================================================== */
 
-    .work-heading h2 em {
-        font-style: normal;
+	.work-header {
+		width: 100%;
+	}
 
-        opacity: 0.35;
-    }
+	.work-kicker {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 1.5rem;
 
+		font-family:
+			var(--font-mono),
+			monospace;
 
-    .work-intro {
-        display: flex;
+		font-size: 0.65rem;
+		font-weight: 600;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: var(--gray-400);
+	}
 
-        flex-direction: column;
+	.kicker-line {
+		display: block;
+		width: 2.5rem;
+		height: 1px;
+		background: currentColor;
+		opacity: 0.5;
+	}
 
-        justify-content: flex-end;
+	.kicker-year {
+		margin-left: auto;
+		opacity: 0.45;
+	}
 
-        gap: 1.5rem;
-    }
 
 
-    .work-intro p {
-        max-width: 42ch;
+	/* ==========================================================
+	   HEADING
+	========================================================== */
 
-        margin: 0;
+	.work-heading {
+		display: grid;
+		gap: 2rem;
+	}
 
-        font-size:
-            clamp(
-                1rem,
-                1.5vw,
-                1.2rem
-            );
+	.work-heading h2 {
+		margin: 0;
+		max-width: 900px;
 
-        line-height: 1.6;
+		font-size:
+			clamp(
+				3.5rem,
+				8vw,
+				8rem
+			);
 
-        color: var(--gray-400);
-    }
+		line-height: 0.82;
+		letter-spacing: -0.065em;
+	}
 
+	.work-heading h2 em {
+		font-style: normal;
+		opacity: 0.35;
+	}
 
-    /* ==========================================================
-       PROJECT COUNT
-    ========================================================== */
+	.work-intro {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		gap: 1.5rem;
+	}
 
-    .project-count {
-        display: flex;
+	.work-intro p {
+		max-width: 42ch;
+		margin: 0;
 
-        align-items: baseline;
+		font-size:
+			clamp(
+				1rem,
+				1.5vw,
+				1.2rem
+			);
 
-        gap: 0.75rem;
+		line-height: 1.6;
+		color: var(--gray-400);
+	}
 
-        font-family:
-            var(
-                --font-mono,
-                monospace
-            );
-    }
 
 
-    .count-number {
-        font-size: 1.5rem;
+	/* ==========================================================
+	   PROJECT COUNT
+	========================================================== */
 
-        letter-spacing: -0.05em;
-    }
+	.project-count {
+		display: flex;
+		align-items: baseline;
+		gap: 0.75rem;
 
+		font-family:
+			var(--font-mono),
+			monospace;
+	}
 
-    .count-label {
-        font-size: 0.6rem;
+	.count-number {
+		font-size: 1.5rem;
+		letter-spacing: -0.05em;
+	}
 
-        letter-spacing: 0.12em;
+	.count-label {
+		font-size: 0.6rem;
+		letter-spacing: 0.12em;
+		color: var(--gray-500);
+	}
 
-        color: var(--gray-500);
-    }
 
 
-    /* ==========================================================
-       DIVIDER
-    ========================================================== */
+	/* ==========================================================
+	   DIVIDER
+	========================================================== */
 
-    .work-divider {
-        width: 100%;
+	.work-divider {
+		width: 100%;
+		height: 1px;
+		margin-top: 2rem;
+		background: var(--gray-800);
+	}
 
-        height: 1px;
 
-        margin-top: 2rem;
 
-        background:
-            var(--gray-800);
-    }
+	/* ==========================================================
+	   GALLERY
+	========================================================== */
 
+	.gallery {
+		width: 100%;
+		min-width: 0;
+	}
 
-    /* ==========================================================
-       GALLERY
-    ========================================================== */
+	.project-wrapper {
+		position: relative;
+		width: 100%;
+	}
 
-    .gallery {
-        width: 100%;
-        min-width: 0;
-    }
+	.project-index {
+		position: absolute;
+		top: -2rem;
+		left: 0;
 
+		font-family:
+			var(--font-mono),
+			monospace;
 
-    .project-wrapper {
-        position: relative;
-        width: 100%;
-    }
+		font-size: 0.6rem;
+		letter-spacing: 0.12em;
+		color: var(--gray-500);
 
+		z-index: 5;
+		pointer-events: none;
+	}
 
-    .project-index {
-        position: absolute;
 
-        top: -2rem;
 
-        left: 0;
+	/* ==========================================================
+	   FOOTER / CTA
+	========================================================== */
 
-        font-family:
-            var(
-                --font-mono,
-                monospace
-            );
+	.work-footer {
+		width: 100%;
+		margin-top: 2rem;
+	}
 
-        font-size: 0.6rem;
+	.footer-line {
+		width: 100%;
+		height: 1px;
+		background: var(--gray-800);
+	}
 
-        letter-spacing: 0.12em;
+	.footer-content {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 2rem;
+		padding-top: 2rem;
+	}
 
-        color: var(--gray-500);
+	.footer-label {
+		font-size: 3rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+	}
 
-        z-index: 5;
+	.footer-content p {
+		margin: 0;
+		font-size: 1.95rem;
+		color: var(--gray-400);
+	}
 
-        pointer-events: none;
-    }
 
 
-    /* ==========================================================
-       FOOTER / CTA
-    ========================================================== */
+	/* Bigger View All Projects button */
 
-    /* Bigger View All Projects button */
-.work-footer :global(a) {
-    font-size: 1.25rem;
-    padding: 1.25rem 2rem;
-}
+	.work-footer :global(a) {
+		font-size: 1.25rem;
+		padding: 1.25rem 2rem;
+	}
 
-@media (min-width: 50em) {
-    .work-footer :global(a) {
-        font-size: 2.5rem;
-        padding: 1.5rem 2.5rem;
-    }
-}
-    .work-footer {
-        width: 100%;
 
-        margin-top: 2rem;
-    }
 
+	/* ==========================================================
+	   DESKTOP
+	========================================================== */
 
-    .footer-line {
-        width: 100%;
+	@media (min-width: 50em) {
 
-        height: 1px;
+		.work-section {
+			gap: 5rem;
+		}
 
-        background:
-            var(--gray-800);
-    }
+		.work-heading {
+			grid-template-columns:
+				minmax(0, 1.7fr)
+				minmax(280px, 0.7fr);
 
+			align-items: end;
+			gap: 5rem;
+		}
 
-    .footer-content {
-        display: flex;
+		.work-heading h2 {
+			font-size:
+				clamp(
+					5rem,
+					8vw,
+					8rem
+				);
+		}
 
-        align-items: center;
+		.work-intro {
+			padding-bottom: 0.5rem;
+		}
 
-        justify-content: space-between;
+		.work-divider {
+			margin-top: 1rem;
+		}
 
-        gap: 2rem;
+		.project-index {
+			top: -2.25rem;
+		}
 
-        padding-top: 2rem;
-    }
+		.work-footer :global(a) {
+			font-size: 2.5rem;
+			padding: 1.5rem 2.5rem;
+		}
+	}
 
-.footer-label {
-    font-size: 3rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-}
 
-    .footer-content p {
-        margin: 0;
 
-        font-size: 1.95rem;
+	/* ==========================================================
+	   MOBILE
+	========================================================== */
 
-        color: var(--gray-400);
-    }
+	@media (max-width: 49.99em) {
 
+		.work-section {
+			gap: 3rem;
+		}
 
-    /* ==========================================================
-       DESKTOP
-    ========================================================== */
+		.work-kicker {
+			margin-bottom: 1.25rem;
+		}
 
-    @media (min-width: 50em) {
+		.work-heading h2 {
+			font-size:
+				clamp(
+					3.2rem,
+					15vw,
+					5rem
+				);
+		}
 
-        .work-section {
-            gap: 5rem;
-        }
+		.work-intro {
+			margin-top: 1rem;
+		}
 
+		.work-intro p {
+			font-size: 0.95rem;
+		}
 
-        .work-heading {
-            grid-template-columns:
-                minmax(0, 1.7fr)
-                minmax(280px, 0.7fr);
+		.project-index {
+			top: -1.5rem;
+		}
 
-            align-items: end;
+		.footer-content {
+			flex-direction: column;
+			align-items: flex-start;
+		}
 
-            gap: 5rem;
-        }
+		.footer-label {
+			font-size: 2rem;
+		}
 
+		.footer-content p {
+			font-size: 1.1rem;
+			line-height: 1.5;
+		}
 
-        .work-heading h2 {
-            font-size:
-                clamp(
-                    5rem,
-                    8vw,
-                    8rem
-                );
-        }
 
+		/* Mobile hero buttons */
 
-        .work-intro {
-            padding-bottom: 0.5rem;
-        }
+		.hero-actions {
+			width: 100%;
+		}
 
+		.hero-actions :global(a) {
+			flex: 1;
+		}
+	}
 
-        .work-divider {
-            margin-top: 1rem;
-        }
 
 
-        .project-index {
-            top: -2.25rem;
-        }
+	/* ==========================================================
+	   MENTION CARD
+	========================================================== */
 
-    }
+	.mention-card {
+		display: flex;
+		height: 7rem;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
 
+		border:
+			1px solid
+			var(--gray-800);
 
-    /* ==========================================================
-       MOBILE
-    ========================================================== */
+		border-radius: 1.5rem;
 
-    @media (max-width: 49.99em) {
+		color: var(--gray-300);
 
-        .work-section {
-            gap: 3rem;
-        }
+		background:
+			var(--gradient-subtle);
 
+		box-shadow:
+			var(--shadow-sm);
+	}
 
-        .work-kicker {
-            margin-bottom: 1.25rem;
-        }
+	@media (min-width: 50em) {
 
-
-        .work-heading h2 {
-            font-size:
-                clamp(
-                    3.2rem,
-                    15vw,
-                    5rem
-                );
-        }
-
-
-        .work-intro {
-            margin-top: 1rem;
-        }
-
-
-        .work-intro p {
-            font-size: 0.95rem;
-        }
-
-
-        .project-index {
-            top: -1.5rem;
-        }
-
-
-        .footer-content {
-            flex-direction: column;
-
-            align-items: flex-start;
-        }
-
-    }
-
-
-    /* ==========================================================
-       MENTION CARD
-    ========================================================== */
-
-    .mention-card {
-        display: flex;
-
-        height: 7rem;
-
-        justify-content: center;
-
-        align-items: center;
-
-        text-align: center;
-
-        border:
-            1px solid
-            var(--gray-800);
-
-        border-radius: 1.5rem;
-
-        color: var(--gray-300);
-
-        background:
-            var(--gradient-subtle);
-
-        box-shadow:
-            var(--shadow-sm);
-    }
-
-
-    @media (min-width: 50em) {
-
-        .mention-card {
-            border-radius: 1.5rem;
-            height: 9.5rem;
-        }
-
-    }
-
+		.mention-card {
+			border-radius: 1.5rem;
+			height: 9.5rem;
+		}
+	}
 </style>

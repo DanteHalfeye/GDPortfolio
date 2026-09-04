@@ -1,1058 +1,1257 @@
 ---
+
 import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const base = import.meta.env.BASE_URL.endsWith('/')
-	? import.meta.env.BASE_URL
-	: `${import.meta.env.BASE_URL}/`;
+? import.meta.env.BASE_URL
+: `${import.meta.env.BASE_URL}/`;
 ---
 
 <BaseLayout
-	title="About | Eliham Pelaez"
-	description="About Eliham Pelaez, Game Designer and Gameplay Programmer"
+title="About | Eliham Pelaez"
+description="About Eliham Pelaez, Gameplay Programmer and Game Designer"
+
 >
-	<div class="about-page">
 
-		<main class="wrapper about">
 
-			<!-- =====================================================
-			     HERO
-			====================================================== -->
+<div class="about-page">
 
-			<section class="about-hero">
 
-				<div class="hero-copy">
 
-					<div class="eyebrow">
-						<span class="eyebrow-dot"></span>
-						ABOUT / GAME DEVELOPER
-					</div>
+	<main class="wrapper about">
 
-					<Hero
-						title="About"
-						tagline="Thanks for stopping by. Read below to learn more about myself and my background."
-					/>
+		<!-- =====================================================
+		     HERO
+		====================================================== -->
 
+		<section class="about-hero">
+			<div class="hero-copy">
+				<div class="eyebrow">
+					<span class="eyebrow-dot"></span>
+					GAMEPLAY PROGRAMMER / GAME DESIGNER
 				</div>
 
-				<div class="hero-image">
+				<Hero
+					title="About me."
+					tagline="I build gameplay systems, mechanics, and interactive experiences with a focus on programming, game design, and multiplayer."
+				/>
 
-					<img
-						width="1553"
-						height="873"
-						src={`${base}assets/at-work.jpg`}
-						alt="Eliham Pelaez at work"
-					/>
-
-					<div class="image-caption">
-						<span>ELIHAM PELAEZ</span>
-						<span>GAME DESIGN / DEVELOPMENT</span>
+				<div class="hero-focus">
+					<div class="focus-item">
+						<span class="focus-label">PRIMARY FOCUS</span>
+						<strong>Gameplay Programming</strong>
 					</div>
 
+					<div class="focus-item">
+						<span class="focus-label">TECH STACK</span>
+						<strong>C# · Unity · UEFN · Verse</strong>
+					</div>
+
+					<div class="focus-item">
+						<span class="focus-label">LOCATION</span>
+						<strong>Medellín, Colombia</strong>
+					</div>
+
+					<div class="focus-item">
+						<span class="focus-label">GRADUATION</span>
+						<strong>February 2027</strong>
+					</div>
+				</div>
+			</div>
+
+			<div class="hero-image">
+				<img
+					width="1553"
+					height="873"
+					src={`${base}assets/at-work.jpg`}
+					alt="Eliham Pelaez at work"
+				/>
+
+				<div class="image-caption">
+					<span>ELIHAM PELAEZ</span>
+					<span>GAME DEVELOPMENT</span>
+				</div>
+			</div>
+		</section>
+
+
+		<!-- =====================================================
+		     PROFILE
+		====================================================== -->
+
+		<section class="about-section profile-section">
+			<div class="section-marker">
+				<div class="section-number">01</div>
+				<div class="section-label">PROFILE</div>
+			</div>
+
+			<div class="section-content">
+				<div class="section-intro">
+					<h2>
+						What I
+						<em>do.</em>
+					</h2>
 				</div>
 
-			</section>
-
-
-			<!-- =====================================================
-			     BACKGROUND
-			====================================================== -->
-
-			<section class="about-section">
-
-				<div class="section-marker">
-
-					<div class="section-number">
-						01
-					</div>
-
-					<div class="section-label">
-						BACKGROUND
-					</div>
-
-				</div>
-
-				<div class="section-content">
-
-					<div class="section-intro">
-
-						<h2>
-							How I got
-							<em>here.</em>
-						</h2>
-
-					</div>
-
-					<div class="background-content">
-
+				<div class="profile-grid">
+					<div class="profile-main">
 						<p class="lead">
 							I am a <strong>Game Design student and Gameplay Programmer</strong>
-							passionate about creating interactive experiences and understanding
-							how games can bring people together.
+							focused on building gameplay systems that are clear, responsive,
+							and maintainable.
 						</p>
 
-							<p class="lead">
-								My journey into game development began in third grade,
-								inspired by my late father, who battled ALS. That experience
-								shaped my determination to pursue a career in games and create
-								experiences that can connect with people on a deeper level.
-							</p>
+						<p>
+							My experience combines technical implementation with game design.
+							I enjoy turning ideas into playable systems, from player mechanics
+							and progression to enemy behaviors, multiplayer interactions,
+							and reusable tools.
+						</p>
 
-							<p class="lead">
-								By sixth grade, I was already teaching my classmates how to use
-								<strong>Scratch</strong> and helping them understand programming
-								logic. This sparked an interest not only in programming, but also
-								in <strong>teaching, collaboration, and communicating ideas</strong>.
-							</p>
+						<p>
+							I currently study <strong>Game Design at Universidad Pontificia
+							Bolivariana (UPB)</strong>, where I work across programming,
+							game development, interactive media, and design.
+						</p>
 
-							<p class="lead">
-								In seventh grade, I participated in the
-								<strong>"Descubre-te"</strong> project in collaboration with the
-								Sabaneta Mayor's Office. This was my first opportunity to work
-								with <strong>Unity and C#</strong>, while developing my teamwork
-								and problem-solving skills in a collaborative environment.
-							</p>
+						<p>
+							My recent work with <strong>UEFN and Verse</strong> has expanded
+							my experience into multiplayer gameplay, round-based systems,
+							enemy management, progression, and device-driven architecture.
+						</p>
+					</div>
 
-							<p class="lead">
-								In 2018, I expanded my technical knowledge through a
-								<strong>Game Development and Robotics</strong> summer course
-								at EAFIT, where I created another game project and continued
-								exploring programming and interactive media.
-							</p>
-
-							<p class="lead">
-								In 2020, I complemented my technical background with a
-								<strong>Human Resources Technician</strong> program. This helped
-								me develop a stronger understanding of communication, teamwork,
-								leadership, and how people interact within a working environment.
-							</p>
-
-							<p class="lead">
-								I currently study <strong>Game Design at Universidad Pontificia
-								Bolivariana (UPB)</strong>, where I work on projects involving
-								games, animation, programming, and interactive experiences.
-							</p>
-
-							<p class="lead">
-								In <strong>2026</strong>, I expanded my experience into
-								<strong>Unreal Editor for Fortnite (UEFN)</strong> by completing
-								the <strong>UEFN Bootcamp</strong>. There, I developed projects
-								using <strong>Verse</strong> and explored multiplayer gameplay,
-								enemy management, round-based game modes, progression systems,
-								interactive gameplay devices, and cooperative mechanics.
-							</p>
-
-							<p class="lead">
-								Today, my experience across <strong>Unity, C#, UEFN, and Verse</strong>
-								allows me to approach game development from both a
-								<strong>design and technical perspective</strong>.
-							</p>
-
-
-						<div class="statement">
-
-							<span class="statement-mark">"</span>
-
-							<p>
-								I want to build games that are
-								<strong>meaningful, engaging, and memorable.</strong>
-							</p>
-
+					<div class="profile-sidebar">
+						<div class="profile-card">
+							<span>ROLE</span>
+							<strong>Gameplay Programmer</strong>
 						</div>
 
+						<div class="profile-card">
+							<span>PROGRAMMING</span>
+							<strong>C# · C · JavaScript · Verse</strong>
+						</div>
+
+						<div class="profile-card">
+							<span>ENGINES</span>
+							<strong>Unity · UEFN</strong>
+						</div>
+
+						<div class="profile-card">
+							<span>INTERESTS</span>
+							<strong>Gameplay · Systems · Character AI</strong>
+						</div>
+					</div>
+				</div>
+
+				<div class="statement">
+					<span class="statement-mark">“</span>
+					<p>
+						I want to build games that are
+						<strong>meaningful, engaging, and memorable.</strong>
+					</p>
+				</div>
+			</div>
+		</section>
+
+
+		<!-- =====================================================
+		     EXPERIENCE
+		====================================================== -->
+
+		<section class="about-section">
+			<div class="section-marker">
+				<div class="section-number">02</div>
+				<div class="section-label">EXPERIENCE</div>
+			</div>
+
+			<div class="section-content">
+				<div class="section-intro">
+					<h2>
+						How I got
+						here.
+					</h2>
+				</div>
+
+				<div class="timeline">
+
+					<div class="timeline-item featured">
+						<div class="timeline-year">2026</div>
+
+						<div class="timeline-content">
+							<span class="timeline-tag">RECENT</span>
+
+							<h3>UEFN & Verse</h3>
+
+							<p>
+								Expanded into Unreal Editor for Fortnite through the
+								UEFN Bootcamp, developing multiplayer gameplay systems,
+								round-based game modes, enemy management, progression,
+								and cooperative mechanics.
+							</p>
+
+							<div class="timeline-skills">
+								<span>UEFN</span>
+								<span>Verse</span>
+								<span>Multiplayer</span>
+								<span>Gameplay Systems</span>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="timeline-item">
+						<div class="timeline-year">2021</div>
+
+						<div class="timeline-content">
+							<h3>Human Resources Technician</h3>
+
+							<p>
+								Developed communication, teamwork, leadership, and
+								collaboration skills that complement my technical
+								background.
+							</p>
+						</div>
+					</div>
+
+
+					<div class="timeline-item">
+						<div class="timeline-year">2018</div>
+
+						<div class="timeline-content">
+							<h3>Game Development & Robotics</h3>
+
+							<p>
+								Completed a summer program at EAFIT focused on game
+								development and robotics, continuing my exploration
+								of programming and interactive media.
+							</p>
+						</div>
+					</div>
+
+
+					<div class="timeline-item">
+						<div class="timeline-year">EARLY</div>
+
+						<div class="timeline-content">
+							<h3>Programming & Game Development</h3>
+
+							<p>
+								Started experimenting with programming and game creation
+								at an early age, including teaching classmates Scratch
+								and developing my first projects with Unity and C#.
+							</p>
+						</div>
 					</div>
 
 				</div>
+			</div>
+		</section>
 
-			</section>
 
+		<!-- =====================================================
+		     EDUCATION
+		====================================================== -->
 
-			<!-- =====================================================
-			     EDUCATION
-			====================================================== -->
+		<section class="about-section">
+			<div class="section-marker">
+				<div class="section-number">03</div>
+				<div class="section-label">EDUCATION</div>
+			</div>
 
-			<section class="about-section">
+			<div class="section-content">
+				<div class="section-intro">
+					<h2>
+						What I've
+						learned.
+					</h2>
+				</div>
 
-				<div class="section-marker">
+				<div class="education">
 
-					<div class="section-number">
-						02
+					<div class="education-item featured">
+						<div class="education-year">2027</div>
+
+						<div class="education-info">
+							<span class="education-tag">CURRENT</span>
+
+							<strong>B.A. in Game Design</strong>
+
+							<span>
+								Universidad Pontificia Bolivariana (UPB)
+							</span>
+
+							<small>
+								Expected graduation: February 2027 · GPA: 4.3
+							</small>
+						</div>
 					</div>
 
-					<div class="section-label">
-						EDUCATION
+
+					<div class="education-item">
+						<div class="education-year">2026</div>
+
+						<div class="education-info">
+							<strong>Epic Games UEFN Bootcamp</strong>
+
+							<span>
+								Verse · Multiplayer · Gameplay Systems
+							</span>
+						</div>
+					</div>
+
+
+					<div class="education-item">
+						<div class="education-year">2021</div>
+
+						<div class="education-info">
+							<strong>Human Resources Technician</strong>
+
+							<span>SENA</span>
+						</div>
+					</div>
+
+
+					<div class="education-item">
+						<div class="education-year">2019</div>
+
+						<div class="education-info">
+							<strong>Musical Introduction Certification</strong>
+
+							<span>Atempo</span>
+						</div>
+					</div>
+
+
+					<div class="education-item">
+						<div class="education-year">2018</div>
+
+						<div class="education-info">
+							<strong>Game Development Summer Camp</strong>
+
+							<span>
+								EAFIT · Game Development & Robotics
+							</span>
+						</div>
 					</div>
 
 				</div>
+			</div>
+		</section>
 
-				<div class="section-content">
 
-					<div class="section-intro">
+		<!-- =====================================================
+		     SKILLS
+		====================================================== -->
 
-						<h2>
-							Things I've
-							<em>learned.</em>
-						</h2>
+		<section class="about-section">
+			<div class="section-marker">
+				<div class="section-number">04</div>
+				<div class="section-label">SKILLS</div>
+			</div>
 
+			<div class="section-content">
+				<div class="section-intro">
+					<h2>
+						Mytoolkit.
+					</h2>
+				</div>
+
+				<div class="skills">
+
+					<div class="skill-group featured-skill">
+						<div class="skill-number">01</div>
+
+						<h3>Gameplay Programming</h3>
+
+						<p>
+							Player mechanics, gameplay systems, enemy systems,
+							progression, interactions, game-state logic, and
+							reusable gameplay architecture.
+						</p>
+
+						<div class="skill-tags">
+							<span>C#</span>
+							<span>Verse</span>
+							<span>Unity</span>
+							<span>UEFN</span>
+						</div>
 					</div>
 
-					<div class="education">
 
-						<div class="education-item featured">
+					<div class="skill-group">
+						<div class="skill-number">02</div>
 
-							<div class="education-year">
-								2027
-							</div>
+						<h3>Game Development</h3>
 
-							<div class="education-info">
+						<p>
+							Unity, Unreal Engine, UEFN, multiplayer gameplay,
+							interactive experiences, prototyping, and systems integration.
+						</p>
+					</div>
 
-								<span class="education-tag">
-									CURRENT
-								</span>
 
-								<strong>
-									B.A. in Game Design
-								</strong>
+					<div class="skill-group">
+						<div class="skill-number">03</div>
 
-								<span>
-									Universidad Pontificia Bolivariana (UPB)
-								</span>
+						<h3>Programming</h3>
 
-								<small>
-									Expected graduation: February 2027 · GPA: 4.3
-								</small>
+						<p>
+							C#, C++, JavaScript, Verse, pseudocode, object-oriented
+							programming, and gameplay scripting.
+						</p>
+					</div>
 
-							</div>
 
-						</div>
+					<div class="skill-group">
+						<div class="skill-number">04</div>
 
-						<div class="education-item">
+						<h3>Game Design</h3>
 
-							<div class="education-year">
-								2026
-							</div>
+						<p>
+							Gameplay design, level design, prototyping, user flows,
+							wireframing, systems design, and art direction.
+						</p>
+					</div>
 
-							<div class="education-info">
 
-								<strong>
-									Epic Games UEFN Bootcamp
-								</strong>
+					<div class="skill-group">
+						<div class="skill-number">05</div>
 
-								<span>
-									Verse · Multiplayer · Gameplay Systems
-								</span>
+						<h3>Creative Coding</h3>
 
-							</div>
+						<p>
+							p5.js, Three.js, WebGPU, interactive programming,
+							real-time graphics, and procedural experiments.
+						</p>
+					</div>
 
-						</div>
 
-						<div class="education-item">
+					<div class="skill-group">
+						<div class="skill-number">06</div>
 
-							<div class="education-year">
-								2021
-							</div>
+						<h3>Interactive Media</h3>
 
-							<div class="education-info">
+						<p>
+							OSC, TouchDesigner, Spout, Arduino, Raspberry Pi,
+							and networked interactive experiences.
+						</p>
+					</div>
 
-								<strong>
-									Human Resources Technician
-								</strong>
 
-								<span>
-									SENA
-								</span>
+					<div class="skill-group">
+						<div class="skill-number">07</div>
 
-							</div>
+						<h3>Tools</h3>
 
-						</div>
+						<p>
+							Git, Git LFS, Figma, Blender, Maya, Photoshop,
+							Illustrator, Aseprite, Notion, Miro, and Excel.
+						</p>
+					</div>
 
-						<div class="education-item">
 
-							<div class="education-year">
-								2019
-							</div>
+					<div class="skill-group">
+						<div class="skill-number">08</div>
 
-							<div class="education-info">
+						<h3>Collaboration</h3>
 
-								<strong>
-									Musical Introduction Certification
-								</strong>
+						<p>
+							Cross-functional collaboration, communication,
+							leadership, design thinking, agile development,
+							and public speaking.
+						</p>
+					</div>
 
-								<span>
-									Atempo
-								</span>
 
-							</div>
+					<div class="skill-group">
+						<div class="skill-number">09</div>
 
-						</div>
+						<h3>Languages</h3>
 
-						<div class="education-item">
+						<p>
+							<strong>Spanish</strong> — Native<br />
+							<strong>English</strong> — Fluent C1
+						</p>
+					</div>
 
-							<div class="education-year">
-								2018
-							</div>
 
-							<div class="education-info">
+					<div class="skill-group">
+						<div class="skill-number">10</div>
 
-								<strong>
-									Game Development Summer Camp
-								</strong>
+						<h3>Currently Exploring</h3>
 
-								<span>
-									EAFIT · Game Development & Robotics
-								</span>
-
-							</div>
-
-						</div>
-
+						<p>
+							Advanced gameplay systems, multiplayer architecture,
+							technical game development, and real-time graphics.
+						</p>
 					</div>
 
 				</div>
+			</div>
+		</section>
 
-			</section>
+	</main>
 
+	<ContactCTA />
+</div>
 
-			<!-- =====================================================
-			     SKILLS
-			====================================================== -->
-
-			<section class="about-section">
-
-				<div class="section-marker">
-
-					<div class="section-number">
-						03
-					</div>
-
-					<div class="section-label">
-						SKILLS
-					</div>
-
-				</div>
-
-				<div class="section-content">
-
-					<div class="section-intro">
-
-						<h2>
-							My
-							<em>toolkit.</em>
-						</h2>
-
-					</div>
-
-					<div class="skills">
-
-						<div class="skill-group featured-skill">
-
-							<div class="skill-number">
-								01
-							</div>
-
-							<h3>
-								Game Development
-							</h3>
-
-							<p>
-								Unity, Unreal Engine, UEFN, Gameplay Programming,
-								Multiplayer Systems, Interactive Experiences.
-							</p>
-
-						</div>
-
-						<div class="skill-group">
-
-							<div class="skill-number">
-								02
-							</div>
-
-							<h3>
-								Programming
-							</h3>
-
-							<p>
-								C#, C++, JavaScript, Verse, Pseudocode.
-							</p>
-
-						</div>
-
-						<div class="skill-group">
-
-							<div class="skill-number">
-								03
-							</div>
-
-							<h3>
-								Creative Coding
-							</h3>
-
-							<p>
-								p5.js, Three.js, WebGPU.
-							</p>
-
-						</div>
-
-						<div class="skill-group">
-
-							<div class="skill-number">
-								04
-							</div>
-
-							<h3>
-								Interactive Media
-							</h3>
-
-							<p>
-								OSC, TouchDesigner, Spout.
-							</p>
-
-						</div>
-
-						<div class="skill-group">
-
-							<div class="skill-number">
-								05
-							</div>
-
-							<h3>
-								Design
-							</h3>
-
-							<p>
-								Game Design, Level Design, Gameplay Design, Art Direction,
-								User Flows, Prototyping, Wireframing.
-							</p>
-
-						</div>
-
-						<div class="skill-group">
-
-							<div class="skill-number">
-								06
-							</div>
-
-							<h3>
-								Research
-							</h3>
-
-							<p>
-								Qualitative User Research, Customer Interviews, Q/A,
-								Customer Journey Mapping, Usability Testing, A/B Testing.
-							</p>
-
-						</div>
-
-						<div class="skill-group">
-
-							<div class="skill-number">
-								07
-							</div>
-
-							<h3>
-								Leadership
-							</h3>
-
-							<p>
-								Design Thinking, User-Centered Design, Cross-Functional
-								Collaboration, Communication and Storytelling, Agile
-								Development Processes, Public Speaking.
-							</p>
-
-						</div>
-
-						<div class="skill-group">
-
-							<div class="skill-number">
-								08
-							</div>
-
-							<h3>
-								Tools
-							</h3>
-
-							<p>
-								Excel, Word, Git, Git LFS, Notion, Miro, Clip Studio Paint,
-								Aseprite, Illustrator, Animate, Maya, Figma, Photoshop,
-								Arduino, Raspberry Pi, itch.io, Canva, Blender,
-								TouchDesigner, Spout, OSC.
-							</p>
-
-						</div>
-
-						<div class="skill-group">
-
-							<div class="skill-number">
-								09
-							</div>
-
-							<h3>
-								Languages
-							</h3>
-
-							<p>
-								Spanish (Native), English (Fluent C1).
-							</p>
-
-						</div>
-
-						<div class="skill-group">
-
-							<div class="skill-number">
-								10
-							</div>
-
-							<h3>
-								Interests
-							</h3>
-
-							<p>
-								Video Games, Movies, Comics, Game Design, Music, Japanese
-								Animation, Western Animation, Coding, Teamwork, and Helping
-								People Grow.
-							</p>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</section>
-
-		</main>
-
-		<ContactCTA />
-
-	</div>
 </BaseLayout>
-
 
 <style>
 
-	/* ==========================================================
-	   PAGE
-	========================================================== */
+/* ==========================================================
+   PAGE
+========================================================== */
+
+.about-page {
+	display: flex;
+	flex-direction: column;
+	gap: 8rem;
+}
+
+.about {
+	display: flex;
+	flex-direction: column;
+	gap: 9rem;
+}
+
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.about-hero {
+	display: grid;
+	grid-template-columns: 1fr 0.8fr;
+	align-items: center;
+	gap: 5rem;
+	min-height: 65vh;
+}
+
+.hero-copy {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.eyebrow {
+	display: flex;
+	align-items: center;
+	gap: 0.7rem;
+	font-family: var(--font-mono, monospace);
+	font-size: 0.7rem;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	color: var(--gray-400);
+}
+
+.eyebrow-dot {
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	background: var(--theme-accent);
+	box-shadow: 0 0 12px var(--theme-accent);
+}
+
+.hero-image {
+	position: relative;
+}
+
+.hero-image img {
+	display: block;
+	width: 100%;
+	height: auto;
+	margin: 0;
+	border-radius: 2rem;
+	box-shadow: var(--shadow-md);
+}
+
+.image-caption {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-top: 0.75rem;
+	font-family: var(--font-mono, monospace);
+	font-size: 0.6rem;
+	letter-spacing: 0.08em;
+	color: var(--gray-500);
+}
+
+
+/* ==========================================================
+   HERO FOCUS
+========================================================== */
+
+.hero-focus {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0;
+	margin-top: 1rem;
+	border-top: 1px solid var(--gray-800);
+	border-bottom: 1px solid var(--gray-800);
+}
+
+.focus-item {
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+	padding: 1.2rem 1.25rem;
+	border-bottom: 1px solid var(--gray-800);
+}
+
+.focus-item:nth-child(odd) {
+	border-right: 1px solid var(--gray-800);
+}
+
+.focus-item:nth-child(3),
+.focus-item:nth-child(4) {
+	border-bottom: none;
+}
+
+.focus-label {
+	font-family: var(--font-mono, monospace);
+	font-size: 0.55rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	color: var(--gray-500);
+}
+
+.focus-item strong {
+	font-size: 0.9rem;
+	line-height: 1.4;
+	color: var(--gray-100);
+}
+
+
+/* ==========================================================
+   SECTION STRUCTURE
+========================================================== */
+
+.about-section {
+	display: grid;
+	grid-template-columns: 180px minmax(0, 1fr);
+	gap: 4rem;
+	align-items: start;
+}
+
+.section-marker {
+	position: sticky;
+	top: 3rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.7rem;
+}
+
+.section-number {
+	font-family: var(--font-mono, monospace);
+	font-size: 2.75rem;
+	font-weight: 700;
+	line-height: 1;
+	letter-spacing: -0.08em;
+	color: var(--theme-accent);
+}
+
+.section-label {
+	font-family: var(--font-mono, monospace);
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	color: var(--gray-200);
+}
+
+.section-marker::after {
+	content: '';
+	width: 3rem;
+	height: 2px;
+	margin-top: 0.2rem;
+	background: var(--theme-accent);
+}
+
+.section-content {
+	min-width: 0;
+}
+
+.section-intro {
+	margin-bottom: 3.5rem;
+}
+
+.section-intro h2 {
+	max-width: 800px;
+	margin: 0;
+	font-size: clamp(3.5rem, 7vw, 7rem);
+	line-height: 0.85;
+	letter-spacing: -0.065em;
+	color: var(--gray-0);
+}
+
+.section-intro h2 em {
+	font-style: normal;
+	color: var(--theme-accent);
+}
+
+
+/* ==========================================================
+   PROFILE
+========================================================== */
+
+.profile-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 1.4fr) minmax(240px, 0.6fr);
+	gap: 5rem;
+	max-width: 1100px;
+}
+
+.profile-main {
+	max-width: 720px;
+}
+
+.profile-main p {
+	margin: 0 0 1.5rem;
+	font-size: 1.05rem;
+	line-height: 1.7;
+	color: var(--gray-400);
+}
+
+.profile-main .lead {
+	font-size: clamp(1.25rem, 2vw, 1.55rem);
+	line-height: 1.55;
+	color: var(--gray-200);
+}
+
+.profile-main strong {
+	color: var(--gray-0);
+	font-weight: 600;
+}
+
+.profile-sidebar {
+	display: flex;
+	flex-direction: column;
+	border-top: 1px solid var(--gray-700);
+}
+
+.profile-card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.45rem;
+	padding: 1rem 0;
+	border-bottom: 1px solid var(--gray-700);
+}
+
+.profile-card span {
+	font-family: var(--font-mono, monospace);
+	font-size: 0.55rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	color: var(--gray-500);
+}
+
+.profile-card strong {
+	font-size: 0.9rem;
+	line-height: 1.45;
+	color: var(--gray-100);
+}
+
+.statement {
+	position: relative;
+	max-width: 900px;
+	margin-top: 4rem;
+	padding: 2rem 2.5rem;
+	border-left: 3px solid var(--theme-accent);
+	background:
+		linear-gradient(
+			135deg,
+			rgba(224, 4, 4, 0.045),
+			rgba(255, 59, 59, 0.015)
+		);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.statement-mark {
+	position: absolute;
+	top: 0.4rem;
+	left: 0.75rem;
+	font-family: Georgia, serif;
+	font-size: 3rem;
+	line-height: 1;
+	color: var(--theme-accent);
+	opacity: 0.45;
+}
+
+.statement p {
+	margin: 0;
+	padding-left: 0.75rem;
+	font-size: clamp(1.25rem, 2.5vw, 1.8rem);
+	line-height: 1.35;
+	color: var(--gray-200);
+}
+
+.statement strong {
+	color: var(--theme-accent);
+}
+
+
+/* ==========================================================
+   TIMELINE
+========================================================== */
+
+.timeline {
+	display: flex;
+	flex-direction: column;
+	max-width: 1000px;
+	border-top: 1px solid var(--gray-700);
+}
+
+.timeline-item {
+	display: grid;
+	grid-template-columns: 100px minmax(0, 1fr);
+	gap: 2rem;
+	padding: 2rem 0;
+	border-bottom: 1px solid var(--gray-700);
+}
+
+.timeline-item.featured {
+	padding: 2.25rem 1.5rem;
+	border: 1px solid var(--gray-600);
+	border-radius: 1rem;
+	background: rgba(255, 255, 255, 0.025);
+}
+
+.timeline-year {
+	padding-top: 0.25rem;
+	font-family: var(--font-mono, monospace);
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	color: var(--gray-500);
+}
+
+.timeline-item.featured .timeline-year {
+	color: var(--theme-accent);
+}
+
+.timeline-content {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.timeline-tag {
+	width: fit-content;
+	margin-bottom: 0.25rem;
+	padding: 0.25rem 0.5rem;
+	border: 1px solid var(--theme-accent);
+	border-radius: 999px;
+	font-family: var(--font-mono, monospace);
+	font-size: 0.5rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	color: var(--theme-accent);
+}
+
+.timeline-content h3 {
+	margin: 0;
+	font-size: 1.3rem;
+	line-height: 1.3;
+	color: var(--gray-0);
+}
+
+.timeline-content p {
+	max-width: 700px;
+	margin: 0;
+	font-size: 0.95rem;
+	line-height: 1.65;
+	color: var(--gray-400);
+}
+
+.timeline-skills {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.45rem;
+	margin-top: 0.75rem;
+}
+
+.timeline-skills span {
+	padding: 0.35rem 0.6rem;
+	border: 1px solid var(--gray-700);
+	border-radius: 999px;
+	font-family: var(--font-mono, monospace);
+	font-size: 0.55rem;
+	letter-spacing: 0.04em;
+	color: var(--gray-400);
+}
+
+
+/* ==========================================================
+   EDUCATION
+========================================================== */
+
+.education {
+	display: flex;
+	flex-direction: column;
+	max-width: 1000px;
+	border-top: 1px solid var(--gray-700);
+}
+
+.education-item {
+	display: grid;
+	grid-template-columns: 90px minmax(0, 1fr);
+	gap: 2rem;
+	padding: 1.5rem 0;
+	border-bottom: 1px solid var(--gray-700);
+}
+
+.education-item.featured {
+	margin-bottom: 0;
+	padding: 2rem 1.5rem;
+	border: 1px solid var(--gray-600);
+	border-radius: 1rem;
+	background: rgba(255, 255, 255, 0.025);
+}
+
+.education-year {
+	padding-top: 0.2rem;
+	font-family: var(--font-mono, monospace);
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	color: var(--gray-500);
+}
+
+.education-item.featured .education-year {
+	color: var(--theme-accent);
+}
+
+.education-info {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+}
+
+.education-info strong {
+	font-size: 1.2rem;
+	line-height: 1.4;
+	color: var(--gray-0);
+}
+
+.education-info span {
+	font-size: 0.9rem;
+	color: var(--gray-400);
+}
+
+.education-info small {
+	margin-top: 0.15rem;
+	font-size: 0.8rem;
+	color: var(--gray-500);
+}
+
+.education-tag {
+	width: fit-content;
+	margin-bottom: 0.15rem;
+	padding: 0.25rem 0.55rem;
+	border: 1px solid var(--theme-accent);
+	border-radius: 999px;
+	font-family: var(--font-mono, monospace);
+	font-size: 0.5rem !important;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	color: var(--theme-accent) !important;
+}
+
+
+/* ==========================================================
+   SKILLS
+========================================================== */
+
+.skills {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.75rem;
+	max-width: 1100px;
+}
+
+.skill-group {
+	position: relative;
+	min-height: 175px;
+	padding: 1.5rem;
+	overflow: hidden;
+	border: 1px solid var(--gray-700);
+	border-radius: 1rem;
+	background: rgba(255, 255, 255, 0.02);
+	transition:
+		transform 0.2s ease,
+		border-color 0.2s ease,
+		background 0.2s ease;
+}
+
+.skill-group:hover {
+	transform: translateY(-3px);
+	border-color: var(--gray-500);
+	background: rgba(255, 255, 255, 0.035);
+}
+
+.skill-number {
+	position: absolute;
+	top: 1rem;
+	right: 1.25rem;
+	font-family: var(--font-mono, monospace);
+	font-size: 0.65rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	color: var(--gray-600);
+}
+
+.skill-group h3 {
+	margin: 0 0 0.7rem;
+	font-size: 1.05rem;
+	line-height: 1.3;
+	color: var(--gray-0);
+}
+
+.skill-group p {
+	max-width: 42ch;
+	margin: 0;
+	font-size: 0.9rem;
+	line-height: 1.6;
+	color: var(--gray-400);
+}
+
+.skill-group p strong {
+	color: var(--gray-200);
+}
+
+.featured-skill {
+	grid-column: span 2;
+	min-height: 210px;
+	padding: 2rem;
+	border-color: var(--gray-500);
+	background:
+		linear-gradient(
+			135deg,
+			rgba(224, 4, 4, 0.045),
+			rgba(255, 59, 59, 0.015)
+		);
+}
+
+.featured-skill h3 {
+	font-size: 1.4rem;
+}
+
+.featured-skill p {
+	max-width: 60ch;
+	font-size: 1rem;
+}
+
+.skill-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin-top: 1.25rem;
+}
+
+.skill-tags span {
+	padding: 0.4rem 0.65rem;
+	border: 1px solid var(--gray-700);
+	border-radius: 999px;
+	font-family: var(--font-mono, monospace);
+	font-size: 0.55rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	color: var(--gray-300);
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 50em) {
 
 	.about-page {
-		display: flex;
-		flex-direction: column;
-		gap: 10rem;
+		gap: 5rem;
 	}
 
 	.about {
-		display: flex;
-		flex-direction: column;
-		gap: 11rem;
+		gap: 6rem;
 	}
 
-
-	/* ==========================================================
-	   HERO
-	========================================================== */
-
 	.about-hero {
-		display: grid;
-		grid-template-columns: 1fr 0.85fr;
-		align-items: center;
-		gap: 5rem;
-		min-height: 70vh;
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 2.5rem;
+		min-height: auto;
 	}
 
 	.hero-copy {
-		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
+		gap: 1rem;
 	}
 
 	.eyebrow {
-		display: flex;
-		align-items: center;
-		gap: 0.7rem;
-		font-family: var(--font-mono, monospace);
-		font-size: 0.8rem;
-		font-weight: 700;
-		letter-spacing: 0.12em;
-		color: var(--gray-400);
-	}
-
-	.eyebrow-dot {
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		background: var(--theme-accent);
-		box-shadow: 0 0 12px var(--theme-accent);
-	}
-
-	.hero-image {
-		position: relative;
+		font-size: 0.6rem;
 	}
 
 	.hero-image img {
-		display: block;
-		width: 100%;
-		height: auto;
-		margin: 0;
-		border-radius: 2rem;
-		box-shadow: var(--shadow-md);
+		border-radius: 1rem;
 	}
 
 	.image-caption {
-		display: flex;
-		justify-content: space-between;
-		margin-top: 0.8rem;
-		font-family: var(--font-mono, monospace);
-		font-size: 0.65rem;
-		letter-spacing: 0.08em;
-		color: var(--gray-500);
+		font-size: 0.5rem;
 	}
 
+	.hero-focus {
+		grid-template-columns: 1fr;
+	}
 
-	/* ==========================================================
-	   SECTION STRUCTURE
-	========================================================== */
+	.focus-item {
+		border-right: none !important;
+		border-bottom: 1px solid var(--gray-800) !important;
+	}
+
+	.focus-item:last-child {
+		border-bottom: none !important;
+	}
 
 	.about-section {
-		display: grid;
-		grid-template-columns: 180px minmax(0, 1fr);
-		gap: 4rem;
-		align-items: start;
+		grid-template-columns: 1fr;
+		gap: 2rem;
 	}
 
 	.section-marker {
-		position: sticky;
-		top: 3rem;
-		display: flex;
-		flex-direction: column;
-		gap: 0.7rem;
+		position: static;
+		display: grid;
+		grid-template-columns: auto 1fr;
+		grid-template-rows: auto auto;
+		column-gap: 0.8rem;
+		row-gap: 0.25rem;
 	}
 
 	.section-number {
-		font-family: var(--font-mono, monospace);
-		font-size: 3rem;
-		font-weight: 700;
-		line-height: 1;
-		letter-spacing: -0.08em;
-		color: var(--theme-accent);
+		grid-row: span 2;
+		font-size: 2rem;
 	}
 
 	.section-label {
-		font-family: var(--font-mono, monospace);
-		font-size: 0.85rem;
-		font-weight: 700;
-		letter-spacing: 0.12em;
-		color: var(--gray-200);
+		font-size: 0.7rem;
+		align-self: end;
 	}
 
 	.section-marker::after {
-		content: '';
-		width: 3rem;
-		height: 2px;
-		margin-top: 0.2rem;
-		background: var(--theme-accent);
+		grid-column: 2;
+		width: 100%;
+		height: 1px;
 	}
 
-	.section-content {
-		min-width: 0;
+	.section-intro {
+		margin-bottom: 2.5rem;
+	}
+
+	.section-intro h2 {
+		font-size: clamp(3rem, 15vw, 5rem);
+	}
+
+	.profile-grid {
+		grid-template-columns: 1fr;
+		gap: 2.5rem;
+	}
+
+	.profile-main .lead {
+		font-size: 1.2rem;
+	}
+
+	.profile-main p {
+		font-size: 0.95rem;
+	}
+
+	.statement {
+		margin-top: 3rem;
+		padding: 1.75rem 1.25rem;
+	}
+
+	.statement p {
+		padding-left: 0.5rem;
+		font-size: 1.25rem;
+	}
+
+	.timeline-item {
+		grid-template-columns: 55px minmax(0, 1fr);
+		gap: 1rem;
+		padding: 1.5rem 0;
+	}
+
+	.timeline-item.featured {
+		padding: 1.5rem 1rem;
+	}
+
+	.timeline-content h3 {
+		font-size: 1.05rem;
+	}
+
+	.timeline-content p {
+		font-size: 0.85rem;
+	}
+
+	.education-item {
+		grid-template-columns: 55px minmax(0, 1fr);
+		gap: 1rem;
+		padding: 1.25rem 0;
+	}
+
+	.education-item.featured {
+		padding: 1.5rem 1rem;
+	}
+
+	.education-info strong {
+		font-size: 1rem;
+	}
+
+	.education-info span {
+		font-size: 0.8rem;
+	}
+
+	.skills {
+		grid-template-columns: 1fr;
+	}
+
+	.featured-skill {
+		grid-column: span 1;
+		min-height: auto;
+		padding: 1.5rem;
+	}
+
+	.skill-group {
+		min-height: auto;
+		padding: 1.35rem;
+	}
+
+}
+
+
+/* ==========================================================
+   LARGE SCREENS
+========================================================== */
+
+@media (min-width: 70em) {
+
+	.about {
+		gap: 11rem;
+	}
+
+	.about-section {
+		grid-template-columns: 210px minmax(0, 1fr);
+		gap: 5rem;
+	}
+
+	.about-hero {
+		gap: 7rem;
 	}
 
 	.section-intro {
 		margin-bottom: 4rem;
 	}
 
-	.section-intro h2 {
-		max-width: 800px;
-		margin: 0;
-		font-size: clamp(3.5rem, 7vw, 7rem);
-		line-height: 0.85;
-		letter-spacing: -0.065em;
-		color: var(--gray-0);
-	}
-
-	.section-intro h2 em {
-		font-style: normal;
-		color: var(--theme-accent);
-	}
-
-
-	/* ==========================================================
-	   BACKGROUND
-	========================================================== */
-
-	.background-content {
-		max-width: 900px;
-	}
-
-	.background-content p {
-		margin: 0 0 2rem;
-		font-size: 5.08rem;
-		line-height: 1.85;
-		color: var(--gray-400);
-	}
-
-	.background-content strong {
-		color: var(--gray-0);
-		font-weight: 600;
-	}
-
-	.background-content .lead {
-		max-width: 800px;
-		margin-bottom: 4rem;
-		font-size: clamp(1.3rem, 2vw, 1.7rem);
-		line-height: 1.6;
-		color: var(--gray-200);
-	}
-
-	.story {
-		max-width: 780px;
-	}
-
-	.statement {
-		position: relative;
-		margin-top: 5rem;
-		padding: 2.5rem 3rem;
-		border-left: 3px solid var(--gray-800);
-		background: linear-gradient( 135deg, rgba(224,4,4,0.045), rgba(255,59,59,0.015) );
-		box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-		transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; 
-	}
-
-	.statement-mark {
-		position: absolute;
-		top: 0.5rem;
-		left: 1rem;
-		font-family: Georgia, serif;
-		font-size: 4rem;
-		line-height: 1;
-		color: var(--theme-accent);
-		opacity: 0.5;
-	}
-
-	.statement p {
-		margin: 0;
-		padding-left: 1rem;
-		font-size: clamp(1.3rem, 2.5vw, 2rem);
-		line-height: 1.35;
-		
-	}
-
-	.statement strong {
-		color: var(--theme-accent);
-	}
-
-
-	/* ==========================================================
-	   EDUCATION
-	========================================================== */
-
-	.education {
-		display: flex;
-		flex-direction: column;
-		max-width: 900px;
-		background: linear-gradient( 135deg, rgba(224,4,4,0.045), rgba(255,59,59,0.015) );
-		box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-		font-family: var(--font-brand); font-size: 0.95rem; font-weight: 800; line-height: 1.3;
-		transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; 
-	}
-
-	.education-item {
-		display: grid;
-		grid-template-columns: 90px minmax(0, 1fr);
-		gap: 2rem;
-		padding: 1.75rem 0;
-		border-top: 1px solid var(--gray-700);
-	}
-
-	.education-item:last-child {
-		border-bottom: 1px solid var(--gray-700);
-	}
-
-	.education-year {
-		padding-top: 0.2rem;
-		font-family: var(--font-mono, monospace);
-		font-size: 0.8rem;
-		font-weight: 700;
-		letter-spacing: 0.08em;
-		color: var(--gray-500);
-	}
-
-	.education-info {
-		display: flex;
-		flex-direction: column;
-		gap: 0.4rem;
-	}
-
-	.education-info strong {
-		font-size: 1.25rem;
-		line-height: 1.4;
-		color: var(--gray-0);
-	}
-
-	.education-info span {
-		font-size: 0.95rem;
-		color: var(--gray-400);
-	}
-
-	.education-info small {
-		margin-top: 0.25rem;
-		font-size: 0.85rem;
-		color: var(--gray-500);
-	}
-
-	.education-tag {
-		width: fit-content;
-		padding: 0.3rem 0.6rem;
-		border: 1px solid var(--theme-accent);
-		border-radius: 999px;
-		font-family: var(--font-mono, monospace);
-		font-size: 0.55rem !important;
-		font-weight: 700;
-		letter-spacing: 0.12em;
-		color: var(--theme-accent) !important;
-	}
-
-	.education-item.featured {
-		padding: 2rem 1.5rem;
-		border: 1px solid var(--gray-600);
-		border-radius: 1rem;
-		background: rgba(255, 255, 255, 0.025);
-	}
-
-	.education-item.featured .education-year {
-		color: var(--theme-accent);
-	}
-
-
-	/* ==========================================================
-	   SKILLS
-	========================================================== */
-
-	.skills {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 0.75rem;
-		background: linear-gradient( 135deg, rgba(224,4,4,0.045), rgba(255,59,59,0.015) );
-		box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-		font-family: var(--font-brand); font-size: 0.95rem; font-weight: 800; line-height: 1.3;
-		transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; 
-	}
-
-	.skill-group {
-		position: relative;
-		min-height: 170px;
-		padding: 1.75rem;
-		overflow: hidden;
-		border: 1px solid var(--gray-700);
-		border-radius: 1rem;
-		background: rgba(255, 255, 255, 0.02);
-		transition:
-			transform 0.2s ease,
-			border-color 0.2s ease;
-	}
-
-	.skill-group:hover {
-		transform: translateY(-4px);
-		border-color: var(--gray-500);
-	}
-
-	.skill-number {
-		position: absolute;
-		top: 1rem;
-		right: 1.25rem;
-		font-family: var(--font-mono, monospace);
-		font-size: 0.7rem;
-		font-weight: 700;
-		letter-spacing: 0.1em;
-		color: var(--gray-600);
-	}
-
-	.skill-group h3 {
-		margin: 0 0 0.8rem;
-		font-size: 1.1rem;
-		line-height: 1.3;
-		color: var(--gray-0);
-	}
-
-	.skill-group p {
-		max-width: 38ch;
-		margin: 0;
-		font-size: 0.95rem;
-		line-height: 1.65;
-		color: var(--gray-400);
-	}
-
-	.featured-skill {
-		grid-column: span 2;
-		min-height: 190px;
-		padding: 2rem;
-		border-color: var(--gray-500);
-	}
-
-	.featured-skill h3 {
-		font-size: 1.4rem;
-	}
-
-	.featured-skill p {
-		max-width: 55ch;
-		font-size: 1rem;
-	}
-
-
-	/* ==========================================================
-	   MOBILE
-	========================================================== */
-
-	@media (max-width: 50em) {
-
-		.about-page {
-			gap: 5rem;
-		}
-
-		.about {
-			gap: 7rem;
-		}
-
-		.about-hero {
-			display: flex;
-			flex-direction: column;
-			align-items: stretch;
-			gap: 2.5rem;
-			min-height: auto;
-		}
-
-		.hero-copy {
-			gap: 1rem;
-		}
-
-		.eyebrow {
-			font-size: 0.7rem;
-		}
-
-		.hero-image img {
-			border-radius: 1rem;
-		}
-
-		.image-caption {
-			font-size: 0.55rem;
-		}
-
-		.about-section {
-			grid-template-columns: 1fr;
-			gap: 2rem;
-		}
-
-		.section-marker {
-			position: static;
-			display: grid;
-			grid-template-columns: auto 1fr;
-			grid-template-rows: auto auto;
-			column-gap: 0.8rem;
-			row-gap: 0.25rem;
-		}
-
-		.section-number {
-			grid-row: span 2;
-			font-size: 2rem;
-		}
-
-		.section-label {
-			font-size: 0.8rem;
-			align-self: end;
-		}
-
-		.section-marker::after {
-			grid-column: 2;
-			width: 100%;
-			height: 1px;
-		}
-
-		.section-intro {
-			margin-bottom: 2.5rem;
-		}
-
-		.section-intro h2 {
-			font-size: clamp(3rem, 15vw, 5rem);
-		}
-
-		.background-content .lead {
-			margin-bottom: 2.5rem;
-			font-size: 1.2rem;
-		}
-
-		.background-content p {
-			font-size: 1rem;
-			line-height: 1.75;
-			margin-bottom: 1.5rem;
-		}
-
-		.statement {
-			margin-top: 3rem;
-			padding: 2rem 1.5rem;
-		}
-
-		.statement p {
-			padding-left: 0.5rem;
-			font-size: 1.3rem;
-		}
-
-		.education-item {
-			grid-template-columns: 60px minmax(0, 1fr);
-			gap: 1rem;
-			padding: 1.25rem 0;
-		}
-
-		.education-item.featured {
-			padding: 1.5rem 1rem;
-		}
-
-		.education-info strong {
-			font-size: 1rem;
-		}
-
-		.skills {
-			grid-template-columns: 1fr;
-			background: linear-gradient( 135deg, rgba(224,4,4,0.045), rgba(255,59,59,0.015) );
-		box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-		font-family: var(--font-brand); font-size: 0.95rem; font-weight: 800; line-height: 1.3;
-		transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; 
-		}
-
-		.featured-skill {
-			grid-column: span 1;
-			min-height: auto;
-		}
-
-		.skill-group {
-			min-height: auto;
-			padding: 1.4rem;
-		}
-	}
-
-
-	/* ==========================================================
-	   LARGE SCREENS
-	========================================================== */
-
-	@media (min-width: 70em) {
-
-		.about {
-			gap: 13rem;
-		}
-
-		.about-section {
-			grid-template-columns: 210px minmax(0, 1fr);
-			gap: 5rem;
-		}
-
-		.about-hero {
-			gap: 7rem;
-		}
-
-		.section-intro {
-			margin-bottom: 5rem;
-		}
-
-	}
+}
 
 </style>
