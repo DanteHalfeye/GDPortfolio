@@ -1,10 +1,15 @@
 ---
 title: Cosmic Collision
+
 publishDate: 2024-11-12 00:00:00
+
 img: /assets/POSTER_COSMICCOLLITION.png
+
 img_alt: Cosmic Collision
+
 description: >
   A fast-paced space roguelike where players survive increasingly difficult enemy encounters using movement-based combat, a powerful dash attack, and item-based stat progression.
+
 tags:
   - Unity
   - Game Design
@@ -12,19 +17,40 @@ tags:
   - Roguelike
   - Space Combat
   - C#
+
+contributions:
+  - Physics-Based Player Movement
+  - Dash-Based Combat System
+  - Auto-Aim Targeting System
+  - Modular Enemy Pattern Spawning
+  - Randomized Encounter Generation
+  - Sequential Enemy Spawning
+  - Dynamic Difficulty Scaling
+  - Event-Driven Room Clearing
+  - Player Stat & Upgrade Architecture
+  - Item System Integration
+  - Gameplay Progression Design
+  - Combat Balancing
+
 role: Game Designer & Gameplay Programmer
+
 engine: Unity
+
 language: C#
+
 projectType: Space Roguelike
+
 playUrl: https://play.unity.com/en/games/38bb20eb-6e65-4b39-9ab6-7c4c4c0ca0fe/cosmic-build
+
 heroVideo: /assets/imagen_2026-08-29_233159002.png
+
 featuredImages:
   - src: /assets/imagen_2026-08-29_233159002.png
     alt: Cosmic Collision gameplay
+
 gallery:
   - /assets/imagen_2026-08-29_233159002.png
 ---
-
 ## Overview
 
 **Cosmic Collision** is a fast-paced space roguelike focused on movement-based combat, risk and reward, and incremental progression.

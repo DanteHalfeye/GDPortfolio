@@ -17,9 +17,9 @@ const work = defineCollection({
 
         description: z.string(),
 
-        tags: z.array(z.string()).default([]),
-
         contributions: z.array(z.string()).default([]),
+
+        tags: z.array(z.string()).default([]),
 
         role: z.string().optional(),
         engine: z.string().optional(),

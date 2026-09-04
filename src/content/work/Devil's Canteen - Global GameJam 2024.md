@@ -1,10 +1,15 @@
 ---
 title: Devil's Canteen
+
 publishDate: 2024-01-01 00:00:00
+
 img: /assets/POSTER.png
+
 img_alt: Devil's Canteen
+
 description: >
   — Global Game Jam 2024 — A walking simulator murder mystery inspired by Colombian folklore and the song "La Pelea con el Diablo" by Octavio Mesa. The project focused on data-driven NPC systems, dynamic character states, procedural population, and gameplay programming.
+
 tags:
   - Unity
   - C#
@@ -12,20 +17,41 @@ tags:
   - Systems Programming
   - Data-Driven Design
   - Global Game Jam
+
+contributions:
+  - Data-Driven NPC Architecture
+  - Scriptable Object Character System
+  - Procedural NPC Population
+  - Dynamic Character State Management
+  - Randomized Devil & Victim System
+  - Shared Character Data Architecture
+  - NPC Interaction & Dialogue Systems
+  - Dynamic Investigation Mechanics
+  - Character Death & Win/Lose States
+  - Modular Population Management
+  - Randomized NPC Movement
+  - Rapid Gameplay Prototyping
+
 role: Gameplay Programmer & Game Designer
+
 engine: Unity
+
 language: C#
+
 projectType: Walking Simulator / Murder Mystery
+
 playUrl: https://globalgamejam.org/games/2024/la-cantina-del-diablo-6
+
 heroVideo: /assets/SC_CantinaDelDiablo.mp4
+
 featuredImages:
   - src: /assets/POSTER.png
     alt: Devil's Canteen poster
+
 gallery:
   - /assets/POSTER.png
   - /assets/SC_CantinaDelDiablo.mp4
 ---
-
 ## Overview
 
 **Devil's Canteen** was developed during **Global Game Jam 2024** as a two-day walking simulator and murder mystery inspired by Colombian folklore and culture.

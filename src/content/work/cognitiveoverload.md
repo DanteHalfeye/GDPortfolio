@@ -13,6 +13,14 @@ tags:
   - Game Design
   - Experimental Game Design
   - Player Testing
+contributions:
+  - Rigidbody2D Movement Variable Jump
+  - Coyote Time, Jump Buffering
+  - Wall Sliding
+  - Divided-Attention Level Design
+  - Player Testing & Iteration
+  - Rapid Gameplay Prototyping
+
 role: Gameplay Programmer, Level Designer & Director
 engine: Unity
 language: C#
