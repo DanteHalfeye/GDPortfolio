@@ -1,10 +1,15 @@
 ---
 title: Trial of the Gods
+
 publishDate: 2026-06-16
+
 img: /Trial.png
+
 img_alt: Trial of the Gods — Global Game Jam 2026
+
 description: >
   — Global Game Jam 2026 — A 3D action-platformer created during Global Game Jam 2026. Players use divine masks to unlock movement abilities and overcome environmental challenges across an ancient temple.
+
 tags:
   - Unity
   - C#
@@ -13,15 +18,31 @@ tags:
   - Game Architecture
   - Global Game Jam
   - 3D Platformer
+
+contributions:
+  - Item-Based Ability System
+  - Player Movement & Platforming Systems
+  - Ability Unlock System
+  - Environmental Interaction Systems
+  - Gameplay Architecture
+  - Level Systems Integration
+
 role: Game Designer & Gameplay Programmer
+
 engine: Unity
+
 language: C#
+
 projectType: 3D Action-Platformer
+
 playUrl: https://drive.google.com/file/d/19wohiq5YNEYKWmGf8zN72xFwRFQVRcZk/view?usp=sharing
+
 heroVideo: /assets/2026-02-10 19-56-43.mp4
+
 featuredImages:
   - src: /icon_kukul_on.png
     alt: Trial of the Gods title artwork
+
 gallery:
   - /icon_kukul_on.png
   - /assets/2026-02-10 19-56-43.mp4

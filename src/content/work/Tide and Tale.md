@@ -18,6 +18,14 @@ tags:
   - Tools Programming
   - Systems Integration
 
+contributions:
+  - Player Movement & Platforming Systems
+  - Projectile Complemented Movement
+  - Enemy Interaction Systems
+  - Gameplay Tools Programming
+  - Systems Integration
+  - Technical Level Design Support
+
 role: Gameplay Programmer
 
 engine: Unity

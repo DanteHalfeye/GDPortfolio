@@ -1,10 +1,15 @@
 ---
 title: Other Coding Studies
+
 publishDate: 2020-08-29 00:00:00
+
 img: /Forces.jpg
+
 img_alt: GPU particle force simulation
+
 description: >
   A collection of programming and simulation studies exploring emergent behavior, procedural systems, physics, forces, and GPU-based particle simulations using p5.js and Three.js.
+
 tags:
   - Three.js
   - WebGPU
@@ -13,8 +18,23 @@ tags:
   - Simulation
   - Procedural Generation
   - Gameplay Programming
----
 
+contributions:
+  - GPU-Based Particle Simulation
+  - Physics & Force Systems
+  - Procedural Systems
+  - Emergent Behavior Experiments
+  - Real-Time Simulation
+  - Creative Coding Prototypes
+
+role: Programmer
+
+engine: Three.js / p5.js
+
+language: JavaScript
+
+projectType: Programming & Simulation Studies
+---
 # Other Coding Studies
 
 A collection of experimental programming projects focused on **simulations, procedural systems, emergent behavior, interactive physics, and GPU programming**.

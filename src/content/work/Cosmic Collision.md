@@ -20,17 +20,12 @@ tags:
 
 contributions:
   - Physics-Based Player Movement
-  - Dash-Based Combat System
   - Auto-Aim Targeting System
   - Modular Enemy Pattern Spawning
   - Randomized Encounter Generation
-  - Sequential Enemy Spawning
   - Dynamic Difficulty Scaling
-  - Event-Driven Room Clearing
   - Player Stat & Upgrade Architecture
-  - Item System Integration
-  - Gameplay Progression Design
-  - Combat Balancing
+
 
 role: Game Designer & Gameplay Programmer
 

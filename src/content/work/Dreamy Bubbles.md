@@ -1,10 +1,15 @@
 ---
 title: Dreamy Bubbles
+
 publishDate: 2025-02-02 00:00:00
+
 img: /assets/LOGO.png
+
 img_alt: Dreamy Bubbles gameplay
+
 description: >
   — Global Game Jam 2025 — A first-person puzzle game where players use bubbles to manipulate objects and solve environmental puzzles through synchronized interactions.
+
 tags:
   - Unity
   - C#
@@ -13,16 +18,31 @@ tags:
   - First-Person
   - Puzzle
   - Global Game Jam
+
+contributions:
+  - Projectile-Based Interaction System
+  - Environmental Puzzle Systems
+  - Object Manipulation Mechanics
+  - Synchronized Interaction System
+  - First-Person Gameplay Systems
+  - Gameplay Prototyping
+
 role: Gameplay Programmer
+
 engine: Unity
+
 language: C#
+
 projectType: First-Person Puzzle Game
+
 heroVideo: /assets/JACKYVER2.png
+
 featuredImages:
   - src: /assets/JACKYVER2.png
-    alt: Dreamy Bubbles logo
+    alt: Dreamy Bubbles gameplay
   - src: /assets/LOGOVER2.png
     alt: Dreamy Bubbles logo variation
+
 gallery:
   - /assets/JACKYVER2.png
   - /assets/LOGOVER2.png
@@ -31,7 +51,6 @@ gallery:
   - /assets/CARA1.png
   - /assets/CARA2.png
 ---
-
 # Dreamy Bubbles
 
 **Dreamy Bubbles** is a first-person puzzle game created for **Global Game Jam 2025**.

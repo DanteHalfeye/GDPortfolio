@@ -1,10 +1,15 @@
 ---
 title: Go On!
+
 publishDate: 2022-11-01 00:00:00
+
 img: /assets/poster1.png
+
 img_alt: Go On! bullet-hell platformer
+
 description: >
   My first major game project, Go On! is a bullet-hell platformer about Max, a university student navigating the stresses of academic life. Developed in Unity as my introduction to C# gameplay programming, the project focuses on responsive movement, projectile systems, boss encounters, and fast-paced evasion.
+
 tags:
   - Unity
   - C#
@@ -12,16 +17,31 @@ tags:
   - Bullet-Hell
   - Player Movement
   - Game Design
+
+contributions:
+  - Responsive Player Movement
+  - Projectile & Bullet Systems
+  - Boss Encounter Systems
+  - Fast-Paced Evasion Mechanics
+  - Basic Enemy AI
+  - Timed Based Boss fights
+
 role: Gameplay Programmer
+
 engine: Unity
+
 language: C#
+
 projectType: Bullet-Hell Platformer
+
 heroVideo: /assets/GOON_Gameplay_small.mp4
+
 featuredImages:
   - src: /assets/boss1-Recovered5.png
     alt: Go On! academic boss fight
   - src: /assets/fondopp.png
     alt: Go On! social pressure boss fight
+
 gallery:
   - /assets/boss1-Recovered5.png
   - /assets/fondopp.png

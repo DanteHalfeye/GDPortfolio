@@ -1,5 +1,4 @@
 ---
-
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -24,7 +23,7 @@ function resolveAssetPath(path: string | undefined | null) {
     }
 
     const cleanPath = path
-        .replace(/^(?:\.\.\/|\.\/)+/, '')
+        .replace(/^(?:\.\.\/|\.)+/, '')
         .replace(/^public\//, '')
         .replace(/^\/+/, '');
 
@@ -38,7 +37,6 @@ const heroVideo = data.heroVideo
 const featuredImages = data.featuredImages ?? [];
 const gallery = data.gallery ?? [];
 const playUrl = data.playUrl;
-
 ---
 
 <div class="project-page">
@@ -144,65 +142,7 @@ const playUrl = data.playUrl;
 
 
     <!-- =========================================
-         FEATURED IMAGES
-    ========================================== -->
-
-    {featuredImages.length > 0 && (
-        <section class="featured-images">
-
-            {featuredImages.map((image, index) => (
-                <figure class={`featured-image featured-${index + 1}`}>
-
-                    <button
-                        class="image-lightbox-trigger"
-                        type="button"
-                        aria-label={`Enlarge ${image.alt}`}
-                        data-lightbox-src={resolveAssetPath(image.src)}
-                        data-lightbox-alt={image.alt}
-                    >
-                        <img
-                            src={resolveAssetPath(image.src)}
-                            alt={image.alt}
-                            loading="lazy"
-                        />
-                    </button>
-
-                    <figcaption>
-                        <span>0{index + 1}</span>
-                        {image.alt}
-                    </figcaption>
-
-                </figure>
-            ))}
-
-        </section>
-    )}
-
-
-    <!-- =========================================
-         CONTENT
-    ========================================== -->
-
-    <main class="project-content">
-
-        <div class="content-inner">
-
-            <div class="content-marker">
-                <span>CASE STUDY</span>
-                <div></div>
-            </div>
-
-            <article class="markdown-content">
-                <slot />
-            </article>
-
-        </div>
-
-    </main>
-
-
-    <!-- =========================================
-         GALLERY
+         PROJECT GALLERY
     ========================================== -->
 
     {gallery.length > 0 && (
@@ -212,6 +152,7 @@ const playUrl = data.playUrl;
 
                 <div class="gallery-title">
                     <span class="gallery-index">05</span>
+
                     <span class="gallery-label">
                         PROJECT GALLERY
                     </span>
@@ -246,17 +187,22 @@ const playUrl = data.playUrl;
                         /\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(src);
 
                     return (
+
                         <figure class="gallery-item">
 
                             {isVideo ? (
 
-                                <video
-                                    src={resolvedSrc}
-                                    controls
-                                    playsinline
-                                    preload="metadata"
-                                    aria-label={alt}
-                                />
+                                <div class="gallery-media gallery-video">
+
+                                    <video
+                                        src={resolvedSrc}
+                                        controls
+                                        playsinline
+                                        preload="metadata"
+                                        aria-label={alt}
+                                    />
+
+                                </div>
 
                             ) : (
 
@@ -267,18 +213,107 @@ const playUrl = data.playUrl;
                                     data-lightbox-src={resolvedSrc}
                                     data-lightbox-alt={alt}
                                 >
+
                                     <img
                                         src={resolvedSrc}
                                         alt={alt}
                                         loading="lazy"
                                     />
+
                                 </button>
 
                             )}
 
                         </figure>
+
                     );
+
                 })}
+
+            </div>
+
+        </section>
+    )}
+
+
+    <!-- =========================================
+         CASE STUDY CONTENT
+    ========================================== -->
+
+    <main class="project-content">
+
+        <div class="content-inner">
+
+            <div class="content-marker">
+                <span>CASE STUDY</span>
+                <div></div>
+            </div>
+
+            <article class="markdown-content">
+                <slot />
+            </article>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================
+         FEATURED IMAGES
+    ========================================== -->
+
+    {featuredImages.length > 0 && (
+        <section class="featured-images">
+
+            <div class="featured-header">
+
+                <div class="featured-title">
+                    <span class="featured-index">06</span>
+
+                    <span class="featured-label">
+                        FEATURED IMAGES
+                    </span>
+                </div>
+
+                <div class="featured-line"></div>
+
+            </div>
+
+            <div class="featured-grid">
+
+                {featuredImages.map((image, index) => (
+
+                    <figure
+                        class={`featured-image featured-${index + 1}`}
+                    >
+
+                        <button
+                            class="image-lightbox-trigger"
+                            type="button"
+                            aria-label={`Enlarge ${image.alt}`}
+                            data-lightbox-src={resolveAssetPath(image.src)}
+                            data-lightbox-alt={image.alt}
+                        >
+
+                            <img
+                                src={resolveAssetPath(image.src)}
+                                alt={image.alt}
+                                loading="lazy"
+                            />
+
+                        </button>
+
+                        <figcaption>
+                            <span>
+                                {String(index + 1).padStart(2, '0')}
+                            </span>
+
+                            {image.alt}
+                        </figcaption>
+
+                    </figure>
+
+                ))}
 
             </div>
 
@@ -337,7 +372,7 @@ const playUrl = data.playUrl;
 
     function cleanPath(url: string) {
         return url
-            .replace(/^(?:\.\.\/|\.\/)+/, '')
+            .replace(/^(?:\.\.\/|\.)+/, '')
             .replace(/^public\//, '')
             .replace(/^\/+/, '');
     }
@@ -392,7 +427,9 @@ const playUrl = data.playUrl;
                 items.length <= 12
             ) {
 
-                list.classList.add('feature-list');
+                list.classList.add(
+                    'feature-list'
+                );
 
                 items.forEach((item, index) => {
 
@@ -531,9 +568,7 @@ const playUrl = data.playUrl;
                 '';
 
             setTimeout(() => {
-
                 lightboxImage.src = '';
-
             }, 250);
 
         }
@@ -611,7 +646,7 @@ const playUrl = data.playUrl;
 
 /* ==================================================
    ROOT
-   ================================================== */
+================================================== */
 
 .project-page {
     width: min(1500px, 94vw);
@@ -621,7 +656,7 @@ const playUrl = data.playUrl;
 
 /* ==================================================
    HERO
-   ================================================== */
+================================================== */
 
 .hero {
     position: relative;
@@ -632,11 +667,6 @@ const playUrl = data.playUrl;
     border: 1px solid var(--gray-800);
     background: #080808;
     isolation: isolate;
-
-    /*
-     * Makes this element the sizing container
-     * for the title's cqw units.
-     */
     container-type: inline-size;
 }
 
@@ -675,9 +705,7 @@ const playUrl = data.playUrl;
 .hero-scanline {
     position: absolute;
     inset: 0;
-
     pointer-events: none;
-
     opacity: 0.08;
 
     background:
@@ -699,18 +727,16 @@ const playUrl = data.playUrl;
     align-items: flex-start;
 
     min-height: 620px;
-
     width: 100%;
     max-width: none;
     min-width: 0;
 
-    padding: clamp(2rem, 6vw, 6rem);
+    padding: clamp(
+        2rem,
+        6vw,
+        6rem
+    );
 
-    /*
-     * Important:
-     * this prevents the oversized title from
-     * increasing the width of the flex container.
-     */
     overflow: hidden;
 }
 
@@ -732,7 +758,6 @@ const playUrl = data.playUrl;
 .status-dot {
     width: 8px;
     height: 8px;
-
     flex-shrink: 0;
 
     border-radius: 50%;
@@ -740,56 +765,42 @@ const playUrl = data.playUrl;
     background: var(--accent-dark);
 
     box-shadow:
-        0 0 14px
-        var(--accent-dark);
+        0 0 14px var(--accent-dark);
 }
 
 
 /* ==================================================
    HERO TITLE
-   ================================================== */
+================================================== */
 
 .hero h1 {
     display: block;
 
-    margin: 0;
-
-    /*
-     * Full available width.
-     */
     width: 100%;
     max-width: 100%;
     min-width: 0;
 
-    /*
-     * NEVER wrap.
-     */
+    margin: 0;
+
     white-space: nowrap;
 
-    /*
-     * cqw = 1% of the actual hero width.
-     *
-     * This is the important change from vw.
-     * The title scales according to the hero itself.
-     */
-    font-size: clamp(
-        2.5rem,
-        8cqw,
-        7rem
-    );
+    font-size:
+        clamp(
+            2.5rem,
+            8cqw,
+            7rem
+        );
 
     line-height: 0.9;
     letter-spacing: -0.055em;
 
-    /*
-     * Prevent accidental horizontal overflow.
-     */
     overflow: hidden;
 }
 
 .hero-tags {
     display: flex;
     flex-wrap: wrap;
+
     gap: 0.5rem;
 
     margin-top: 1.75rem;
@@ -852,8 +863,11 @@ const playUrl = data.playUrl;
 
     border-radius: 0.8rem;
 
-    background: var(--accent-dark);
-    color: var(--gray-0);
+    background:
+        var(--accent-dark);
+
+    color:
+        var(--gray-0);
 
     border:
         1px solid
@@ -893,7 +907,7 @@ const playUrl = data.playUrl;
 
 /* ==================================================
    CORNER UI
-   ================================================== */
+================================================== */
 
 .hero-corner {
     position: absolute;
@@ -942,7 +956,7 @@ const playUrl = data.playUrl;
 
 /* ==================================================
    METADATA
-   ================================================== */
+================================================== */
 
 .metadata {
     display: grid;
@@ -992,7 +1006,8 @@ const playUrl = data.playUrl;
     font-size: 0.65rem;
     font-weight: 900;
 
-    color: var(--accent-dark);
+    color:
+        var(--accent-dark);
 }
 
 .meta-label {
@@ -1004,7 +1019,8 @@ const playUrl = data.playUrl;
     font-weight: 900;
     letter-spacing: 0.15em;
 
-    color: var(--gray-500);
+    color:
+        var(--gray-500);
 }
 
 .meta-item strong {
@@ -1019,98 +1035,243 @@ const playUrl = data.playUrl;
 
 
 /* ==================================================
-   FEATURED IMAGES
-   ================================================== */
+   PROJECT GALLERY
+   BEHANCE-STYLE PRESENTATION
+================================================== */
 
-.featured-images {
-    display: grid;
+.project-gallery {
+    width: min(1300px, 100%);
 
-    grid-template-columns:
-        1.35fr 1fr;
+    margin:
+        clamp(4rem, 8vw, 7rem)
+        auto
+        0;
+
+    padding:
+        0 0
+        clamp(2rem, 4vw, 4rem);
+}
+
+.gallery-header {
+    display: flex;
+    align-items: center;
 
     gap: 1rem;
 
-    margin-top: 1rem;
+    margin-bottom:
+        clamp(2rem, 4vw, 4rem);
 }
 
-.featured-image {
+.gallery-title {
+    display: flex;
+    align-items: center;
+
+    gap: 0.75rem;
+
+    flex-shrink: 0;
+}
+
+.gallery-index {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2rem;
+    height: 2rem;
+
+    border-radius: 0.5rem;
+
+    background:
+        var(--accent-dark);
+
+    color:
+        var(--gray-0);
+
+    font-family: var(--font-brand);
+    font-size: 0.65rem;
+    font-weight: 900;
+}
+
+.gallery-label {
+    font-family: var(--font-brand);
+
+    font-size: 0.72rem;
+    font-weight: 900;
+
+    letter-spacing: 0.2em;
+
+    color:
+        var(--gray-300);
+
+    white-space: nowrap;
+}
+
+.gallery-line {
+    flex: 1;
+
+    height: 1px;
+
+    background:
+        var(--gray-800);
+}
+
+.gallery-hint {
+    flex-shrink: 0;
+
+    font-family: var(--font-brand);
+
+    font-size: 0.58rem;
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+
+    color:
+        var(--gray-600);
+
+    white-space: nowrap;
+}
+
+
+/*
+ * The important Behance-style change:
+ *
+ * The grid does NOT force every image into
+ * the same height.
+ *
+ * Each item keeps its natural aspect ratio.
+ */
+
+.gallery-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap:
+        clamp(
+            2rem,
+            5vw,
+            5rem
+        );
+
+    width: 100%;
+}
+
+
+/*
+ * Each gallery item is visually restrained.
+ *
+ * Large screenshots can still be large,
+ * but they never become enormous.
+ */
+
+.gallery-item {
     position: relative;
+
+    width: min(
+        1100px,
+        100%
+    );
 
     margin: 0;
 
     overflow: hidden;
 
-    border-radius: 1.5rem;
-
     border:
         1px solid
         var(--gray-800);
 
-    background: #090909;
+    border-radius: 1.25rem;
+
+    background:
+        #050505;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,0.16);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
-.featured-image:first-child {
-    grid-row: span 2;
+.gallery-item:hover {
+    transform:
+        translateY(-4px);
+
+    border-color:
+        var(--gray-700);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,0.28);
 }
 
-.featured-image img {
+
+/*
+ * Images are never cropped.
+ */
+
+.gallery-item img {
     display: block;
 
     width: 100%;
-    height: 100%;
+    height: auto;
 
-    min-height: 300px;
+    max-width: 100%;
+    max-height: 780px;
 
-    object-fit: cover;
-
-    transition:
-        transform 0.5s ease;
-}
-
-.featured-image:hover img {
-    transform: scale(1.025);
-}
-
-.featured-image figcaption {
-    position: absolute;
-
-    left: 1rem;
-    right: 1rem;
-    bottom: 1rem;
-
-    display: flex;
-    align-items: center;
-
-    gap: 0.6rem;
-
-    padding:
-        0.65rem
-        0.8rem;
-
-    border-radius: 0.6rem;
+    object-fit: contain;
 
     background:
-        rgba(0,0,0,0.72);
+        #050505;
 
-    backdrop-filter:
-        blur(10px);
-
-    font-size: 0.72rem;
-
-    color: var(--gray-200);
+    transition:
+        transform 0.5s ease,
+        filter 0.3s ease;
 }
 
-.featured-image figcaption span {
-    font-family: var(--font-brand);
-    font-weight: 900;
+.gallery-item:hover img {
+    transform:
+        scale(1.012);
+}
 
-    color: var(--accent-dark);
+
+/*
+ * Videos use the same restrained
+ * presentation as images.
+ */
+
+.gallery-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    background:
+        #050505;
+}
+
+.gallery-item video {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    max-width: 1100px;
+    max-height: 780px;
+
+    object-fit: contain;
+
+    background:
+        #050505;
 }
 
 
 /* ==================================================
    IMAGE BUTTON
-   ================================================== */
+================================================== */
 
 .image-lightbox-trigger {
     display: block;
@@ -1123,7 +1284,8 @@ const playUrl = data.playUrl;
 
     border: none;
 
-    background: transparent;
+    background:
+        transparent;
 
     cursor: zoom-in;
 
@@ -1147,18 +1309,20 @@ const playUrl = data.playUrl;
 
 /* ==================================================
    CONTENT
-   ================================================== */
+================================================== */
 
 .project-content {
     padding:
-        clamp(4rem, 8vw, 8rem)
-        0;
+        clamp(5rem, 10vw, 10rem)
+        0
+        clamp(4rem, 8vw, 8rem);
 }
 
 .content-inner {
     max-width: 850px;
 
-    margin: 0 auto;
+    margin:
+        0 auto;
 }
 
 .content-marker {
@@ -1167,16 +1331,20 @@ const playUrl = data.playUrl;
 
     gap: 1rem;
 
-    margin-bottom: 3rem;
+    margin-bottom:
+        3rem;
 }
 
 .content-marker span {
     font-family: var(--font-brand);
+
     font-size: 0.68rem;
     font-weight: 900;
+
     letter-spacing: 0.2em;
 
-    color: var(--gray-500);
+    color:
+        var(--gray-500);
 
     white-space: nowrap;
 }
@@ -1193,7 +1361,7 @@ const playUrl = data.playUrl;
 
 /* ==================================================
    MARKDOWN
-   ================================================== */
+================================================== */
 
 .markdown-content {
     font-size: 1.08rem;
@@ -1217,7 +1385,8 @@ const playUrl = data.playUrl;
         0
         1.5rem;
 
-    padding-top: 1rem;
+    padding-top:
+        1rem;
 
     font-size:
         clamp(
@@ -1228,7 +1397,8 @@ const playUrl = data.playUrl;
 
     line-height: 1;
 
-    letter-spacing: -0.04em;
+    letter-spacing:
+        -0.04em;
 }
 
 .heading-number {
@@ -1251,6 +1421,7 @@ const playUrl = data.playUrl;
         var(--gray-0);
 
     font-family: var(--font-brand);
+
     font-size: 0.65rem;
     font-weight: 900;
 
@@ -1267,13 +1438,14 @@ const playUrl = data.playUrl;
 .markdown-content :global(p) {
     max-width: 70ch;
 
-    margin: 1.1rem 0;
+    margin:
+        1.1rem 0;
 }
 
 
 /* ==================================================
    FEATURE LISTS
-   ================================================== */
+================================================== */
 
 .markdown-content :global(ul.feature-list) {
     display: grid;
@@ -1332,10 +1504,17 @@ const playUrl = data.playUrl;
         0 1px 0
         rgba(255,255,255,0.04);
 
-    font-family: var(--font-brand);
-    font-size: 0.95rem;
-    font-weight: 800;
-    line-height: 1.3;
+    font-family:
+        var(--font-brand);
+
+    font-size:
+        0.95rem;
+
+    font-weight:
+        800;
+
+    line-height:
+        1.3;
 
     transition:
         transform 0.25s ease,
@@ -1368,7 +1547,8 @@ const playUrl = data.playUrl;
 }
 
 .markdown-content :global(li.feature-item:hover) {
-    transform: translateY(-5px);
+    transform:
+        translateY(-5px);
 
     border-color:
         var(--accent-dark);
@@ -1383,13 +1563,13 @@ const playUrl = data.playUrl;
     box-shadow:
         0 12px 30px
         rgba(0,0,0,0.18),
-
         0 0 25px
         rgba(239,68,68,0.07);
 }
 
 .markdown-content :global(li.feature-item:hover)::after {
-    opacity: 0.14;
+    opacity:
+        0.14;
 }
 
 .feature-icon {
@@ -1398,7 +1578,6 @@ const playUrl = data.playUrl;
     left: 0.75rem;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -1409,12 +1588,14 @@ const playUrl = data.playUrl;
         1px solid
         var(--accent-dark);
 
-    border-radius: 0.5rem;
+    border-radius:
+        0.5rem;
 
     color:
         var(--accent-dark);
 
-    font-size: 0.85rem;
+    font-size:
+        0.85rem;
 
     box-shadow:
         0 0 15px
@@ -1427,9 +1608,14 @@ const playUrl = data.playUrl;
     top: 0.7rem;
     right: 0.8rem;
 
-    font-size: 0.55rem;
-    font-weight: 900;
-    letter-spacing: 0.1em;
+    font-size:
+        0.55rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.1em;
 
     color:
         var(--gray-600);
@@ -1438,12 +1624,13 @@ const playUrl = data.playUrl;
 
 /* ==================================================
    BLOCKQUOTES
-   ================================================== */
+================================================== */
 
 .markdown-content :global(blockquote) {
     position: relative;
 
-    margin: 3rem 0;
+    margin:
+        3rem 0;
 
     padding:
         1.7rem
@@ -1493,7 +1680,8 @@ const playUrl = data.playUrl;
     color:
         var(--accent-dark);
 
-    opacity: 0.08;
+    opacity:
+        0.08;
 }
 
 .markdown-content :global(blockquote p) {
@@ -1502,15 +1690,20 @@ const playUrl = data.playUrl;
 
     margin: 0;
 
-    font-family: var(--font-brand);
-    font-size: 1.15rem;
-    font-weight: 750;
+    font-family:
+        var(--font-brand);
+
+    font-size:
+        1.15rem;
+
+    font-weight:
+        750;
 }
 
 
 /* ==================================================
-   MEDIA
-   ================================================== */
+   MEDIA INSIDE CASE STUDY
+================================================== */
 
 .markdown-content :global(img),
 .markdown-content :global(video) {
@@ -1521,31 +1714,36 @@ const playUrl = data.playUrl;
 
     height: auto;
 
-    margin: 2rem 0;
+    margin:
+        2rem 0;
 
     border:
         1px solid
         var(--gray-800);
 
-    border-radius: 1.25rem;
+    border-radius:
+        1.25rem;
 
     box-shadow:
         var(--shadow-md);
 }
 
 .markdown-content :global(video) {
-    background: #050505;
+    background:
+        #050505;
 }
 
 
 /* ==================================================
    CODE
-   ================================================== */
+================================================== */
 
 .markdown-content :global(pre) {
-    margin: 2rem 0;
+    margin:
+        2rem 0;
 
-    padding: 1.5rem;
+    padding:
+        1.5rem;
 
     overflow-x: auto;
 
@@ -1553,14 +1751,33 @@ const playUrl = data.playUrl;
         1px solid
         var(--gray-800);
 
-    border-radius: 1rem;
+    border-radius:
+        1rem;
 
-    background: #080808;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(224,4,4,0.045),
+            rgba(255,59,59,0.015)
+        ) !important;
 
     box-shadow:
         inset
         0 0 30px
         rgba(239,68,68,0.035);
+}
+
+.markdown-content :global(pre code) {
+    background:
+        transparent !important;
+
+    color:
+        inherit;
+}
+
+.markdown-content :global(pre code span) {
+    background:
+        transparent !important;
 }
 
 .markdown-content :global(code) {
@@ -1569,36 +1786,45 @@ const playUrl = data.playUrl;
         'Fira Code',
         monospace;
 
-    font-size: 0.88rem;
+    font-size:
+        0.88rem;
 }
 
 
 /* ==================================================
    TABLE
-   ================================================== */
+================================================== */
 
 .markdown-content :global(table) {
     width: 100%;
 
-    margin: 2rem 0;
+    margin:
+        2rem 0;
 
-    border-collapse: separate;
-    border-spacing: 0;
+    border-collapse:
+        separate;
 
-    overflow: hidden;
+    border-spacing:
+        0;
+
+    overflow:
+        hidden;
 
     border:
         1px solid
         var(--gray-800);
 
-    border-radius: 1rem;
+    border-radius:
+        1rem;
 }
 
 .markdown-content :global(th),
 .markdown-content :global(td) {
-    padding: 1rem;
+    padding:
+        1rem;
 
-    text-align: left;
+    text-align:
+        left;
 
     border-bottom:
         1px solid
@@ -1606,57 +1832,68 @@ const playUrl = data.playUrl;
 }
 
 .markdown-content :global(th) {
-    font-family: var(--font-brand);
-    font-weight: 900;
+    font-family:
+        var(--font-brand);
+
+    font-weight:
+        900;
 }
 
 .markdown-content :global(tr:last-child td) {
-    border-bottom: none;
+    border-bottom:
+        none;
 }
 
 
 /* ==================================================
    LINKS
-   ================================================== */
+================================================== */
 
 .markdown-content :global(a) {
-    font-weight: 750;
+    font-weight:
+        750;
 
-    text-decoration-thickness: 1px;
+    text-decoration-thickness:
+        1px;
 
-    text-underline-offset: 0.25em;
+    text-underline-offset:
+        0.25em;
 }
 
 
 /* ==================================================
-   PROJECT GALLERY
-   ================================================== */
+   FEATURED IMAGES
+   NOW AFTER CASE STUDY
+================================================== */
 
-.project-gallery {
-    width: min(1200px, 100%);
+.featured-images {
+    width:
+        min(
+            1300px,
+            100%
+        );
 
     margin:
-        clamp(5rem, 10vw, 10rem)
+        clamp(3rem, 7vw, 6rem)
         auto
         0;
 
     padding-bottom:
-        clamp(4rem, 8vw, 8rem);
+        clamp(5rem, 10vw, 10rem);
 }
 
-.gallery-header {
+.featured-header {
     display: flex;
-
     align-items: center;
 
     gap: 1rem;
 
-    margin-bottom: 2rem;
+    margin-bottom:
+        clamp(2rem, 4vw, 4rem);
 }
 
-.gallery-title {
+.featured-title {
     display: flex;
-
     align-items: center;
 
     gap: 0.75rem;
@@ -1664,16 +1901,16 @@ const playUrl = data.playUrl;
     flex-shrink: 0;
 }
 
-.gallery-index {
+.featured-index {
     display: flex;
-
     align-items: center;
     justify-content: center;
 
     width: 2rem;
     height: 2rem;
 
-    border-radius: 0.5rem;
+    border-radius:
+        0.5rem;
 
     background:
         var(--accent-dark);
@@ -1681,157 +1918,247 @@ const playUrl = data.playUrl;
     color:
         var(--gray-0);
 
-    font-family: var(--font-brand);
-    font-size: 0.65rem;
-    font-weight: 900;
+    font-family:
+        var(--font-brand);
+
+    font-size:
+        0.65rem;
+
+    font-weight:
+        900;
 }
 
-.gallery-label {
-    font-family: var(--font-brand);
-    font-size: 0.72rem;
-    font-weight: 900;
+.featured-label {
+    font-family:
+        var(--font-brand);
 
-    letter-spacing: 0.2em;
+    font-size:
+        0.72rem;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.2em;
 
     color:
         var(--gray-300);
 
-    white-space: nowrap;
+    white-space:
+        nowrap;
 }
 
-.gallery-line {
-    flex: 1;
+.featured-line {
+    flex:
+        1;
 
-    height: 1px;
+    height:
+        1px;
 
     background:
         var(--gray-800);
 }
 
-.gallery-hint {
-    flex-shrink: 0;
 
-    font-family: var(--font-brand);
-    font-size: 0.58rem;
-    font-weight: 800;
+/*
+ * Featured images are also presented
+ * like a Behance project:
+ *
+ * - no forced cropping
+ * - natural aspect ratio
+ * - restrained maximum width
+ */
 
-    letter-spacing: 0.12em;
+.featured-grid {
+    display: flex;
 
-    color:
-        var(--gray-600);
+    flex-direction:
+        column;
 
-    white-space: nowrap;
+    align-items:
+        center;
+
+    gap:
+        clamp(
+            2rem,
+            5vw,
+            5rem
+        );
 }
 
-.gallery-grid {
-    display: grid;
+.featured-image {
+    position:
+        relative;
 
-    grid-template-columns:
-        repeat(
-            2,
-            minmax(0, 1fr)
+    width:
+        min(
+            1100px,
+            100%
         );
 
-    gap: 1.25rem;
-}
+    margin:
+        0;
 
-.gallery-item {
-    position: relative;
-
-    min-width: 0;
-
-    margin: 0;
-
-    overflow: hidden;
+    overflow:
+        hidden;
 
     border:
         1px solid
         var(--gray-800);
 
-    border-radius: 1.25rem;
+    border-radius:
+        1.25rem;
 
-    background: #050505;
+    background:
+        #050505;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,0.16);
 
     transition:
-        border-color 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
-.gallery-item:hover {
-    transform: translateY(-4px);
+.featured-image:hover {
+    transform:
+        translateY(-4px);
 
     border-color:
         var(--gray-700);
 
     box-shadow:
-        0 15px 40px
-        rgba(0, 0, 0, 0.3);
+        0 25px 70px
+        rgba(0,0,0,0.28);
 }
 
-.gallery-item .image-lightbox-trigger {
-    width: 100%;
-    height: 100%;
-}
+.featured-image img {
+    display:
+        block;
 
-.gallery-item img {
-    display: block;
+    width:
+        100%;
 
-    width: 100%;
-    height: auto;
+    height:
+        auto;
 
-    max-height: 700px;
+    max-width:
+        100%;
 
-    object-fit: contain;
+    max-height:
+        800px;
 
-    background: #050505;
+    object-fit:
+        contain;
+
+    background:
+        #050505;
 
     transition:
-        transform 0.5s ease,
-        filter 0.3s ease;
+        transform 0.5s ease;
 }
 
-.gallery-item:hover img {
-    transform: scale(1.015);
+.featured-image:hover img {
+    transform:
+        scale(1.012);
 }
 
-.gallery-item video {
-    display: block;
+.featured-image figcaption {
+    position:
+        absolute;
 
-    width: 100%;
-    height: auto;
+    left:
+        1rem;
 
-    max-height: 700px;
+    right:
+        1rem;
 
-    object-fit: contain;
+    bottom:
+        1rem;
 
-    background: #050505;
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        0.6rem;
+
+    width:
+        fit-content;
+
+    max-width:
+        calc(100% - 2rem);
+
+    padding:
+        0.65rem
+        0.8rem;
+
+    border-radius:
+        0.6rem;
+
+    background:
+        rgba(0,0,0,0.72);
+
+    backdrop-filter:
+        blur(10px);
+
+    font-size:
+        0.72rem;
+
+    color:
+        var(--gray-200);
+}
+
+.featured-image figcaption span {
+    font-family:
+        var(--font-brand);
+
+    font-weight:
+        900;
+
+    color:
+        var(--accent-dark);
 }
 
 
 /* ==================================================
    IMAGE LIGHTBOX
-   ================================================== */
+================================================== */
 
 .lightbox {
-    position: fixed;
+    position:
+        fixed;
 
-    inset: 0;
+    inset:
+        0;
 
-    z-index: 9999;
+    z-index:
+        9999;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
-    justify-content: center;
+    align-items:
+        center;
 
-    padding: 2rem;
+    justify-content:
+        center;
 
-    opacity: 0;
+    padding:
+        2rem;
 
-    visibility: hidden;
+    opacity:
+        0;
 
-    pointer-events: none;
+    visibility:
+        hidden;
+
+    pointer-events:
+        none;
 
     transition:
         opacity 0.25s ease,
@@ -1839,24 +2166,34 @@ const playUrl = data.playUrl;
 }
 
 .lightbox.is-open {
-    opacity: 1;
+    opacity:
+        1;
 
-    visibility: visible;
+    visibility:
+        visible;
 
-    pointer-events: auto;
+    pointer-events:
+        auto;
 }
 
 .lightbox-backdrop {
-    position: absolute;
+    position:
+        absolute;
 
-    inset: 0;
+    inset:
+        0;
 
-    width: 100%;
-    height: 100%;
+    width:
+        100%;
 
-    padding: 0;
+    height:
+        100%;
 
-    border: none;
+    padding:
+        0;
+
+    border:
+        none;
 
     background:
         rgba(0,0,0,0.9);
@@ -1864,47 +2201,68 @@ const playUrl = data.playUrl;
     backdrop-filter:
         blur(12px);
 
-    cursor: zoom-out;
+    cursor:
+        zoom-out;
 }
 
 .lightbox-content {
-    position: relative;
+    position:
+        relative;
 
-    z-index: 2;
+    z-index:
+        2;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
-    justify-content: center;
+    align-items:
+        center;
 
-    width: 100%;
-    height: 100%;
+    justify-content:
+        center;
 
-    pointer-events: none;
+    width:
+        100%;
+
+    height:
+        100%;
+
+    pointer-events:
+        none;
 }
 
 .lightbox-content img {
-    display: block;
+    display:
+        block;
 
-    max-width: 95vw;
-    max-height: 90vh;
+    max-width:
+        95vw;
 
-    width: auto;
-    height: auto;
+    max-height:
+        90vh;
 
-    object-fit: contain;
+    width:
+        auto;
+
+    height:
+        auto;
+
+    object-fit:
+        contain;
 
     border:
         1px solid
         var(--gray-800);
 
-    border-radius: 1rem;
+    border-radius:
+        1rem;
 
     box-shadow:
         0 25px 80px
         rgba(0,0,0,0.6);
 
-    transform: scale(0.95);
+    transform:
+        scale(0.95);
 
     transition:
         transform 0.25s ease;
@@ -1912,32 +2270,47 @@ const playUrl = data.playUrl;
 
 .lightbox.is-open
 .lightbox-content img {
-    transform: scale(1);
+    transform:
+        scale(1);
 }
 
 .lightbox-close {
-    position: absolute;
+    position:
+        absolute;
 
-    top: 1.5rem;
-    right: 1.5rem;
+    top:
+        1.5rem;
 
-    z-index: 3;
+    right:
+        1.5rem;
 
-    display: flex;
+    z-index:
+        3;
 
-    align-items: center;
-    justify-content: center;
+    display:
+        flex;
 
-    width: 3rem;
-    height: 3rem;
+    align-items:
+        center;
 
-    padding: 0;
+    justify-content:
+        center;
+
+    width:
+        3rem;
+
+    height:
+        3rem;
+
+    padding:
+        0;
 
     border:
         1px solid
         var(--gray-700);
 
-    border-radius: 50%;
+    border-radius:
+        50%;
 
     background:
         rgba(0,0,0,0.7);
@@ -1945,10 +2318,14 @@ const playUrl = data.playUrl;
     color:
         var(--gray-0);
 
-    font-size: 2rem;
-    line-height: 1;
+    font-size:
+        2rem;
 
-    cursor: pointer;
+    line-height:
+        1;
+
+    cursor:
+        pointer;
 
     transition:
         transform 0.2s ease,
@@ -1957,7 +2334,8 @@ const playUrl = data.playUrl;
 }
 
 .lightbox-close:hover {
-    transform: scale(1.08);
+    transform:
+        scale(1.08);
 
     background:
         var(--accent-dark);
@@ -1969,33 +2347,45 @@ const playUrl = data.playUrl;
 
 /* ==================================================
    TABLET
-   ================================================== */
+================================================== */
 
 @media (max-width: 900px) {
 
     .project-page {
-        width: min(94vw, 760px);
+        width:
+            min(
+                94vw,
+                760px
+            );
     }
 
     .hero {
-        min-height: 560px;
+        min-height:
+            560px;
     }
 
     .hero-content {
-        min-height: 560px;
+        min-height:
+            560px;
 
-        padding: 2rem;
+        padding:
+            2rem;
 
-        max-width: none;
+        max-width:
+            none;
     }
 
     .metadata {
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(
+                2,
+                1fr
+            );
     }
 
     .meta-item:nth-child(2) {
-        border-right: none;
+        border-right:
+            none;
     }
 
     .meta-item:nth-child(-n + 2) {
@@ -2004,24 +2394,21 @@ const playUrl = data.playUrl;
             var(--gray-800);
     }
 
-    .featured-images {
-        grid-template-columns: 1fr;
-    }
-
-    .featured-image:first-child {
-        grid-row: auto;
-    }
-
-    .featured-image img {
-        min-height: 260px;
-    }
-
     .project-content {
-        padding: 4rem 0;
+        padding:
+            4rem 0;
     }
 
-    .project-gallery {
-        width: 100%;
+    .project-gallery,
+    .featured-images {
+        width:
+            100%;
+    }
+
+    .gallery-item,
+    .featured-image {
+        width:
+            100%;
     }
 
     .markdown-content
@@ -2035,50 +2422,62 @@ const playUrl = data.playUrl;
 
 /* ==================================================
    MOBILE
-   ================================================== */
+================================================== */
 
 @media (max-width: 600px) {
 
     .hero {
-        border-radius: 1.25rem;
+        border-radius:
+            1.25rem;
     }
 
     .hero-content {
-        padding: 1.5rem;
+        padding:
+            1.5rem;
 
-        max-width: none;
-        min-width: 0;
+        max-width:
+            none;
 
-        overflow: hidden;
+        min-width:
+            0;
+
+        overflow:
+            hidden;
     }
 
     .hero h1 {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
+        width:
+            100%;
 
-        white-space: nowrap;
+        max-width:
+            100%;
 
-        /*
-         * Still one line, but scales with the
-         * actual hero width.
-         */
-        font-size: clamp(
-            2rem,
-            8cqw,
-            4.5rem
-        );
+        min-width:
+            0;
 
-        letter-spacing: -0.055em;
+        white-space:
+            nowrap;
+
+        font-size:
+            clamp(
+                2rem,
+                8cqw,
+                4.5rem
+            );
+
+        letter-spacing:
+            -0.055em;
     }
 
     .metadata {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
     .meta-item,
     .meta-item:nth-child(2) {
-        border-right: none;
+        border-right:
+            none;
 
         border-bottom:
             1px solid
@@ -2086,65 +2485,108 @@ const playUrl = data.playUrl;
     }
 
     .meta-item:last-child {
-        border-bottom: none;
+        border-bottom:
+            none;
+    }
+
+    .project-gallery {
+        margin-top:
+            3rem;
+    }
+
+    .gallery-header,
+    .featured-header {
+        align-items:
+            flex-start;
+
+        flex-wrap:
+            wrap;
+
+        gap:
+            0.75rem;
+    }
+
+    .gallery-line,
+    .featured-line {
+        display:
+            none;
+    }
+
+    .gallery-hint {
+        width:
+            100%;
+    }
+
+    .gallery-grid,
+    .featured-grid {
+        gap:
+            1.5rem;
+    }
+
+    .gallery-item,
+    .featured-image {
+        border-radius:
+            0.9rem;
+    }
+
+    .gallery-item img,
+    .gallery-item video,
+    .featured-image img {
+        max-height:
+            600px;
     }
 
     .markdown-content
     :global(ul.feature-list) {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
     .markdown-content
     :global(li.feature-item) {
-        min-height: 78px;
+        min-height:
+            78px;
     }
 
     .heading-number {
-        width: 1.8rem;
-        height: 1.8rem;
-    }
+        width:
+            1.8rem;
 
-    .gallery-header {
-        align-items: flex-start;
-
-        flex-wrap: wrap;
-
-        gap: 0.75rem;
-    }
-
-    .gallery-line {
-        display: none;
-    }
-
-    .gallery-hint {
-        width: 100%;
-    }
-
-    .gallery-grid {
-        grid-template-columns: 1fr;
-
-        gap: 1rem;
+        height:
+            1.8rem;
     }
 
     .lightbox {
-        padding: 1rem;
+        padding:
+            1rem;
     }
 
     .lightbox-content img {
-        max-width: 96vw;
-        max-height: 85vh;
+        max-width:
+            96vw;
 
-        border-radius: 0.75rem;
+        max-height:
+            85vh;
+
+        border-radius:
+            0.75rem;
     }
 
     .lightbox-close {
-        top: 1rem;
-        right: 1rem;
+        top:
+            1rem;
 
-        width: 2.5rem;
-        height: 2.5rem;
+        right:
+            1rem;
 
-        font-size: 1.6rem;
+        width:
+            2.5rem;
+
+        height:
+            2.5rem;
+
+        font-size:
+            1.6rem;
     }
 
 }

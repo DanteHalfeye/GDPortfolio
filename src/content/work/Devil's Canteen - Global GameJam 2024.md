@@ -24,13 +24,7 @@ contributions:
   - Procedural NPC Population
   - Dynamic Character State Management
   - Randomized Devil & Victim System
-  - Shared Character Data Architecture
   - NPC Interaction & Dialogue Systems
-  - Dynamic Investigation Mechanics
-  - Character Death & Win/Lose States
-  - Modular Population Management
-  - Randomized NPC Movement
-  - Rapid Gameplay Prototyping
 
 role: Gameplay Programmer & Game Designer
 
