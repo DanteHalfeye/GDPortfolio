@@ -34,9 +34,10 @@ language: C#
 
 projectType: 3D Platformer
 
-heroVideo: /assets/Tide/cinematica real.mp4
+heroVideo: /assets/Tide/ProjectPaper2026.mp4
 
 gallery:
+  - /assets/Tide/ProjectPaper2026.mp4
   - /assets/Tide/movement.mp4
   - /assets/Tide/2025-04-05 19-02-20.mp4
   - /assets/Tide/Captura de pantalla 2025-03-10 123205.png

@@ -37,14 +37,16 @@ projectType: Space Roguelike
 
 playUrl: https://play.unity.com/en/games/38bb20eb-6e65-4b39-9ab6-7c4c4c0ca0fe/cosmic-build
 
-heroVideo: /assets/imagen_2026-08-29_233159002.png
+heroVideo: /assets/cosmiccollisiontrailer.mp4
 
 featuredImages:
   - src: /assets/imagen_2026-08-29_233159002.png
     alt: Cosmic Collision gameplay
 
 gallery:
+  - /assets/cosmiccollisiontrailer.mp4
   - /assets/imagen_2026-08-29_233159002.png
+
 ---
 ## Overview
 
