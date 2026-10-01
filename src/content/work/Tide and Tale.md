@@ -34,23 +34,23 @@ language: C#
 
 projectType: 3D Platformer
 
-heroVideo: /public/assets/Tide/cinematica real.mp4
+heroVideo: /assets/Tide/cinematica real.mp4
 
 gallery:
-  - /public/assets/Tide/movement.mp4
-  - /public/assets/Tide/2025-04-05 19-02-20.mp4
-  - /public/assets/Tide/Captura de pantalla 2025-03-10 123205.png
-  - /public/assets/Tide/Captura de pantalla 2025-03-10 123456.png
-  - /public/assets/Tide/Captura de pantalla 2025-03-10 143807.png
-  - /public/assets/Tide/cinematica real.mp4
-  - /public/assets/Tide/f732b278-926b-4bcb-a9c7-faa03febfbed.jpg
-  - /public/assets/Tide/image.png
-  - /public/assets/Tide/Imagen de WhatsApp 2025-03-24 a las 00.03.37_41385f7c.jpg
-  - /public/assets/Tide/Imagen de WhatsApp 2025-03-25 a las 00.17.45_82ba9097.jpg
-  - /public/assets/Tide/imagen_2025-03-27_123122878.png
-  - /public/assets/Tide/Logo2.png
-  - /public/assets/Tide/TURNAROUND_TALLER7_PROTA.png
-  - /public/assets/Tide/TYT Acuarela@3x.png
+  - /assets/Tide/movement.mp4
+  - /assets/Tide/2025-04-05 19-02-20.mp4
+  - /assets/Tide/Captura de pantalla 2025-03-10 123205.png
+  - /assets/Tide/Captura de pantalla 2025-03-10 123456.png
+  - /assets/Tide/Captura de pantalla 2025-03-10 143807.png
+  - /assets/Tide/cinematica real.mp4
+  - /assets/Tide/f732b278-926b-4bcb-a9c7-faa03febfbed.jpg
+  - /assets/Tide/image.png
+  - /assets/Tide/Imagen de WhatsApp 2025-03-24 a las 00.03.37_41385f7c.jpg
+  - /assets/Tide/Imagen de WhatsApp 2025-03-25 a las 00.17.45_82ba9097.jpg
+  - /assets/Tide/imagen_2025-03-27_123122878.png
+  - /assets/Tide/Logo2.png
+  - /assets/Tide/TURNAROUND_TALLER7_PROTA.png
+  - /assets/Tide/TYT Acuarela@3x.png
 
   
 ---
