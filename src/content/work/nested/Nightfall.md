@@ -54,6 +54,8 @@ Players work together to survive increasingly difficult waves of creatures while
 
 I used the project to explore how multiple gameplay systems can communicate with each other to create a complete multiplayer gameplay loop rather than treating each mechanic as an isolated feature.
 
+---
+
 ## Technical Highlights
 
 The main technical challenge of Nightfall was connecting multiple systems into one shared gameplay loop.
@@ -76,6 +78,8 @@ The resulting architecture can be summarized as:
 **UEFN Devices → Verse Logic → Gameplay Systems → Shared Game State → Player Experience**
 
 This allowed the project to use UEFN's existing devices as building blocks while using Verse to determine how those components behave as part of the larger game.
+
+---
 
 ## My Role
 
@@ -233,6 +237,8 @@ The same principle applies to other systems such as purchases, collectibles, per
 
 This allowed the project to remain relatively modular while taking advantage of functionality already provided by the engine.
 
+---
+
 ## Gameplay Design
 
 Programming and design were closely connected throughout the project.
@@ -324,39 +330,7 @@ This made the project easier to iterate on because individual systems could be m
 
 It also gave me a clearer separation between **engine-provided functionality** and **custom gameplay logic**.
 
-# Interview Topics
-
-Nightfall contains several systems that would be useful to discuss in a technical interview.
-
-### Shared Game State
-
-How should round progression behave when several players can trigger gameplay events?
-
-### Wave Scaling
-
-How would you increase enemy pressure without simply increasing the number of enemies?
-
-### Device Architecture
-
-When should functionality live inside a UEFN device versus custom Verse logic?
-
-### Reusability
-
-How would the same gameplay system be reused for different spawners, perks, or interactive devices?
-
-### Multiplayer Edge Cases
-
-What happens if two players trigger the same interaction at approximately the same time?
-
-### Performance
-
-What happens if the number of active creatures increases significantly?
-
-### Progression Balance
-
-How do resource income and upgrade costs affect the difficulty curve?
-
-These were the kinds of questions that influenced the architecture during development.
+---
 
 # What I Learned
 
@@ -382,14 +356,6 @@ Instead of asking only:
 I began thinking about:
 
 **"How should this mechanic communicate with the rest of the game?"**
-
-# My Contribution
-
-My main contribution to Nightfall was the implementation and design of the gameplay systems that connect individual UEFN components into a playable cooperative survival experience.
-
-I worked across both programming and design, allowing me to iterate between the technical implementation and the intended player experience.
-
-The project gave me practical experience with:
 
 **Verse · Multiplayer Gameplay · System Architecture · Progression · Enemy Management · Device Integration · Gameplay Design**
 

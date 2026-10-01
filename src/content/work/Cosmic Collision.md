@@ -56,6 +56,8 @@ The game was developed over **one month**, giving the team time to iterate on th
 
 My primary responsibilities were **gameplay programming and game design**, with a focus on the player controller, dash combat, enemy pattern spawning, encounter progression, and player statistics.
 
+---
+
 ## Core Gameplay Loop
 
 The gameplay loop is built around:
@@ -860,6 +862,7 @@ I was responsible for:
 - Developing the auto-aim system.
 - Developing the enemy pattern spawning system.
 - Implementing randomized encounter selection.
+---
 - Implementing sequential enemy pattern spawning.
 - Developing encounter scaling.
 - Implementing room-clear detection.
@@ -869,6 +872,8 @@ I was responsible for:
 - Designing encounter progression.
 - Balancing movement and combat.
 - Iterating on the game's difficulty curve.
+
+---
 
 ## Team
 
@@ -904,6 +909,7 @@ I learned how to:
 - Create an attack using a temporary collision hitbox.
 - Implement auto-targeting for a movement-based attack.
 - Build reusable enemy encounter patterns.
+---
 - Randomize encounters while maintaining designer control.
 - Scale encounter intensity through progression.
 - Use events to track enemy spawning and deaths.
@@ -936,13 +942,14 @@ It taught me that a strong core mechanic becomes much more effective when every 
 
 ## Technologies
 
-- **Unity**
+- Unity
 - **C#**
 - **Unity 2D Physics**
 - **Unity Input System**
 - **Rigidbody2D**
 - **Gameplay Programming**
 - **Game Design**
+---
 - **Roguelike Systems**
 - **Enemy Encounter Systems**
 - **Event-Driven Systems**

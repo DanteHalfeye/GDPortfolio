@@ -455,8 +455,8 @@ const playUrl = data.playUrl;
 
                     icon.innerHTML = '✦';
 
-                    item.prepend(icon);
-                    item.appendChild(number);
+                    
+                   
 
                 });
 
@@ -486,7 +486,7 @@ const playUrl = data.playUrl;
                 String(index + 1)
                     .padStart(2, '0');
 
-            heading.prepend(number);
+           
 
         });
 
@@ -1369,7 +1369,11 @@ const playUrl = data.playUrl;
 }
 
 .markdown-content :global(h1) {
-    display: none;
+    display: block;
+    margin: 3rem 0 1.5rem;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.04em;
 }
 
 .markdown-content :global(h2) {

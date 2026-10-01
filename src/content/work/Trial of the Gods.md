@@ -37,7 +37,7 @@ projectType: 3D Action-Platformer
 
 playUrl: https://drive.google.com/file/d/19wohiq5YNEYKWmGf8zN72xFwRFQVRcZk/view?usp=sharing
 
-heroVideo: /assets/2026-02-10 19-56-43.mp4
+heroVideo: /public/assets/Trial of the gods trailer.mp4
 
 featuredImages:
   - src: /icon_kukul_on.png
@@ -45,7 +45,7 @@ featuredImages:
 
 gallery:
   - /icon_kukul_on.png
-  - /assets/2026-02-10 19-56-43.mp4
+  - /public/assets/Trialofthegodstrailer.mp4
 ---
 
 ## Overview

@@ -35,7 +35,8 @@ language: C#
 
 projectType: First-Person Puzzle Game
 
-heroVideo: /assets/JACKYVER2.png
+heroVideo: /assets/DreamyBubbles.mp4
+playUrl: https://drive.google.com/file/d/1LwxlzPCbGs_Jwk5ks0f5N4ZkgkvzWst5/view?usp=sharing
 
 featuredImages:
   - src: /assets/JACKYVER2.png
@@ -50,6 +51,7 @@ gallery:
   - /assets/JACKYVER3.png
   - /assets/CARA1.png
   - /assets/CARA2.png
+  - /assets/DreamyBubbles.mp4
 ---
 # Dreamy Bubbles
 
@@ -123,7 +125,7 @@ I implemented the system responsible for activating the player's bubble cannon.
 The cannon begins disabled and is temporarily activated when the player performs the interaction.
 
 The system uses a coroutine to control the duration of the interaction state.
-
+```csharp
     using UnityEngine;
     using System.Collections;
 
@@ -151,7 +153,7 @@ The system uses a coroutine to control the duration of the interaction state.
             BubbleCannon.SetActive(false);
         }
     }
-
+```
 The coroutine makes the bubble interaction a short burst rather than a permanent state.
 
 This was a practical solution for the Game Jam because it kept the implementation simple while providing a clear interaction window.
@@ -159,7 +161,7 @@ This was a practical solution for the Game Jam because it kept the implementatio
 ## Reusable Interaction Interface
 
 I created an `IInteractable` interface to establish a common contract for gameplay objects that could respond to interactions.
-
+```csharp
     using UnityEngine;
 
     public interface IInteractable
@@ -169,7 +171,7 @@ I created an `IInteractable` interface to establish a common contract for gamepl
         void Resize(float amount);
         void GenerateHUDRender();
     }
-
+```
 The interface allowed different gameplay objects to expose a consistent set of interaction behaviors.
 
 This was useful during rapid development because new interactive objects could follow the same basic structure rather than requiring an entirely separate interaction architecture.
@@ -181,16 +183,16 @@ The interface also separated the idea of **what an object can do** from the impl
 The most important programming system in Dreamy Bubbles is the ability to affect multiple instances of the same object.
 
 The `Interactable` component stores the object's tag and uses it to find other objects belonging to the same interaction group.
-
+```csharp
     private GameObject[] FindAllObjectsWithTag()
     {
         return GameObject.FindGameObjectsWithTag(thisTag);
     }
-
+```
 The system can then apply an interaction to every matching object.
 
 For example, `Vanish()` removes all objects belonging to the same group:
-
+```csharp
     public void Vanish()
     {
         foreach (GameObject obj in FindAllObjectsWithTag())
@@ -198,7 +200,7 @@ For example, `Vanish()` removes all objects belonging to the same group:
             Destroy(obj);
         }
     }
-
+```
 This creates the foundation for the game's main puzzle mechanic.
 
 A single player action can therefore modify multiple parts of the level.
@@ -208,7 +210,7 @@ A single player action can therefore modify multiple parts of the level.
 The same interaction system can modify objects instead of simply destroying them.
 
 For example, I implemented a resize interaction:
-
+```csharp
     public void Resize(float amount)
     {
         foreach (GameObject obj in FindAllObjectsWithTag())
@@ -220,7 +222,7 @@ For example, I implemented a resize interaction:
             );
         }
     }
-
+```
 This demonstrates how the synchronized interaction system could support multiple types of object behavior.
 
 The underlying relationship stays the same while the result of the interaction can change.
@@ -232,7 +234,7 @@ This gave the puzzle design additional possibilities without requiring a complet
 The interaction system communicates through a shared event.
 
 The `Interactable` component subscribes to `StaticEventHandler.OnSelected` when enabled.
-
+```csharp
     private void OnEnable()
     {
         StaticEventHandler.OnSelected += InteractedWith;
@@ -243,16 +245,16 @@ The `Interactable` component subscribes to `StaticEventHandler.OnSelected` when 
     {
         StaticEventHandler.OnSelected -= InteractedWith;
     }
-
+```
 When the event is triggered, the object responds through `InteractedWith()`.
-
+```csharp
     public void InteractedWith()
     {
         StaticEventHandler.savedInteractable = this.gameObject;
         print(this.gameObject);
         Vanish();
     }
-
+```
 This separates input selection from the behavior of the object.
 
 The interactive object does not need to directly control the player's input. It listens for the relevant event and handles its own response.
@@ -280,7 +282,7 @@ Rather than adding complexity to the player's controls, the complexity was moved
 I implemented a door system that requires multiple buttons to be activated.
 
 Each button detects when an object enters or leaves its trigger and communicates with the associated door.
-
+```csharp
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("This entered me -> " + other.name);
@@ -294,7 +296,7 @@ Each button detects when an object enters or leaves its trigger and communicates
         door.activeButtons--;
         door.CloseDoor();
     }
-
+```
 The door tracks how many buttons are currently active.
 
 This allows the same system to support different puzzle configurations by changing the number of required buttons.
@@ -302,7 +304,7 @@ This allows the same system to support different puzzle configurations by changi
 ## Door State Management
 
 The `DoorWithButton` component determines whether the door should be open based on its current button state.
-
+```csharp
     [SerializeField] int requiredButtons;
     public int activeButtons;
 
@@ -321,7 +323,7 @@ The `DoorWithButton` component determines whether the door should be open based 
             this.gameObject.SetActive(true);
         }
     }
-
+```
 The door remains active until the required number of buttons are activated.
 
 If a button is released, the door can become active again.
@@ -333,13 +335,13 @@ This creates a reusable environmental puzzle that can be configured for differen
 I also implemented a key-based progression system.
 
 When the player collects the key, it changes the state of its associated door.
-
+```csharp
     void GetKey()
     {
         door.isLocked = false;
         this.gameObject.SetActive(false);
     }
-
+```
 The key disappears after collection while the door stores its unlocked state.
 
 This separates the two responsibilities:
@@ -350,7 +352,7 @@ This separates the two responsibilities:
 ## Door Unlocking
 
 The door checks its locked state when the player reaches it.
-
+```csharp
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -361,7 +363,7 @@ The door checks its locked state when the player reaches it.
             }
         }
     }
-
+```
 This keeps the key and door systems loosely connected.
 
 The key does not need to directly control the visual behavior of the door. It only changes the door's state.
@@ -550,6 +552,7 @@ I implemented:
 - Tag-based object grouping.
 - Object destruction.
 - Object transformation.
+---
 - Event-driven interaction.
 - Multi-button doors.
 - Key-and-door interactions.
@@ -571,6 +574,7 @@ The project gave me practical experience with:
 - Component-based gameplay systems.
 - Unity triggers.
 - Object relationships.
+---
 - Environmental state.
 - Puzzle programming.
 - Coroutines.
@@ -602,7 +606,7 @@ From a programming perspective, the project gave me experience building reusable
 - **Development:** Global Game Jam 2025
 - **Role:** Gameplay Programmer
 - **Core Mechanic:** Synchronized Object Interaction
-- **Focus:** Gameplay Systems, Interaction Architecture, Puzzle Programming
+- **Focus:**  Gameplay Systems, Interaction Architecture, Puzzle Programming
 
 ## Technologies
 

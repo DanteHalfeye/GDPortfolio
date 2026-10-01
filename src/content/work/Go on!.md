@@ -36,6 +36,9 @@ projectType: Bullet-Hell Platformer
 
 heroVideo: /assets/GOON_Gameplay_small.mp4
 
+playUrl: https://drive.google.com/file/d/1Lnc-jOLL5QdU5xzNe3QBoQRy4sz0IBGD/view?usp=sharing
+
+
 featuredImages:
   - src: /assets/boss1-Recovered5.png
     alt: Go On! academic boss fight

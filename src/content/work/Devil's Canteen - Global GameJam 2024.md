@@ -34,7 +34,7 @@ language: C#
 
 projectType: Walking Simulator / Murder Mystery
 
-playUrl: https://globalgamejam.org/games/2024/la-cantina-del-diablo-6
+playUrl: https://drive.google.com/drive/folders/1WWrGX5dqYrSEQvyHEoiy0m8WELGK3HZ9
 
 heroVideo: /assets/SC_CantinaDelDiablo.mp4
 
@@ -214,7 +214,7 @@ usedCharacters[randomSelector].SetDeath(true);
 
 The character becomes both **dead** and the current **devil identity**.
 
-After the configured delay, the character is removed from the population and replaced by a corpse.
+After the configured delay, the character is removed from the population.
 
 The devil system then continues selecting new victims.
 
@@ -429,9 +429,9 @@ Compared with my earlier Game Jam projects, I felt significantly more confident 
 ### Programmers
 
 - **Me** — Gameplay Programming
-- **Isabella Montoya**
-- **Gabriel Eduardo Renowitzky**
-- **Juan Esteban Trillos**
+- **Isabella Montoya** - Camera Systems
+- **Gabriel Eduardo Renowitzky** - Camera Systems
+- **Juan Esteban Trillos** -NPC movement
 
 ### Art
 

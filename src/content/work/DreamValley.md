@@ -12,11 +12,14 @@ tags:
   - AI
   - Systems Programming
   - Technical Design
+
 role: Gameplay Programmer & Technical Designer
+
 engine: Unity
 language: C#
 projectType: First-Person Puzzle Horror
 heroVideo: /assets/DreamValleyss.mp4
+playUrl: https://drive.google.com/file/d/1_PIIGlQ_WRH_svhZIefi6-8qrwuV_zvL/view?usp=sharing
 featuredImages:
   - src: /assets/DV2.jpeg
     alt: Dream Valley gameplay
