@@ -3,7 +3,7 @@ title: Tide and Tales
 
 publishDate: 2026-07-16
 
-img: /public/assets/Tide/TYT Acuarela@3x.png
+img: /assets/Tide/TYT Acuarela@3x.png
 
 img_alt: Tide and Tales gameplay
 
